@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material Lab - 讓好材料被看見</title>
+  <style>
+    /* ---------------- 全域設定 ---------------- */
+    html, body { margin:0; padding:0; font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    
+    /* 共用動畫 */
+    @keyframes fadeUp{
+      from{ opacity:0; transform:translateY(20px); }
+      to  { opacity:1; transform:translateY(0); }
+    }
+    @keyframes floatArrow{
+      0%{ transform:translateY(0); }
+      50%{ transform:translateY(10px); }
+      100%{ transform:translateY(0); }
+    }
+
+    /* ---------------- Hero 區塊 ---------------- */
+    .hero-section {
+      position:relative; width:100%; min-height:640px; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; text-align:center; padding:0 20px;
+      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjg0Mjk2XzAwMi5naWYuZ2lmIl1d.gif?sha=40a4ae22b2258dbc');
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+    }
+    .hero-section::before {
+      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)); pointer-events:none;
+    }
+    .hero-text {
+      position:relative; font-weight:700; font-size:14pt; letter-spacing:.1em; color:#fff;
+      margin:0 0 20px; opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .1s forwards; will-change:transform, opacity;
+    }
+    .hero-logo {
+      position:relative; width:300px; max-width:70vw; height:auto; opacity:0; transform:translateY(20px);
+      animation:fadeUp 1s ease-out .3s forwards; will-change:transform, opacity;
+    }
+
+    /* ---------------- Intro 區塊 ---------------- */
+    .section-intro {
+      position:relative; width:100%; min-height:480px; display:flex; justify-content:center; align-items:center;
+      padding:0 20px; text-align:center;
+      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM0Mzc2XzE5MjA0ODAuanBnLmpwZWciXV0.jpeg?sha=b9b28f9eb2c5be52');
+      background-size:cover; background-position:center;
+    }
+    .section-intro::before {
+      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.32)); pointer-events:none;
+    }
+    .intro-text {
+      position:relative; font-weight:700; font-size:14pt; letter-spacing:.1em; color:#fff; line-height:1.8;
+      opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .1s forwards; will-change:opacity, transform;
+    }
+    .arrow-floating { font-size:16pt; margin-top:20px; animation:floatArrow 2s ease-in-out infinite; }
+
+    /* ---------------- Branding 區塊 ---------------- */
+    .section-branding { background:#ffffff; padding:60px 20px; text-align:center; }
+    .branding-text {
+      color:#263238; line-height:1.8; max-width:980px; margin:0 auto;
+      opacity:0; transform:translateY(20px); animation:fadeUp 0.9s ease-out 0.1s forwards; will-change:opacity, transform;
+    }
+    .branding-tag {
+      display:inline-block; background:#000; color:#fff; font-weight:700; font-size:14pt;
+      letter-spacing:0.1em; padding:10px 20px; border-radius:6px; margin-bottom:20px;
+    }
+    .branding-text p { margin:.4em 0; font-size:14pt; letter-spacing:0.02em; }
+    .branding-text b { color:#000; }
+
+    /* ---------------- Dualtrack 區塊 ---------------- */
+    .section-dualtrack { background:#fff; padding:60px 20px; text-align:center; color:#263238; line-height:1.8; }
+    .branding-wrap { max-width:1200px; margin:0 auto; }
+    .dualtrack-tag, .dualtrack-lead, .dualtrack-card {
+      opacity:0; transform:translateY(20px); animation:fadeUp .9s ease-out forwards; will-change:opacity,transform;
+    }
+    .dualtrack-tag {
+      display:inline-block; background:#000; color:#fff; font-weight:700; font-size:14pt;
+      letter-spacing:.1em; padding:10px 20px; border-radius:6px; margin-bottom:20px; animation-delay:.05s;
+    }
+    .dualtrack-lead { margin:.4em auto 24px; font-size:14pt; letter-spacing:.02em; max-width:980px; animation-delay:.2s; }
+    .dualtrack-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:980px; margin:0 auto 40px; }
+    .dualtrack-card { background:#f8f8f8; border:1px solid #e3e8f0; border-radius:8px; padding:18px 16px; }
+    .dualtrack-card:nth-child(1) { animation-delay:.35s; }
+    .dualtrack-card:nth-child(2) { animation-delay:.5s; }
+    .dualtrack-title { margin:0 0 .25em 0; font-size:14pt; font-weight:700; letter-spacing:.02em; color:#000; }
+    .dualtrack-desc { margin:0; font-size:14pt; letter-spacing:.02em; }
+    .dualtrack-images { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1200px; margin:0 auto; }
+    .dualtrack-images img {
+      width:100%; aspect-ratio:1/1; object-fit:contain; background:#f8f8f8; border-radius:8px; padding:8px;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .dualtrack-images img:hover { transform:scale(1.06); box-shadow:0 12px 24px rgba(0,0,0,.16); }
+
+    /* ---------------- Cases 區塊 ---------------- */
+    .section-cases { background:#fff; padding:60px 20px; text-align:center; }
+    .case-text {
+      font-weight:700; font-size:14pt; letter-spacing:.1em; color:#444; margin-bottom:20px; line-height:1.8;
+      opacity:0; transform:translateY(20px); animation:fadeUp 0.9s ease-out 0.1s forwards; will-change:opacity,transform;
+    }
+    .case-subtext { display:block; font-weight:500; font-size:14pt; letter-spacing:.1em; color:#666; line-height:1.8; margin-top:10px; }
+    .case-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:800px; margin:40px auto 0; padding:0 10px; }
+    .case-img { width:90%; max-width:320px; height:auto; display:block; margin:0 auto; border-radius:8px; opacity:0; transform:translateY(16px); animation:fadeUp 0.8s ease-out forwards; }
+    .case-img:nth-child(1) { animation-delay:.20s; } .case-img:nth-child(2) { animation-delay:.32s; }
+    .case-img:nth-child(3) { animation-delay:.44s; } .case-img:nth-child(4) { animation-delay:.56s; }
+
+    /* ---------------- Material View 區塊 ---------------- */
+    .section-material-view {
+      position:relative; width:100%; min-height:480px; display:flex; justify-content:center; align-items:center;
+      padding:40px 20px; text-align:center; overflow:hidden;
+      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDMxOTY5XzE5MjA2NDAyLmpwZy5qcGVnIl1d.jpeg?sha=1fecfb16b5c51bf5');
+      background-size:cover; background-position:center;
+    }
+    .section-material-view::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.32)); pointer-events:none; }
+    .material-text {
+      position:relative; color:#fff; max-width:960px; opacity:0; transform:translateY(20px);
+      animation:fadeUp 1s ease-out .1s forwards; will-change:opacity, transform;
+    }
+    .material-title { font-weight:700; font-size:16pt; letter-spacing:.1em; margin:0 0 10px; }
+    .material-subtitle { font-weight:700; font-size:14pt; letter-spacing:.06em; margin:0 0 20px; }
+    .material-paragraph { font-weight:700; font-size:14pt; letter-spacing:.06em; line-height:1.8; margin:0; }
+
+    /* ---------------- Links 區塊 ---------------- */
+    .section-links { padding: 48px 16px; background-color: #fff; }
+    .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .link-grid a img { width: 100%; height: auto; display: block; border-radius: 8px; transition: transform 0.3s ease; }
+    .link-grid a:hover img { transform: scale(1.02); }
+
+    /* ---------------- Our People 區塊 ---------------- */
+    .hero-wrap { background:#2A3941; width:100%; min-height:480px; display:flex; align-items:center; }
+    .hero-inner { max-width:1200px; margin:0 auto; padding:40px 24px; width:100%; text-align:center; }
+    .hero-text-people { font-weight:700; font-size:16pt; letter-spacing:0.1em; color:#fff; margin-bottom:40px; opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .05s forwards; }
+    .img-strip { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: nowrap; }
+    .img-strip img {
+      flex: 1 1 0; max-width: 180px; width: 100%; height: auto; display: block; border-radius: 8px;
+      opacity:0; transform:translateY(16px); animation:fadeUp .8s ease-out forwards; transition:transform .35s ease, box-shadow .3s ease;
+    }
+    .img-strip img:nth-child(1){ animation-delay:.15s; } .img-strip img:nth-child(2){ animation-delay:.23s; } .img-strip img:nth-child(3){ animation-delay:.31s; }
+    .img-strip img:hover { transform:translateY(0) scale(1.2); box-shadow:0 12px 24px rgba(0,0,0,.3); z-index:1; }
+
+    /* ---------------- Contact 區塊 ---------------- */
+    .section-contact { background:#fff; padding:60px 20px; text-align:center; color:#444; }
+    .contact-text { max-width:800px; margin:0 auto; opacity:0; transform:translateY(20px); animation:fadeUp .9s ease-out .1s forwards; will-change:opacity, transform; }
+    .contact-list { font-weight:700; font-size:14pt; letter-spacing:.06em; line-height:2; color:#555; }
+    .contact-list a { color:#555; text-decoration:underline; }
+    .contact-logo { margin-top:30px; }
+    .contact-logo img { width:300px; max-width:100%; height:auto; display:inline-block; }
+
+    /* ---------------- RWD 手機版設定 ---------------- */
+    @media (max-width:768px){
+      .hero-section { min-height:520px; padding:60px 20px; }
+      .hero-text, .intro-text, .branding-tag, .branding-text p, .dualtrack-title, .dualtrack-desc, .dualtrack-lead, .dualtrack-tag, .case-text, .case-subtext, .hero-text-people { font-size:14pt; }
+      .hero-logo { width:200px; }
+      .section-intro, .section-material-view { min-height:auto; padding:60px 20px; }
+      .dualtrack-grid, .dualtrack-images, .link-grid, .case-grid { grid-template-columns:1fr; }
+      .material-subtitle, .material-paragraph, .contact-list { font-size:13pt; }
+      .img-strip { flex-direction: column; }
+      .img-strip img { max-width: 80%; }
+    }
+
+    /* 減少動效偏好 */
+    @media (prefers-reduced-motion: reduce){
+      * { animation:none !important; transition:none !important; opacity:1 !important; transform:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero-section">
+    <div class="hero-text">
+      材料品牌化 <br>
+      — 讓好材料被看見、被選擇、被記住
+    </div>
+    <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI1MDQ1X2xvZ293LnBuZy5wbmciXV0.png?sha=0a842171fe8e1aec" alt="Logo" class="hero-logo" loading="lazy" decoding="async" />
+  </section>
+
+  <section class="section-intro">
+    <div class="intro-text">
+      <em>「材料很強，但市場記不住我們。」</em><br>
+      這不是少數個案，而是當前產業現實。<br>
+      只強調規格參數，往往換不到市場認同與主動指名。
+      <div class="arrow-floating">▽</div>
+    </div>
+  </section>
+
+  <section class="section-branding">
+    <div class="branding-text">
+      <div class="branding-tag">為什麼要做材料品牌化？</div>
+      <p>因為光有專利、配方、認證，還是只能在報價單上拼價格。</p>
+      <p>成功的材料，同時打造 <b>性能 × 記憶點</b>：</p>
+      <p>一手做強產品，一手說進人心。</p>
+    </div>
+  </section>
+
+  <section class="section-dualtrack">
+    <div class="branding-wrap">
+      <div class="dualtrack-tag">Material Lab 的「材料品牌化」雙軌方法</div>
+      <p class="dualtrack-lead">我們以雙軌並進的策略，讓材料在 <b>性能</b> 與 <b>品牌</b> 上同步發力：</p>
+      <div class="dualtrack-grid">
+        <div class="dualtrack-card">
+          <h4 class="dualtrack-title">技術軌</h4>
+          <p class="dualtrack-desc">界定關鍵性能，轉化為市場化的使用情境。</p>
+        </div>
+        <div class="dualtrack-card">
+          <h4 class="dualtrack-title">品牌軌</h4>
+          <p class="dualtrack-desc">命名與敘事一致化，配合吊牌／標籤／包裝，強化辨識與記憶。</p>
+        </div>
+      </div>
+      <div class="dualtrack-images">
+        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDExXzEucG5nLnBuZyJdXQ.png?sha=1480894d72c38fab" alt="img1">
+        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDE3XzIucG5nLnBuZyJdXQ.png?sha=21c6f9fb1c763b77" alt="img2">
+        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDIyXzMucG5nLnBuZyJdXQ.png?sha=ad9f7daa6e108674" alt="img3">
+        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDI2XzQucG5nLnBuZyJdXQ.png?sha=fb7e4fafd55eee03" alt="img4">
+      </div>
+    </div>
+  </section>
+
+  <section class="section-cases">
+    <div class="case-text">
+      合作案例精選<br>
+      <span class="case-subtext">我們與材料商、品牌方與製造業者協作，<br>讓永續材料走出實驗室，透過<b>材料品牌化</b>走進市場。</span>
+    </div>
+    <div class="case-grid">
+      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDE3X29jZWFuLnBuZy5wbmciXV0.png?sha=6891740b489b1d1a" alt="case1" class="case-img">
+      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDMwX29uZXN0ZXAucG5nLnBuZyJdXQ.png?sha=cab8ea02569f29e5" alt="case2" class="case-img">
+      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDQ0X2VhcnRoLnBuZy5wbmciXV0.png?sha=42e70efad90837e8" alt="case3" class="case-img">
+      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDQ5X3VyYmFuLnBuZy5wbmciXV0.png?sha=0976bcaffb1fec8f" alt="case4" class="case-img">
+    </div>
+  </section>
+
+  <section class="section-material-view">
+    <div class="material-text">
+      <div class="material-title">我們的觀點</div>
+      <div class="material-subtitle">越早做材料品牌化，越早搶下市場話語權</div>
+      <div class="material-paragraph">
+        材料品牌化 不是錦上添花，而是讓材料從成本中心變成價值創造者的關鍵。<br>
+        越早導入雙軌方法，越能在新產品週期中搶下話語權與採用率。
+      </div>
+    </div>
+  </section>
+
+  <section class="section-links">
+    <div class="link-grid">
+      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%99%E5%93%81%E7%89%8C%E5%8C%96?rcode=KANDY"><img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU0NTQ4NzY5X-adkOaWmeWTgeeJjOWMli5qcGcuanBlZyJdXQ.jpeg?sha=1bd9c151c4bcec29" alt="材料品牌化"></a>
+      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%994p%E6%96%B0%E8%A1%8C%E9%8A%B7?rcode=KANDY"><img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU0NTYyMzIzXzRw5paw6KGM6Yq3LmpwZy5qcGVnIl1d.jpeg?sha=0e96b51c6c38a7e7" alt="新行銷4P"></a>
+      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%99%E8%A6%96%E8%A6%BA%E4%B8%80%E8%87%B4%E6%80%A7?rcode=KANDY"><img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU1MDc2MTkzX-imluimuuS4gOiHtOaApy5qcGcuanBlZyJdXQ.jpeg?sha=65ed2d111d1f1d9b" alt="材料視覺一致性"></a>
+    </div>
+  </section>
+
+  <section class="hero-wrap">
+    <div class="hero-inner">
+      <h2 class="hero-text-people">Our people</h2>
+      <div class="img-strip">
+        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDA2X2FsdmluLnBuZy5wbmciXV0.png?sha=bf4b046dcc90b1e5" alt="Person 1">
+        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDEzX2FsaWNlbS5wbmcucG5nIl1d.png?sha=a86f0790a9ed13bc" alt="Person 2">
+        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDE2X2FsbGVuLnBuZy5wbmciXV0.png?sha=15b1b37108f4c214" alt="Person 3">
+      </div>
+    </div>
+  </section>
+
+  <section class="section-contact">
+    <div class="contact-text">
+      <div class="contact-list">
+        歡迎聯絡我們：<a href="mailto:materiallabco@gmail.com">materiallabco@gmail.com</a>
+      </div>
+      <div class="contact-logo">
+        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI0OTQ0X2xvZ28xLmpwZy5qcGVnIl1d.jpeg?sha=36960eae4b2e9c9d" alt="Logo Bottom">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
