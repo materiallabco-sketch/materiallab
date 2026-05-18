@@ -1,272 +1,872 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Material Lab - 讓好材料被看見</title>
-  <style>
-    /* ---------------- 全域設定 ---------------- */
-    html, body { margin:0; padding:0; font-family: 'Noto Sans TC', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-    
-    /* 共用動畫 */
-    @keyframes fadeUp{
-      from{ opacity:0; transform:translateY(20px); }
-      to  { opacity:1; transform:translateY(0); }
-    }
-    @keyframes floatArrow{
-      0%{ transform:translateY(0); }
-      50%{ transform:translateY(10px); }
-      100%{ transform:translateY(0); }
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Lab — 材料品牌化顧問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    /* ---------------- Hero 區塊 ---------------- */
-    .hero-section {
-      position:relative; width:100%; min-height:640px; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; text-align:center; padding:0 20px;
-      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjg0Mjk2XzAwMi5naWYuZ2lmIl1d.gif?sha=40a4ae22b2258dbc');
-      background-size:cover; background-position:center; background-repeat:no-repeat;
-    }
-    .hero-section::before {
-      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)); pointer-events:none;
-    }
-    .hero-text {
-      position:relative; font-weight:700; font-size:14pt; letter-spacing:.1em; color:#fff;
-      margin:0 0 20px; opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .1s forwards; will-change:transform, opacity;
-    }
-    .hero-logo {
-      position:relative; width:300px; max-width:70vw; height:auto; opacity:0; transform:translateY(20px);
-      animation:fadeUp 1s ease-out .3s forwards; will-change:transform, opacity;
-    }
+:root{
+  --bg:#2A3941;
+  --bg2:#222F36;
+  --bg3:#1E2A30;
+  --gold:#C8A96E;
+  --gold2:rgba(200,169,110,0.35);
+  --gold3:rgba(200,169,110,0.12);
+  --text:#EEE8DC;
+  --text2:rgba(238,232,220,0.5);
+  --text3:rgba(238,232,220,0.25);
+  --border:rgba(238,232,220,0.1);
+}
 
-    /* ---------------- Intro 區塊 ---------------- */
-    .section-intro {
-      position:relative; width:100%; min-height:480px; display:flex; justify-content:center; align-items:center;
-      padding:0 20px; text-align:center;
-      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM0Mzc2XzE5MjA0ODAuanBnLmpwZWciXV0.jpeg?sha=b9b28f9eb2c5be52');
-      background-size:cover; background-position:center;
-    }
-    .section-intro::before {
-      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.32)); pointer-events:none;
-    }
-    .intro-text {
-      position:relative; font-weight:700; font-size:14pt; letter-spacing:.1em; color:#fff; line-height:1.8;
-      opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .1s forwards; will-change:opacity, transform;
-    }
-    .arrow-floating { font-size:16pt; margin-top:20px; animation:floatArrow 2s ease-in-out infinite; }
+html{scroll-behavior:smooth;}
 
-    /* ---------------- Branding 區塊 ---------------- */
-    .section-branding { background:#ffffff; padding:60px 20px; text-align:center; }
-    .branding-text {
-      color:#263238; line-height:1.8; max-width:980px; margin:0 auto;
-      opacity:0; transform:translateY(20px); animation:fadeUp 0.9s ease-out 0.1s forwards; will-change:opacity, transform;
-    }
-    .branding-tag {
-      display:inline-block; background:#000; color:#fff; font-weight:700; font-size:14pt;
-      letter-spacing:0.1em; padding:10px 20px; border-radius:6px; margin-bottom:20px;
-    }
-    .branding-text p { margin:.4em 0; font-size:14pt; letter-spacing:0.02em; }
-    .branding-text b { color:#000; }
+/* CURSOR */
+#cursor{
+  position:fixed;width:10px;height:10px;border-radius:50%;
+  background:var(--gold);pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width 0.2s,height 0.2s,background 0.2s,opacity 0.2s;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(200,169,110,0.5);pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width 0.35s cubic-bezier(.25,.46,.45,.94),
+             height 0.35s cubic-bezier(.25,.46,.45,.94),
+             border-color 0.2s;
+}
+#cursor.hover{width:6px;height:6px;}
+#cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
+#cursor.click{width:16px;height:16px;}
 
-    /* ---------------- Dualtrack 區塊 ---------------- */
-    .section-dualtrack { background:#fff; padding:60px 20px; text-align:center; color:#263238; line-height:1.8; }
-    .branding-wrap { max-width:1200px; margin:0 auto; }
-    .dualtrack-tag, .dualtrack-lead, .dualtrack-card {
-      opacity:0; transform:translateY(20px); animation:fadeUp .9s ease-out forwards; will-change:opacity,transform;
-    }
-    .dualtrack-tag {
-      display:inline-block; background:#000; color:#fff; font-weight:700; font-size:14pt;
-      letter-spacing:.1em; padding:10px 20px; border-radius:6px; margin-bottom:20px; animation-delay:.05s;
-    }
-    .dualtrack-lead { margin:.4em auto 24px; font-size:14pt; letter-spacing:.02em; max-width:980px; animation-delay:.2s; }
-    .dualtrack-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:980px; margin:0 auto 40px; }
-    .dualtrack-card { background:#f8f8f8; border:1px solid #e3e8f0; border-radius:8px; padding:18px 16px; }
-    .dualtrack-card:nth-child(1) { animation-delay:.35s; }
-    .dualtrack-card:nth-child(2) { animation-delay:.5s; }
-    .dualtrack-title { margin:0 0 .25em 0; font-size:14pt; font-weight:700; letter-spacing:.02em; color:#000; }
-    .dualtrack-desc { margin:0; font-size:14pt; letter-spacing:.02em; }
-    .dualtrack-images { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1200px; margin:0 auto; }
-    .dualtrack-images img {
-      width:100%; aspect-ratio:1/1; object-fit:contain; background:#f8f8f8; border-radius:8px; padding:8px;
-      transition:transform .3s ease, box-shadow .3s ease;
-    }
-    .dualtrack-images img:hover { transform:scale(1.06); box-shadow:0 12px 24px rgba(0,0,0,.16); }
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  cursor:none;
+  overflow-x:hidden;
+}
 
-    /* ---------------- Cases 區塊 ---------------- */
-    .section-cases { background:#fff; padding:60px 20px; text-align:center; }
-    .case-text {
-      font-weight:700; font-size:14pt; letter-spacing:.1em; color:#444; margin-bottom:20px; line-height:1.8;
-      opacity:0; transform:translateY(20px); animation:fadeUp 0.9s ease-out 0.1s forwards; will-change:opacity,transform;
-    }
-    .case-subtext { display:block; font-weight:500; font-size:14pt; letter-spacing:.1em; color:#666; line-height:1.8; margin-top:10px; }
-    .case-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:800px; margin:40px auto 0; padding:0 10px; }
-    .case-img { width:90%; max-width:320px; height:auto; display:block; margin:0 auto; border-radius:8px; opacity:0; transform:translateY(16px); animation:fadeUp 0.8s ease-out forwards; }
-    .case-img:nth-child(1) { animation-delay:.20s; } .case-img:nth-child(2) { animation-delay:.32s; }
-    .case-img:nth-child(3) { animation-delay:.44s; } .case-img:nth-child(4) { animation-delay:.56s; }
+/* NOISE OVERLAY */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
 
-    /* ---------------- Material View 區塊 ---------------- */
-    .section-material-view {
-      position:relative; width:100%; min-height:480px; display:flex; justify-content:center; align-items:center;
-      padding:40px 20px; text-align:center; overflow:hidden;
-      background-image:url('https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDMxOTY5XzE5MjA2NDAyLmpwZy5qcGVnIl1d.jpeg?sha=1fecfb16b5c51bf5');
-      background-size:cover; background-position:center;
-    }
-    .section-material-view::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.32)); pointer-events:none; }
-    .material-text {
-      position:relative; color:#fff; max-width:960px; opacity:0; transform:translateY(20px);
-      animation:fadeUp 1s ease-out .1s forwards; will-change:opacity, transform;
-    }
-    .material-title { font-weight:700; font-size:16pt; letter-spacing:.1em; margin:0 0 10px; }
-    .material-subtitle { font-weight:700; font-size:14pt; letter-spacing:.06em; margin:0 0 20px; }
-    .material-paragraph { font-weight:700; font-size:14pt; letter-spacing:.06em; line-height:1.8; margin:0; }
+/* NAV */
+.ml-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 48px;
+  border-bottom:0.5px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(42,57,65,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.ml-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
-    /* ---------------- Links 區塊 ---------------- */
-    .section-links { padding: 48px 16px; background-color: #fff; }
-    .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
-    .link-grid a img { width: 100%; height: auto; display: block; border-radius: 8px; transition: transform 0.3s ease; }
-    .link-grid a:hover img { transform: scale(1.02); }
+.ml-logo img {
+  height: 28px; /* 這裡控制 Logo 的大小，你可以自由微調（24px~36px 都不錯） */
+  width: auto;
+  object-fit: contain;
+}
+.ml-nav-links{display:flex;gap:32px;list-style:none;}
+.ml-nav-links a{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text2);text-decoration:none;transition:color 0.2s;
+  position:relative;cursor:none;
+}
+.ml-nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:0;height:0.5px;
+  background:var(--gold);transition:width 0.3s;
+}
+.ml-nav-links a:hover{color:var(--text);}
+.ml-nav-links a:hover::after{width:100%;}
+.ml-nav-cta{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:transparent;color:var(--gold);
+  border:0.5px solid var(--gold);padding:9px 20px;border-radius:2px;
+  cursor:none;transition:all 0.25s;
+}
+.ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
 
-    /* ---------------- Our People 區塊 ---------------- */
-    .hero-wrap { background:#2A3941; width:100%; min-height:480px; display:flex; align-items:center; }
-    .hero-inner { max-width:1200px; margin:0 auto; padding:40px 24px; width:100%; text-align:center; }
-    .hero-text-people { font-weight:700; font-size:16pt; letter-spacing:0.1em; color:#fff; margin-bottom:40px; opacity:0; transform:translateY(20px); animation:fadeUp 1s ease-out .05s forwards; }
-    .img-strip { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: nowrap; }
-    .img-strip img {
-      flex: 1 1 0; max-width: 180px; width: 100%; height: auto; display: block; border-radius: 8px;
-      opacity:0; transform:translateY(16px); animation:fadeUp .8s ease-out forwards; transition:transform .35s ease, box-shadow .3s ease;
-    }
-    .img-strip img:nth-child(1){ animation-delay:.15s; } .img-strip img:nth-child(2){ animation-delay:.23s; } .img-strip img:nth-child(3){ animation-delay:.31s; }
-    .img-strip img:hover { transform:translateY(0) scale(1.2); box-shadow:0 12px 24px rgba(0,0,0,.3); z-index:1; }
+/* HERO */
+.ml-hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:520px;border-bottom:0.5px solid var(--border);
+  position:relative;z-index:1;
+}
+.ml-hero-left {
+  padding: 120px 48px; 
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-right: 0.5px solid var(--border);
+}
+.ml-hero-eyebrow{
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+}
+.ml-hero-eyebrow::before{
+  content:'';display:inline-block;width:28px;height:0.5px;background:var(--gold);
+}
+.ml-hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:66px;line-height:1.0;font-weight:300;color:var(--text);
+  letter-spacing:-0.5px;margin-top:28px;
+  opacity:0;animation:fadeUp 0.9s 0.4s forwards;
+}
+.ml-hero-title em{font-style:italic;color:var(--gold);}
+.ml-hero-bottom{
+  opacity:0;animation:fadeUp 0.9s 0.6s forwards;
+}
+.ml-hero-sub{
+  font-size:13px;line-height:1.95;color:var(--text2);max-width:320px;margin-bottom:30px;
+}
+.ml-hero-actions{display:flex;align-items:center;gap:18px;}
+.ml-btn-primary{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);border:none;
+  padding:13px 28px;border-radius:2px;cursor:none;
+  transition:all 0.25s;position:relative;overflow:hidden;
+  text-decoration:none;display:inline-block;
+}
+.ml-btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0);transition:background 0.2s;
+}
+.ml-btn-primary:hover::after{background:rgba(255,255,255,0.12);}
+.ml-hero-email{font-size:12px;color:var(--text3);letter-spacing:0.04em;}
 
-    /* ---------------- Contact 區塊 ---------------- */
-    .section-contact { background:#fff; padding:60px 20px; text-align:center; color:#444; }
-    .contact-text { max-width:800px; margin:0 auto; opacity:0; transform:translateY(20px); animation:fadeUp .9s ease-out .1s forwards; will-change:opacity, transform; }
-    .contact-list { font-weight:700; font-size:14pt; letter-spacing:.06em; line-height:2; color:#555; }
-    .contact-list a { color:#555; text-decoration:underline; }
-    .contact-logo { margin-top:30px; }
-    .contact-logo img { width:300px; max-width:100%; height:auto; display:inline-block; }
+/* GEO CANVAS */
+.ml-hero-right{
+  display: flex; align-items: center; justify-content: center; /* 確保影片完美置中 */
+  position: relative; overflow: hidden; cursor: none;
+  opacity: 0; animation: fadeIn 1.2s 0.3s forwards;
+}
+#geoCanvas{display:block;max-width:100%;max-height:100%;}
+.ml-year-tag{
+  position:absolute;bottom:28px;right:28px;
+  font-size:10px;letter-spacing:0.1em;color:var(--text3);
+}
 
-    /* ---------------- RWD 手機版設定 ---------------- */
-    @media (max-width:768px){
-      .hero-section { min-height:520px; padding:60px 20px; }
-      .hero-text, .intro-text, .branding-tag, .branding-text p, .dualtrack-title, .dualtrack-desc, .dualtrack-lead, .dualtrack-tag, .case-text, .case-subtext, .hero-text-people { font-size:14pt; }
-      .hero-logo { width:200px; }
-      .section-intro, .section-material-view { min-height:auto; padding:60px 20px; }
-      .dualtrack-grid, .dualtrack-images, .link-grid, .case-grid { grid-template-columns:1fr; }
-      .material-subtitle, .material-paragraph, .contact-list { font-size:13pt; }
-      .img-strip { flex-direction: column; }
-      .img-strip img { max-width: 80%; }
-    }
+/* STRIP */
+/* STRIP (MARQUEE) */
+.ml-strip {
+  display: flex;
+  overflow: hidden;
+  padding: 24px 0; /* 上下留白，左右不限制以便滾動 */
+  border-bottom: 0.5px solid var(--border);
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+}
 
-    /* 減少動效偏好 */
-    @media (prefers-reduced-motion: reduce){
-      * { animation:none !important; transition:none !important; opacity:1 !important; transform:none !important; }
-    }
-  </style>
+.ml-marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 80px; /* 每個項目之間的距離 */
+  padding-right: 80px; /* 確保與下一組的銜接距離一致 */
+  animation: scrollMarquee 25s linear infinite; /* 25秒轉一圈，可依喜好調整秒數 */
+}
+
+/* 當滑鼠移上去時，讓跑馬燈暫停（可選的貼心互動） */
+.ml-strip:hover .ml-marquee-group {
+  animation-play-state: paused;
+}
+
+.ml-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.ml-strip-num {
+  font-family: 'Outfit', sans-serif; /* 改用無襯線字體，讓英文更俐落 */
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.ml-strip-label {
+  font-size: 13px;
+  color: var(--text2);
+  letter-spacing: 0.08em;
+}
+
+.ml-strip-div {
+  width: 0.5px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* METHOD */
+.ml-method{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:0.5px solid var(--border);
+  position:relative;z-index:1;
+}
+.ml-method-left {
+  padding: 100px 48px;
+  border-right: 0.5px solid var(--border);
+}
+.ml-eyebrow{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:18px;display:flex;align-items:center;gap:10px;
+}
+.ml-eyebrow::before{content:'';display:inline-block;width:16px;height:0.5px;background:var(--gold);}
+.ml-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:300;line-height:1.15;color:var(--text);margin-bottom:22px;
+}
+.ml-section-title em{font-style:italic;}
+.ml-section-body{font-size:13px;line-height:1.9;color:var(--text2);max-width:300px;}
+
+.ml-method-right{display:grid;grid-template-rows:1fr 1fr;}
+.ml-track {
+  padding: 64px 48px;
+  border-bottom: 0.5px solid var(--border);
+  transition: background 0.3s; cursor: none;
+}
+.ml-track:last-child{border-bottom:none;}
+.ml-track:hover{background:rgba(200,169,110,0.04);}
+.ml-track-num{font-size:10px;color:rgba(200,169,110,0.35);letter-spacing:0.12em;margin-bottom:10px;}
+.ml-track-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:300;color:var(--text);margin-bottom:10px;
+}
+.ml-track-desc{font-size:12px;line-height:1.85;color:var(--text2);}
+.ml-track-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.ml-pill{
+  font-size:10px;letter-spacing:0.07em;
+  border:0.5px solid rgba(200,169,110,0.3);color:rgba(200,169,110,0.65);
+  padding:4px 10px;border-radius:1px;transition:all 0.2s;cursor:none;
+}
+.ml-pill:hover{background:rgba(200,169,110,0.1);border-color:var(--gold);}
+
+/* CASES */
+.ml-cases{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
+.ml-cases-head {
+  padding: 80px 48px 40px;
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+}
+.ml-cases-head-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:300;color:var(--text);
+}
+.ml-cases-head-link{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);cursor:none;transition:letter-spacing 0.3s;
+  text-decoration:none;
+}
+.ml-cases-head-link:hover{letter-spacing:0.16em;}
+
+.ml-cases-grid{display:grid;grid-template-columns:1fr 1fr;}
+.ml-case {
+  padding: 64px 48px;
+  border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  cursor: none; transition: background 0.3s; position: relative; overflow: hidden;
+}
+.ml-case::before{
+  content:'';position:absolute;left:0;top:0;width:2px;height:0;
+  background:var(--gold);transition:height 0.4s cubic-bezier(.25,.46,.45,.94);
+}
+.ml-case:hover::before{height:100%;}
+.ml-case:nth-child(2n){border-right:none;}
+.ml-case:nth-child(3),.ml-case:nth-child(4){border-bottom:none;}
+.ml-case:hover{background:rgba(200,169,110,0.03);}
+.ml-case-index{font-size:10px;color:rgba(200,169,110,0.35);letter-spacing:0.12em;margin-bottom:14px;}
+.ml-case-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:300;color:var(--text);margin-bottom:10px;
+}
+.ml-case-result{font-size:12px;line-height:1.8;color:var(--text2);margin-bottom:16px;}
+.ml-case-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,169,110,0.5);}
+.ml-case-arrow{display:inline-block;transition:transform 0.25s;}
+.ml-case:hover .ml-case-arrow{transform:translateX(5px);}
+
+/* CTA BAND */
+.ml-cta-band{
+  padding: 120px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  background: var(--bg3); 
+  position: relative; 
+  z-index: 1;
+  overflow: hidden; /* 關鍵：確保背景影片不會超出這一格區塊的上下邊界 */
+}
+.ml-cta-kicker{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.ml-cta-kicker::before{content:'';display:inline-block;width:16px;height:0.5px;background:var(--gold);}
+.ml-cta-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:300;line-height:1.1;color:var(--text);
+}
+.ml-cta-headline em{font-style:italic;}
+.ml-cta-right{text-align:right;}
+.ml-cta-email-label{font-size:11px;letter-spacing:0.1em;color:var(--text3);margin-bottom:10px;}
+.ml-cta-email-addr{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:300;color:var(--gold);
+  border-bottom:0.5px solid rgba(200,169,110,0.4);padding-bottom:4px;
+  cursor:none;display:inline-block;transition:letter-spacing 0.3s;
+  text-decoration:none;
+}
+.ml-cta-email-addr:hover{letter-spacing:0.04em;}
+
+/* PEOPLE */
+.ml-people{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:0.5px solid var(--border);position:relative;z-index:1;
+}
+.ml-people-intro {
+  padding: 80px 48px;
+  border-right: 0.5px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.ml-people-intro-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:300;color:var(--text);line-height:1.2;margin-top:16px;
+}
+.ml-people-intro-sub{font-size:12px;color:var(--text2);line-height:1.8;margin-top:16px;}
+.ml-person {
+  padding: 64px 32px;
+  border-right: 0.5px solid var(--border);
+  cursor: none; transition: background 0.3s;
+}
+.ml-person:last-child{border-right:none;}
+.ml-person:hover{background:rgba(200,169,110,0.03);}
+.ml-person-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(200,169,110,0.1);border:0.5px solid rgba(200,169,110,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);
+  margin-bottom:16px;transition:background 0.3s,border-color 0.3s;
+}
+.ml-person:hover .ml-person-avatar{background:rgba(200,169,110,0.18);border-color:var(--gold);}
+.ml-person-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.ml-person-role{font-size:11px;color:rgba(200,169,110,0.6);margin-bottom:10px;letter-spacing:0.03em;}
+.ml-person-bio{font-size:11px;color:var(--text2);line-height:1.8;}
+
+/* JOURNAL */
+.ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
+.ml-journal-head {
+  padding: 80px 48px 40px;
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+}
+.ml-journal-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--text);}
+.ml-articles{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.ml-article {
+  padding: 50px 36px;
+  border-right: 0.5px solid var(--border);
+  cursor: none; transition: background 0.3s;
+  text-decoration: none; display: block;
+}
+.ml-article:last-child{border-right:none;}
+.ml-article:hover{background:rgba(200,169,110,0.03);}
+.ml-article-cat{
+  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.ml-article-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;color:var(--text);line-height:1.45;margin-bottom:12px;
+}
+.ml-article-date{font-size:11px;color:var(--text3);}
+
+/* FOOTER */
+.ml-footer{
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:1;
+}
+.ml-footer-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.ml-footer-logo img {
+  height: 22px; /* 比頁首稍微縮小，看起來更精緻低調 */
+  width: auto;
+  object-fit: contain;
+  opacity: 0.5; /* 平常淡淡的，符合頁尾的隱性氣質 */
+  transition: opacity 0.3s ease;
+}
+
+/* 貼心細節：當滑鼠滑過頁尾 Logo 時，恢復 100% 亮度 */
+.ml-footer-logo:hover img {
+  opacity: 1;
+}
+.ml-footer-links{display:flex;gap:24px;}
+.ml-footer-links a{
+  font-size:11px;color:var(--text3);text-decoration:none;
+  letter-spacing:0.06em;cursor:none;transition:color 0.2s;
+}
+.ml-footer-links a:hover{color:var(--text2);}
+.ml-footer-copy{font-size:11px;color:var(--text3);}
+
+/* KEYFRAMES */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  /* 1. 網格從多欄變為單欄 */
+  .ml-hero, .ml-method, .ml-cases-grid, .ml-people, .ml-articles {grid-template-columns:1fr;}
+  
+  /* 2. Hero 影片區塊高度，設定為 320px 讓影片在手機上依舊有氣勢 */
+  .ml-hero-right{height:320px;}
+  
+  /* 3. 邊框調整：改為上下分隔線 */
+  .ml-method-left, .ml-case:nth-child(2n), .ml-case:nth-child(3), 
+  .ml-people-intro, .ml-person, .ml-article {
+    border-right:none; border-bottom:0.5px solid var(--border);
+  }
+  
+  /* 4. CTA 區塊垂直置中排列 */
+  .ml-cta-band{flex-direction:column;gap:32px;text-align:center;}
+  .ml-cta-right{text-align:center;}
+  
+  /* 5. 導覽列：手機版隱藏中間的連結，確保畫面俐落，只保留 Logo 與聯絡按鈕 */
+  .ml-nav-links{display:none;}
+  .ml-nav{padding:16px 20px;}
+  
+  /* 6. 重新校準手機版的「留白呼吸感」，避免間距過大 */
+  .ml-hero-left { padding: 64px 24px; }
+  .ml-method-left, .ml-cta-band, .ml-people-intro, .ml-journal-head { padding: 64px 24px; }
+  .ml-cases-head { padding: 64px 24px 32px; }
+  .ml-track, .ml-case, .ml-person, .ml-article { padding: 40px 24px; }
+  
+  /* 7. 自動縮小大標題字體，適應狹窄螢幕 */
+  .ml-hero-title{font-size:44px;}
+  .ml-section-title, .ml-cta-headline{font-size:36px;}
+}
+</style>
 </head>
 <body>
 
-  <section class="hero-section">
-    <div class="hero-text">
-      材料品牌化 <br>
-      — 讓好材料被看見、被選擇、被記住
-    </div>
-    <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI1MDQ1X2xvZ293LnBuZy5wbmciXV0.png?sha=0a842171fe8e1aec" alt="Logo" class="hero-logo" loading="lazy" decoding="async" />
-  </section>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <section class="section-intro">
-    <div class="intro-text">
-      <em>「材料很強，但市場記不住我們。」</em><br>
-      這不是少數個案，而是當前產業現實。<br>
-      只強調規格參數，往往換不到市場認同與主動指名。
-      <div class="arrow-floating">▽</div>
-    </div>
-  </section>
+<nav class="ml-nav">
+  <a class="ml-logo" href="#">
+  <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+</a>
+  <ul class="ml-nav-links">
+    <li><a href="#cases">Work</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#people">People</a></li>
+  </ul>
+  <button class="ml-nav-cta" onclick="location.href='mailto:materiallabco@gmail.com'">聯絡我們</button>
+</nav>
 
-  <section class="section-branding">
-    <div class="branding-text">
-      <div class="branding-tag">為什麼要做材料品牌化？</div>
-      <p>因為光有專利、配方、認證，還是只能在報價單上拼價格。</p>
-      <p>成功的材料，同時打造 <b>性能 × 記憶點</b>：</p>
-      <p>一手做強產品，一手說進人心。</p>
+<!-- HERO -->
+<section class="ml-hero">
+  <div class="ml-hero-left">
+    <div class="ml-hero-eyebrow">材料品牌化顧問</div>
+    <div class="ml-hero-title">
+      Your material<br>deserves to<br>be <em>remembered.</em>
     </div>
-  </section>
-
-  <section class="section-dualtrack">
-    <div class="branding-wrap">
-      <div class="dualtrack-tag">Material Lab 的「材料品牌化」雙軌方法</div>
-      <p class="dualtrack-lead">我們以雙軌並進的策略，讓材料在 <b>性能</b> 與 <b>品牌</b> 上同步發力：</p>
-      <div class="dualtrack-grid">
-        <div class="dualtrack-card">
-          <h4 class="dualtrack-title">技術軌</h4>
-          <p class="dualtrack-desc">界定關鍵性能，轉化為市場化的使用情境。</p>
-        </div>
-        <div class="dualtrack-card">
-          <h4 class="dualtrack-title">品牌軌</h4>
-          <p class="dualtrack-desc">命名與敘事一致化，配合吊牌／標籤／包裝，強化辨識與記憶。</p>
-        </div>
-      </div>
-      <div class="dualtrack-images">
-        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDExXzEucG5nLnBuZyJdXQ.png?sha=1480894d72c38fab" alt="img1">
-        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDE3XzIucG5nLnBuZyJdXQ.png?sha=21c6f9fb1c763b77" alt="img2">
-        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDIyXzMucG5nLnBuZyJdXQ.png?sha=ad9f7daa6e108674" alt="img3">
-        <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNjY4NDI2XzQucG5nLnBuZyJdXQ.png?sha=fb7e4fafd55eee03" alt="img4">
+    <div class="ml-hero-bottom">
+      <p class="ml-hero-sub">台灣製造商擁有世界級的材料技術，卻常在報價單上拼價格。我們幫你把技術優勢轉化為市場記憶點，讓買方主動指名你。</p>
+      <div class="ml-hero-actions">
+        <a class="ml-btn-primary" href="mailto:materiallabco@gmail.com">開始合作 →</a>
+        <span class="ml-hero-email">materiallabco@gmail.com</span>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="ml-hero-right">
+  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; pointer-events: none; opacity: 0.9;">
+    <source src="https://res.cloudinary.com/dzxlqypsq/video/upload/v1779092099/11922062_1080_1080_24fps_mtn560.mp4" type="video/mp4">
+  </video>
+  
+  <div class="ml-year-tag" style="position: absolute; right: 28px; bottom: 28px; z-index: 2;">Est. 2024</div>
+</div>
+</section>
 
-  <section class="section-cases">
-    <div class="case-text">
-      合作案例精選<br>
-      <span class="case-subtext">我們與材料商、品牌方與製造業者協作，<br>讓永續材料走出實驗室，透過<b>材料品牌化</b>走進市場。</span>
+<!-- STRIP -->
+<div class="ml-strip">
+  <div class="ml-marquee-group">
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">B2B to B2C</div>
+      <div class="ml-strip-label">跨越規格戰，創造市場溢價</div>
     </div>
-    <div class="case-grid">
-      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDE3X29jZWFuLnBuZy5wbmciXV0.png?sha=6891740b489b1d1a" alt="case1" class="case-img">
-      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDMwX29uZXN0ZXAucG5nLnBuZyJdXQ.png?sha=cab8ea02569f29e5" alt="case2" class="case-img">
-      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDQ0X2VhcnRoLnBuZy5wbmciXV0.png?sha=42e70efad90837e8" alt="case3" class="case-img">
-      <img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzUzNDM3MDQ5X3VyYmFuLnBuZy5wbmciXV0.png?sha=0976bcaffb1fec8f" alt="case4" class="case-img">
+    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">Tech × Brand</div>
+      <div class="ml-strip-label">雙軌並進，賦予材料記憶點</div>
     </div>
-  </section>
+    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">Sustainable Innovation</div>
+      <div class="ml-strip-label">永續與機能材料的專屬推手</div>
+    </div>
+    <div class="ml-strip-div"></div>
+  </div>
+  
+  <div class="ml-marquee-group" aria-hidden="true">
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">B2B to B2C</div>
+      <div class="ml-strip-label">跨越規格戰，創造市場溢價</div>
+    </div>
+    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">Tech × Brand</div>
+      <div class="ml-strip-label">雙軌並進，賦予材料記憶點</div>
+    </div>
+    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item">
+      <div class="ml-strip-num">Sustainable Innovation</div>
+      <div class="ml-strip-label">永續與機能材料的專屬推手</div>
+    </div>
+    <div class="ml-strip-div"></div>
+  </div>
+</div>
 
-  <section class="section-material-view">
-    <div class="material-text">
-      <div class="material-title">我們的觀點</div>
-      <div class="material-subtitle">越早做材料品牌化，越早搶下市場話語權</div>
-      <div class="material-paragraph">
-        材料品牌化 不是錦上添花，而是讓材料從成本中心變成價值創造者的關鍵。<br>
-        越早導入雙軌方法，越能在新產品週期中搶下話語權與採用率。
+<!-- METHOD -->
+<section class="ml-method" id="method">
+  <div class="ml-method-left">
+  <div class="ml-eyebrow">我們的方法</div>
+  <div class="ml-section-title">雙軌並進，<br><em>同步打造</em><br>性能與品牌</div>
+  <p class="ml-section-body">大多數材料商在技術上無懈可擊，卻在市場溝通上失去話語權。Material Lab 的雙軌方法，讓你的材料同時在規格競爭與品牌認知上取得優勢。</p>
+  
+  <div id="geoWrap" style="width: 100%; aspect-ratio: 1/1; max-height: 500px; margin-top: 40px; display: flex; align-items: center; justify-content: center; position: relative;">
+    <canvas id="geoCanvas" width="420" height="420"></canvas>
+  </div>
+</div>
+</div>
+  <div class="ml-method-right">
+    <div class="ml-track reveal">
+      <div class="ml-track-num">01 / 技術軌</div>
+      <div class="ml-track-name">Technical Track</div>
+      <p class="ml-track-desc">界定你的關鍵性能差異點，轉化為買方能理解的使用情境語言。讓規格不只是數字，而是解決問題的承諾。</p>
+      <div class="ml-track-pills">
+        <span class="ml-pill">性能差異化</span>
+        <span class="ml-pill">情境語言轉譯</span>
+        <span class="ml-pill">技術文件升級</span>
       </div>
     </div>
-  </section>
-
-  <section class="section-links">
-    <div class="link-grid">
-      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%99%E5%93%81%E7%89%8C%E5%8C%96?rcode=KANDY"><img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU0NTQ4NzY5X-adkOaWmeWTgeeJjOWMli5qcGcuanBlZyJdXQ.jpeg?sha=1bd9c151c4bcec29" alt="材料品牌化"></a>
-      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%994p%E6%96%B0%E8%A1%8C%E9%8A%B7?rcode=KANDY"><img src="https://cdn.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU0NTYyMzIzXzRw5paw6KGM6Yq3LmpwZy5qcGVnIl1d.jpeg?sha=0e96b51c6c38a7e7" alt="新行銷4P"></a>
-      <a href="https://www.avier.com.tw/zh-TW/pages/%E6%9D%90%E6%96%99%E8%A6%96%E8%A6%BA%E4%B8%80%E8%87%B4%E6%80%A7?rcode=KANDY"><img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzU1MDc2MTkzX-imluimuuS4gOiHtOaApy5qcGcuanBlZyJdXQ.jpeg?sha=65ed2d111d1f1d9b" alt="材料視覺一致性"></a>
-    </div>
-  </section>
-
-  <section class="hero-wrap">
-    <div class="hero-inner">
-      <h2 class="hero-text-people">Our people</h2>
-      <div class="img-strip">
-        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDA2X2FsdmluLnBuZy5wbmciXV0.png?sha=bf4b046dcc90b1e5" alt="Person 1">
-        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDEzX2FsaWNlbS5wbmcucG5nIl1d.png?sha=a86f0790a9ed13bc" alt="Person 2">
-        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI4MDE2X2FsbGVuLnBuZy5wbmciXV0.png?sha=15b1b37108f4c214" alt="Person 3">
+    <div class="ml-track reveal">
+      <div class="ml-track-num">02 / 品牌軌</div>
+      <div class="ml-track-name">Brand Track</div>
+      <p class="ml-track-desc">命名、視覺、敘事一致化，配合吊牌、標籤、包裝與數位觸點，讓你的材料在供應鏈中留下不可替代的印記。</p>
+      <div class="ml-track-pills">
+        <span class="ml-pill">材料命名系統</span>
+        <span class="ml-pill">視覺識別</span>
+        <span class="ml-pill">包裝設計</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section-contact">
-    <div class="contact-text">
-      <div class="contact-list">
-        歡迎聯絡我們：<a href="mailto:materiallabco@gmail.com">materiallabco@gmail.com</a>
-      </div>
-      <div class="contact-logo">
-        <img src="https://cdn-next.cybassets.com/media/W1siZiIsIjE3NTM4L2F0dGFjaGVkX3Bob3Rvcy8xNzc4MjI0OTQ0X2xvZ28xLmpwZy5qcGVnIl1d.jpeg?sha=36960eae4b2e9c9d" alt="Logo Bottom">
-      </div>
+<!-- CASES -->
+<section class="ml-cases" id="cases">
+  <div class="ml-cases-head">
+    <div class="ml-cases-head-title">合作案例</div>
+    <a class="ml-cases-head-link" href="#">看全部案例 →</a>
+  </div>
+  <div class="ml-cases-grid">
+    <div class="ml-case reveal">
+      <div class="ml-case-index">Case 01</div>
+      <div class="ml-case-name">Ocean</div>
+      <p class="ml-case-result">海廢再生材料品牌化——從環保原料升級為具故事性的永續材料品牌，成功打入國際品牌採購視野。</p>
+      <div class="ml-case-tag">永續材料 · 品牌敘事 <span class="ml-case-arrow">→</span></div>
     </div>
-  </section>
+    <div class="ml-case reveal" style="transition-delay:0.1s">
+      <div class="ml-case-index">Case 02</div>
+      <div class="ml-case-name">OneStep</div>
+      <p class="ml-case-result">功能性材料重新定位——以使用情境取代規格表，讓採購方第一次接觸就理解材料的核心優勢。</p>
+      <div class="ml-case-tag">功能材料 · 技術溝通 <span class="ml-case-arrow">→</span></div>
+    </div>
+    <div class="ml-case reveal" style="transition-delay:0.15s">
+      <div class="ml-case-index">Case 03</div>
+      <div class="ml-case-name">Earth</div>
+      <p class="ml-case-result">天然原料品牌再造——建立從原料到末端產品的視覺語言系統，強化溯源信任感與指名採購率。</p>
+      <div class="ml-case-tag">天然材料 · 視覺系統 <span class="ml-case-arrow">→</span></div>
+    </div>
+    <div class="ml-case reveal" style="transition-delay:0.2s">
+      <div class="ml-case-index">Case 04</div>
+      <div class="ml-case-name">Urban</div>
+      <p class="ml-case-result">城市回收材料品牌化——讓再生素材從低價品升格為設計師指定採用的永續選材，提升議價空間。</p>
+      <div class="ml-case-tag">回收材料 · 設計選材 <span class="ml-case-arrow">→</span></div>
+    </div>
+  </div>
+</section>
 
+<!-- CTA BAND -->
+<section class="ml-cta-band reveal">
+  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" 
+         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0.35;">
+    <source src="https://res.cloudinary.com/dzxlqypsq/video/upload/v1779093103/4431619-hd_1920_1080_30fps_cxusrm.mp4" type="video/mp4">
+  </video>
+  
+  <div style="position: absolute; inset: 0; background: rgba(30, 42, 48, 0.4); z-index: 1; pointer-events: none;"></div>
+
+  <div style="position: relative; z-index: 2;">
+    <div class="ml-cta-kicker">準備好了嗎</div>
+    <div class="ml-cta-headline">你的材料，<br>值得被<em>市場記住</em>。</div>
+  </div>
+  
+  <div class="ml-cta-right" style="position: relative; z-index: 2;">
+    <div class="ml-cta-email-label">直接寫信給我們</div>
+    <a class="ml-cta-email-addr" href="mailto:materiallabco@gmail.com">materiallabco@gmail.com</a>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="ml-people" id="people">
+  <div class="ml-people-intro">
+    <div>
+      <div class="ml-eyebrow">Our People</div>
+      <div class="ml-people-intro-title">相信材料，<br>也相信<em>故事</em><br>的力量</div>
+      <p class="ml-people-intro-sub">Material Lab 橫跨品牌策略、材料科學與設計溝通，我們不只懂品牌，更懂台灣製造業的語言與挑戰。</p>
+    </div>
+  </div>
+  <div class="ml-person reveal">
+    <div class="ml-person-avatar">AL</div>
+    <div class="ml-person-name">Alvin</div>
+    <div class="ml-person-role">材料品牌策略</div>
+    <p class="ml-person-bio">協助製造商將技術語言轉化為市場價值，專注材料品牌化策略超過五年。</p>
+  </div>
+  <div class="ml-person reveal" style="transition-delay:0.1s">
+    <div class="ml-person-avatar">AC</div>
+    <div class="ml-person-name">Alice / Allen</div>
+    <div class="ml-person-role">品牌設計 · 溝通執行</div>
+    <p class="ml-person-bio">負責視覺識別與敘事系統，確保品牌從策略到落地每個觸點保持一致。</p>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="ml-journal" id="journal">
+  <div class="ml-journal-head">
+    <div class="ml-journal-title">我們的觀點</div>
+    <a class="ml-cases-head-link" href="#">更多文章 →</a>
+  </div>
+  <div class="ml-articles">
+    <a class="ml-article reveal" href="#">
+      <div class="ml-article-cat">品牌策略</div>
+      <div class="ml-article-title">越早做材料品牌化，越早搶下市場話語權</div>
+      <div class="ml-article-date">2025 · Material Lab</div>
+    </a>
+    <a class="ml-article reveal" href="#" style="transition-delay:0.1s">
+      <div class="ml-article-cat">材料 4P</div>
+      <div class="ml-article-title">材料的新行銷 4P：從規格競爭走向價值定位</div>
+      <div class="ml-article-date">2025 · Material Lab</div>
+    </a>
+    <a class="ml-article reveal" href="#" style="transition-delay:0.15s">
+      <div class="ml-article-cat">視覺識別</div>
+      <div class="ml-article-title">材料視覺一致性：為什麼你的樣品袋也是品牌</div>
+      <div class="ml-article-date">2025 · Material Lab</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ml-footer">
+  <a class="ml-footer-logo" href="#">
+  <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+</a>
+  <div class="ml-footer-links">
+    <a href="#cases">Work</a>
+    <a href="#method">Method</a>
+    <a href="#journal">Journal</a>
+    <a href="#people">People</a>
+  </div>
+  <div class="ml-footer-copy">© 2025 Material Lab · 讓好材料被看見</div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top  = my + 'px';
+});
+
+(function lerpRing(){
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(lerpRing);
+})();
+
+const hoverEls = document.querySelectorAll(
+  'a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr'
+);
+hoverEls.forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
+});
+document.addEventListener('mousedown', () => cur.classList.add('click'));
+document.addEventListener('mouseup',   () => cur.classList.remove('click'));
+
+/* ── GEO CANVAS ── */
+const canvas = document.getElementById('geoCanvas');
+const ctx    = canvas.getContext('2d');
+const W = 420, H = 420, CX = W/2, CY = H/2;
+let geoMx = CX, geoMy = CY;
+const wrap = document.getElementById('geoWrap');
+
+// Resize canvas to fill container
+function resizeCanvas(){
+  const r = wrap.getBoundingClientRect();
+  // 移除 420 的限制，讓星環完全填滿並跟隨區塊縮放
+  const size = Math.min(r.width, r.height); 
+  canvas.style.width  = size + 'px';
+  canvas.style.height = size + 'px';
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+wrap.addEventListener('mousemove', e => {
+  const r = wrap.getBoundingClientRect();
+  geoMx = e.clientX - r.left;
+  geoMy = e.clientY - r.top;
+});
+wrap.addEventListener('mouseleave', () => { geoMx = CX; geoMy = CY; });
+
+const GOLD = 'rgba(200,169,110,';
+
+function drawGeo(ts){
+  ctx.clearRect(0,0,W,H);
+  const ang = ts * 0.0004;
+  const dx  = (geoMx - CX) * 0.045;
+  const dy  = (geoMy - CY) * 0.045;
+
+  // Rings
+  [
+    {r:160, alpha:0.14},
+    {r:110, alpha:0.18},
+    {r:62,  alpha:0.22}
+  ].forEach(({r, alpha}, i) => {
+    ctx.beginPath();
+    ctx.arc(CX + dx*(i+1)*0.35, CY + dy*(i+1)*0.35, r, 0, Math.PI*2);
+    ctx.strokeStyle = GOLD + alpha + ')';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  });
+
+  // Cross lines
+  ctx.strokeStyle = GOLD + '0.1)'; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(CX+dx, 0); ctx.lineTo(CX+dx, H); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, CY+dy); ctx.lineTo(W, CY+dy); ctx.stroke();
+
+  // Outer rotating dots (8)
+  for(let i=0; i<8; i++){
+    const a  = ang + i * Math.PI/4;
+    const px = CX + dx + Math.cos(a)*160;
+    const py = CY + dy + Math.sin(a)*160;
+    ctx.beginPath();
+    ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2);
+    ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')';
+    ctx.fill();
+  }
+
+  // Mid ring counter-rotating dots (4)
+  for(let i=0; i<4; i++){
+    const a  = -ang*1.6 + i * Math.PI/2;
+    const px = CX + dx*0.65 + Math.cos(a)*110;
+    const py = CY + dy*0.65 + Math.sin(a)*110;
+    ctx.beginPath();
+    ctx.arc(px, py, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = GOLD + '0.4)';
+    ctx.fill();
+  }
+
+  // Inner ring slowly rotating (2)
+  for(let i=0; i<2; i++){
+    const a  = ang*0.8 + i * Math.PI;
+    const px = CX + dx*0.3 + Math.cos(a)*62;
+    const py = CY + dy*0.3 + Math.sin(a)*62;
+    ctx.beginPath();
+    ctx.arc(px, py, 2, 0, Math.PI*2);
+    ctx.fillStyle = GOLD + '0.55)';
+    ctx.fill();
+  }
+
+  // Centre dot + pulse ring
+  const pulse = 0.5 + 0.5 * Math.sin(ts * 0.002);
+  ctx.beginPath();
+  ctx.arc(CX + dx*0.15, CY + dy*0.15, 5, 0, Math.PI*2);
+  ctx.fillStyle = GOLD + '1)'; ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(CX + dx*0.15, CY + dy*0.15, 14 + pulse*6, 0, Math.PI*2);
+  ctx.strokeStyle = GOLD + (0.3 - pulse*0.25) + ')';
+  ctx.lineWidth = 0.5; ctx.stroke();
+
+  // Labels
+  ctx.font = '500 9px Outfit, sans-serif';
+  ctx.fillStyle = GOLD + '0.5)';
+  ctx.fillText('技術軌', CX + dx*0.15 + 16, CY + dy*0.15 - 5);
+  ctx.fillStyle = GOLD + '0.32)';
+  ctx.fillText('品牌軌', CX + dx*0.15 + 16, CY + dy*0.15 + 9);
+
+  ctx.fillStyle = GOLD + '0.18)';
+  ctx.fillText('MATERIAL', CX + dx + 16, 18);
+  ctx.fillText('MARKET',   CX + dx + 16, H - 8);
+
+  requestAnimationFrame(drawGeo);
+}
+requestAnimationFrame(drawGeo);
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
