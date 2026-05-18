@@ -100,17 +100,33 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
-/* MOBILE MENU (隱藏選單基礎樣式) */
+/* MOBILE MENU (漢堡按鈕與 X 叉叉動畫) */
 .ml-hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32px;  /* 加大外框，讓手機觸控更好點 */
+  height: 32px;
   gap: 6px;
   cursor: none;
-  z-index: 1001; /* 確保按鈕永遠在最上層 */
+  z-index: 1001; /* 確保按鈕永遠浮在隱藏選單之上 */
 }
+
 .ml-hamburger span {
-  display: block; width: 24px; height: 1px; background: var(--text);
-  transition: all 0.3s ease;
+  display: block; 
+  width: 24px; 
+  height: 1.5px; /* 稍微加粗一點點，讓 X 更清晰 */
+  background: var(--text);
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); /* 讓旋轉動畫更帶有高級的流暢感 */
+}
+
+/* 關鍵：加上 .active 後，第一條線往下掉並右旋，第二條線往上提並左旋，精準打叉 */
+.ml-hamburger.active span:nth-child(1) { 
+  transform: translateY(3.75px) rotate(45deg); 
+}
+.ml-hamburger.active span:nth-child(2) { 
+  transform: translateY(-3.75px) rotate(-45deg); 
 }
 /* 點擊後變成 X 叉叉 */
 .ml-hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
