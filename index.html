@@ -100,33 +100,17 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
-/* MOBILE MENU (漢堡按鈕與 X 叉叉動畫) */
+/* MOBILE MENU (隱藏選單基礎樣式) */
 .ml-hamburger {
   display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 32px;  /* 加大外框，讓手機觸控更好點 */
-  height: 32px;
   gap: 6px;
   cursor: none;
-  z-index: 1001; /* 確保按鈕永遠浮在隱藏選單之上 */
+  z-index: 1001; /* 確保按鈕永遠在最上層 */
 }
-
 .ml-hamburger span {
-  display: block; 
-  width: 24px; 
-  height: 1.5px; /* 稍微加粗一點點，讓 X 更清晰 */
-  background: var(--text);
-  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); /* 讓旋轉動畫更帶有高級的流暢感 */
-}
-
-/* 關鍵：加上 .active 後，第一條線往下掉並右旋，第二條線往上提並左旋，精準打叉 */
-.ml-hamburger.active span:nth-child(1) { 
-  transform: translateY(3.75px) rotate(45deg); 
-}
-.ml-hamburger.active span:nth-child(2) { 
-  transform: translateY(-3.75px) rotate(-45deg); 
+  display: block; width: 24px; height: 1px; background: var(--text);
+  transition: all 0.3s ease;
 }
 /* 點擊後變成 X 叉叉 */
 .ml-hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
@@ -540,6 +524,36 @@ body::before{
   .ml-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
   
   /* ...（保留原本響應式區塊裡的其他設定）... */
+/* 手機版隱藏選單的叉叉按鈕 */
+.ml-mobile-close {
+  position: absolute;
+  top: 32px;      /* 對齊原本導覽列的高度 */
+  right: 24px;    /* 對齊右側邊距 */
+  width: 24px;
+  height: 24px;
+  cursor: none;
+  transform: translateY(-50%);
+}
+.ml-mobile-close::before, .ml-mobile-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--text);
+  transition: background 0.3s;
+}
+.ml-mobile-close::before {
+  transform: rotate(45deg);
+}
+.ml-mobile-close::after {
+  transform: rotate(-45deg);
+}
+/* 滑鼠移過去時會優雅地變成金色 */
+.ml-mobile-close:hover::before, .ml-mobile-close:hover::after {
+  background: var(--gold);
+}
 }
 </style>
 </head>
@@ -566,6 +580,8 @@ body::before{
 </nav>
 
 <div class="ml-mobile-menu" id="mobileMenu">
+  <div class="ml-mobile-close" id="mobileClose"></div>
+
   <div class="ml-mobile-menu-inner">
     <a href="#cases" class="mobile-link">Work</a>
     <a href="#method" class="mobile-link">Method</a>
@@ -957,6 +973,14 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(e.target);
     }
   });
+
+const mobileClose = document.getElementById('mobileClose');
+
+// 點擊叉叉時，將選單與漢堡按鈕復原
+mobileClose.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('active');
+});
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
