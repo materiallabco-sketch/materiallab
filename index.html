@@ -100,7 +100,41 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
+/* MOBILE MENU (隱藏選單基礎樣式) */
+.ml-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: none;
+  z-index: 1001; /* 確保按鈕永遠在最上層 */
+}
+.ml-hamburger span {
+  display: block; width: 24px; height: 1px; background: var(--text);
+  transition: all 0.3s ease;
+}
+/* 點擊後變成 X 叉叉 */
+.ml-hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.ml-hamburger.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
+.ml-mobile-menu {
+  position: fixed; inset: 0; background: rgba(30, 42, 48, 0.95);
+  backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+  z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.ml-mobile-menu.active { opacity: 1; pointer-events: auto; }
+.ml-mobile-menu-inner { display: flex; flex-direction: column; gap: 32px; text-align: center; }
+.ml-mobile-menu a {
+  font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--text);
+  text-decoration: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease;
+}
+/* 選單打開時，文字由下往上優雅浮現 */
+.ml-mobile-menu.active a { opacity: 1; transform: translateY(0); }
+.ml-mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+.ml-mobile-menu.active a:nth-child(2) { transition-delay: 0.15s; }
+.ml-mobile-menu.active a:nth-child(3) { transition-delay: 0.2s; }
+.ml-mobile-menu.active a:nth-child(4) { transition-delay: 0.25s; }
+.ml-mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
 /* HERO */
 .ml-hero{
   display:grid;grid-template-columns:1fr 1fr;
@@ -479,6 +513,17 @@ body::before{
   /* 7. 自動縮小大標題字體，適應狹窄螢幕 */
   .ml-hero-title{font-size:44px;}
   .ml-section-title, .ml-cta-headline{font-size:36px;}
+@media(max-width:900px){
+  /* 隱藏電腦版的導覽列、聯絡按鈕、以及頁尾的連結 */
+  .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
+  
+  /* 顯示手機版的漢堡按鈕 */
+  .ml-hamburger { display: flex; }
+  
+  /* 頁尾在手機版改成上下排列，更整齊 */
+  .ml-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
+  
+  /* ...（保留原本響應式區塊裡的其他設定）... */
 }
 </style>
 </head>
@@ -489,8 +534,8 @@ body::before{
 
 <nav class="ml-nav">
   <a class="ml-logo" href="#">
-  <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
-</a>
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
   <ul class="ml-nav-links">
     <li><a href="#cases">Work</a></li>
     <li><a href="#method">Method</a></li>
@@ -498,7 +543,21 @@ body::before{
     <li><a href="#people">People</a></li>
   </ul>
   <button class="ml-nav-cta" onclick="location.href='mailto:materiallabco@gmail.com'">聯絡我們</button>
+  
+  <div class="ml-hamburger" id="hamburger">
+    <span></span><span></span>
+  </div>
 </nav>
+
+<div class="ml-mobile-menu" id="mobileMenu">
+  <div class="ml-mobile-menu-inner">
+    <a href="#cases" class="mobile-link">Work</a>
+    <a href="#method" class="mobile-link">Method</a>
+    <a href="#journal" class="mobile-link">Journal</a>
+    <a href="#people" class="mobile-link">People</a>
+    <a href="mailto:materiallabco@gmail.com" class="mobile-link" style="color:var(--gold); margin-top: 20px;">聯絡我們</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="ml-hero">
@@ -857,6 +916,24 @@ function drawGeo(ts){
 requestAnimationFrame(drawGeo);
 
 /* ── SCROLL REVEAL ── */
+/* ── MOBILE MENU TOGGLE ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+// 點擊漢堡按鈕切換選單狀態
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+});
+
+// 點擊選單內的連結後，自動關閉選單
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+  });
+});
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
