@@ -77,7 +77,7 @@ body::before{
 }
 
 .ml-logo img {
-  height: 28px; /* 這裡控制 Logo 的大小，你可以自由微調（24px~36px 都不錯） */
+  height: 28px;
   width: auto;
   object-fit: contain;
 }
@@ -101,19 +101,19 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
-/* MOBILE MENU (隱藏選單基礎樣式) */
+
+/* MOBILE MENU */
 .ml-hamburger {
   display: none;
   flex-direction: column;
   gap: 6px;
   cursor: none;
-  z-index: 1001; /* 確保按鈕永遠在最上層 */
+  z-index: 1001;
 }
 .ml-hamburger span {
   display: block; width: 24px; height: 1px; background: var(--text);
   transition: all 0.3s ease;
 }
-/* 點擊後變成 X 叉叉 */
 .ml-hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
 .ml-hamburger.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
@@ -129,13 +129,36 @@ body::before{
   font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--text);
   text-decoration: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease;
 }
-/* 選單打開時，文字由下往上優雅浮現 */
 .ml-mobile-menu.active a { opacity: 1; transform: translateY(0); }
 .ml-mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
 .ml-mobile-menu.active a:nth-child(2) { transition-delay: 0.15s; }
 .ml-mobile-menu.active a:nth-child(3) { transition-delay: 0.2s; }
 .ml-mobile-menu.active a:nth-child(4) { transition-delay: 0.25s; }
 .ml-mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
+
+.ml-mobile-close {
+  position: absolute;
+  top: 32px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  cursor: none;
+  transform: translateY(-50%);
+}
+.ml-mobile-close::before, .ml-mobile-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--text);
+  transition: background 0.3s;
+}
+.ml-mobile-close::before { transform: rotate(45deg); }
+.ml-mobile-close::after { transform: rotate(-45deg); }
+.ml-mobile-close:hover::before, .ml-mobile-close:hover::after { background: var(--gold); }
+
 /* HERO */
 .ml-hero{
   display:grid;grid-template-columns:1fr 1fr;
@@ -184,9 +207,8 @@ body::before{
 .ml-btn-primary:hover::after{background:rgba(255,255,255,0.12);}
 .ml-hero-email{font-size:12px;color:var(--text3);letter-spacing:0.04em;}
 
-/* GEO CANVAS */
 .ml-hero-right{
-  display: flex; align-items: center; justify-content: center; /* 確保影片完美置中 */
+  display: flex; align-items: center; justify-content: center; 
   position: relative; overflow: hidden; cursor: none;
   opacity: 0; animation: fadeIn 1.2s 0.3s forwards;
 }
@@ -196,60 +218,51 @@ body::before{
   font-size:10px;letter-spacing:0.1em;color:var(--text3);
 }
 
-/* STRIP */
 /* STRIP (MARQUEE) */
 .ml-strip {
   display: flex;
   overflow: hidden;
-  padding: 24px 0; /* 上下留白，左右不限制以便滾動 */
+  padding: 24px 0; 
   border-bottom: 0.5px solid var(--border);
   position: relative;
   z-index: 1;
   background: var(--bg);
 }
-
 .ml-marquee-group {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 80px; /* 每個項目之間的距離 */
-  padding-right: 80px; /* 確保與下一組的銜接距離一致 */
-  animation: scrollMarquee 25s linear infinite; /* 25秒轉一圈，可依喜好調整秒數 */
+  gap: 80px; 
+  padding-right: 80px; 
+  animation: scrollMarquee 25s linear infinite; 
 }
-
-/* 當滑鼠移上去時，讓跑馬燈暫停（可選的貼心互動） */
 .ml-strip:hover .ml-marquee-group {
   animation-play-state: paused;
 }
-
 .ml-strip-item {
   display: flex;
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
 }
-
 .ml-strip-num {
-  font-family: 'Outfit', sans-serif; /* 改用無襯線字體，讓英文更俐落 */
+  font-family: 'Outfit', sans-serif; 
   font-size: 24px;
   font-weight: 300;
   color: var(--gold);
   letter-spacing: 0.05em;
 }
-
 .ml-strip-label {
   font-size: 13px;
   color: var(--text2);
   letter-spacing: 0.08em;
 }
-
 .ml-strip-div {
   width: 0.5px;
   height: 28px;
   background: var(--border);
   flex-shrink: 0;
 }
-
 @keyframes scrollMarquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
@@ -349,7 +362,7 @@ body::before{
   background: var(--bg3); 
   position: relative; 
   z-index: 1;
-  overflow: hidden; /* 關鍵：確保背景影片不會超出這一格區塊的上下邊界 */
+  overflow: hidden; 
 }
 .ml-cta-kicker{
   font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
@@ -375,7 +388,7 @@ body::before{
 
 /* PEOPLE */
 .ml-people{
-  display:grid;grid-template-columns:1fr 1fr 1fr;
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr; /* 切分成 4 格，完美放入 1引言 + 3人 */
   border-bottom:0.5px solid var(--border);position:relative;z-index:1;
 }
 .ml-people-intro {
@@ -395,17 +408,25 @@ body::before{
 }
 .ml-person:last-child{border-right:none;}
 .ml-person:hover{background:rgba(200,169,110,0.03);}
-.ml-person-avatar{
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(200,169,110,0.1);border:0.5px solid rgba(200,169,110,0.3);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);
-  margin-bottom:16px;transition:background 0.3s,border-color 0.3s;
+.ml-person-avatar {
+  width: 140px;        /* 關鍵：固定寬度，讓照片在電腦上縮小、變精緻 */
+  aspect-ratio: 4/5;   /* 維持優雅的直幅人像比例 */
+  background: rgba(200,169,110,0.05);
+  overflow: hidden;
+  margin-bottom: 24px;
 }
-.ml-person:hover .ml-person-avatar{background:rgba(200,169,110,0.18);border-color:var(--gold);}
-.ml-person-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
-.ml-person-role{font-size:11px;color:rgba(200,169,110,0.6);margin-bottom:10px;letter-spacing:0.03em;}
-.ml-person-bio{font-size:11px;color:var(--text2);line-height:1.8;}
+.ml-person-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  filter: grayscale(15%); /* 微調灰階，讓照片更融入暗色系科技感 */
+}
+.ml-person:hover .ml-person-avatar img {
+  transform: scale(1.05); /* 滑過時優雅放大 */
+  filter: grayscale(0%); /* 滑過時恢復全彩 */
+}
+.ml-person-name{font-size:16px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.ml-person-role{font-size:12px;color:rgba(200,169,110,0.6);margin-bottom:14px;letter-spacing:0.03em;}
+.ml-person-bio{font-size:12px;color:var(--text2);line-height:1.8;}
 
 /* JOURNAL */
 .ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
@@ -445,16 +466,13 @@ body::before{
   align-items: center;
   text-decoration: none;
 }
-
 .ml-footer-logo img {
-  height: 22px; /* 比頁首稍微縮小，看起來更精緻低調 */
+  height: 22px; 
   width: auto;
   object-fit: contain;
-  opacity: 0.5; /* 平常淡淡的，符合頁尾的隱性氣質 */
+  opacity: 0.5; 
   transition: opacity 0.3s ease;
 }
-
-/* 貼心細節：當滑鼠滑過頁尾 Logo 時，恢復 100% 亮度 */
 .ml-footer-logo:hover img {
   opacity: 1;
 }
@@ -485,76 +503,24 @@ body::before{
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  /* 1. 網格從多欄變為單欄 */
   .ml-hero, .ml-method, .ml-cases-grid, .ml-people, .ml-articles {grid-template-columns:1fr;}
-  
-  /* 2. Hero 影片區塊高度，設定為 320px 讓影片在手機上依舊有氣勢 */
   .ml-hero-right{height:320px;}
-  
-  /* 3. 邊框調整：改為上下分隔線 */
   .ml-method-left, .ml-case:nth-child(2n), .ml-case:nth-child(3), 
   .ml-people-intro, .ml-person, .ml-article {
     border-right:none; border-bottom:0.5px solid var(--border);
   }
-  
-  /* 4. CTA 區塊垂直置中排列 */
   .ml-cta-band{flex-direction:column;gap:32px;text-align:center;}
   .ml-cta-right{text-align:center;}
-  
-  /* 5. 導覽列：手機版隱藏中間的連結，確保畫面俐落，只保留 Logo 與聯絡按鈕 */
-  .ml-nav-links{display:none;}
+  .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
   .ml-nav{padding:16px 20px;}
-  
-  /* 6. 重新校準手機版的「留白呼吸感」，避免間距過大 */
   .ml-hero-left { padding: 64px 24px; }
   .ml-method-left, .ml-cta-band, .ml-people-intro, .ml-journal-head { padding: 64px 24px; }
   .ml-cases-head { padding: 64px 24px 32px; }
   .ml-track, .ml-case, .ml-person, .ml-article { padding: 40px 24px; }
-  
-  /* 7. 自動縮小大標題字體，適應狹窄螢幕 */
   .ml-hero-title{font-size:44px;}
   .ml-section-title, .ml-cta-headline{font-size:36px;}
-@media(max-width:900px){
-  /* 隱藏電腦版的導覽列、聯絡按鈕、以及頁尾的連結 */
-  .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
-  
-  /* 顯示手機版的漢堡按鈕 */
   .ml-hamburger { display: flex; }
-  
-  /* 頁尾在手機版改成上下排列，更整齊 */
   .ml-footer { flex-direction: column; gap: 24px; align-items: flex-start; }
-  
-  /* ...（保留原本響應式區塊裡的其他設定）... */
-/* 手機版隱藏選單的叉叉按鈕 */
-.ml-mobile-close {
-  position: absolute;
-  top: 32px;      /* 對齊原本導覽列的高度 */
-  right: 24px;    /* 對齊右側邊距 */
-  width: 24px;
-  height: 24px;
-  cursor: none;
-  transform: translateY(-50%);
-}
-.ml-mobile-close::before, .ml-mobile-close::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--text);
-  transition: background 0.3s;
-}
-.ml-mobile-close::before {
-  transform: rotate(45deg);
-}
-.ml-mobile-close::after {
-  transform: rotate(-45deg);
-}
-/* 滑鼠移過去時會優雅地變成金色 */
-.ml-mobile-close:hover::before, .ml-mobile-close:hover::after {
-  background: var(--gold);
-}
 }
 </style>
 </head>
@@ -592,7 +558,6 @@ body::before{
   </div>
 </div>
 
-<!-- HERO -->
 <section class="ml-hero">
   <div class="ml-hero-left">
     <div class="ml-hero-eyebrow">材料品牌化顧問</div>
@@ -617,7 +582,6 @@ body::before{
 </div>
 </section>
 
-<!-- STRIP -->
 <div class="ml-strip">
   <div class="ml-marquee-group">
     <div class="ml-strip-item">
@@ -656,7 +620,6 @@ body::before{
   </div>
 </div>
 
-<!-- METHOD -->
 <section class="ml-method" id="method">
   <div class="ml-method-left">
   <div class="ml-eyebrow">我們的方法</div>
@@ -666,7 +629,6 @@ body::before{
   <div id="geoWrap" style="width: 100%; aspect-ratio: 1/1; max-height: 500px; margin-top: 40px; display: flex; align-items: center; justify-content: center; position: relative;">
     <canvas id="geoCanvas" width="420" height="420"></canvas>
   </div>
-</div>
 </div>
   <div class="ml-method-right">
     <div class="ml-track reveal">
@@ -692,7 +654,6 @@ body::before{
   </div>
 </section>
 
-<!-- CASES -->
 <section class="ml-cases" id="cases">
   <div class="ml-cases-head">
     <div class="ml-cases-head-title">合作案例</div>
@@ -726,7 +687,6 @@ body::before{
   </div>
 </section>
 
-<!-- CTA BAND -->
 <section class="ml-cta-band reveal">
   <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" 
          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0.35;">
@@ -746,7 +706,6 @@ body::before{
   </div>
 </section>
 
-<!-- PEOPLE -->
 <section class="ml-people" id="people">
   <div class="ml-people-intro">
     <div>
@@ -756,20 +715,31 @@ body::before{
     </div>
   </div>
   <div class="ml-person reveal">
-    <div class="ml-person-avatar">AL</div>
-    <div class="ml-person-name">Alvin</div>
-    <div class="ml-person-role">材料品牌策略</div>
-    <p class="ml-person-bio">協助製造商將技術語言轉化為市場價值，專注材料品牌化策略超過五年。</p>
+    <div class="ml-person-avatar">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alvinnew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_nxt3zk.jpg" alt="Alvin Lin">
+    </div>
+    <div class="ml-person-name">Alvin Lin</div>
+    <div class="ml-person-role">策略長</div>
+    <p class="ml-person-bio">融通品牌、通路與製造端全價值鏈。以宏觀商業視角，專注協助企業主突破框架，打造強勁成長的「第二曲線」。</p>
   </div>
   <div class="ml-person reveal" style="transition-delay:0.1s">
-    <div class="ml-person-avatar">AC</div>
-    <div class="ml-person-name">Alice / Allen</div>
-    <div class="ml-person-role">品牌設計 · 溝通執行</div>
-    <p class="ml-person-bio">負責視覺識別與敘事系統，確保品牌從策略到落地每個觸點保持一致。</p>
+    <div class="ml-person-avatar">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alicemedianew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jrvtyi.jpg" alt="Alice Song">
+    </div>
+    <div class="ml-person-name">Alice Song</div>
+    <div class="ml-person-role">議題策略總監</div>
+    <p class="ml-person-bio">洞悉頂尖商業媒體與高階決策思維。擅長精準策動核心議題，將材料科技轉化為具備實質商業影響力的市場聲量。</p>
+  </div>
+  <div class="ml-person reveal" style="transition-delay:0.2s">
+    <div class="ml-person-avatar">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/allennew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jqkc3r.jpg" alt="Allen Hou">
+    </div>
+    <div class="ml-person-name">Allen Hou</div>
+    <div class="ml-person-role">設計總監</div>
+    <p class="ml-person-bio">整合品牌、行銷與製造廠跨界思維。專注風格產品 Total Solution，將材料技術精準轉譯為終端市場的機能美學。</p>
   </div>
 </section>
 
-<!-- JOURNAL -->
 <section class="ml-journal" id="journal">
   <div class="ml-journal-head">
     <div class="ml-journal-title">我們的觀點</div>
@@ -794,7 +764,6 @@ body::before{
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="ml-footer">
   <a class="ml-footer-logo" href="#">
   <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
@@ -829,7 +798,7 @@ document.addEventListener('mousemove', e => {
 })();
 
 const hoverEls = document.querySelectorAll(
-  'a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr'
+  'a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr, .ml-mobile-close'
 );
 hoverEls.forEach(el => {
   el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
@@ -845,128 +814,122 @@ const W = 420, H = 420, CX = W/2, CY = H/2;
 let geoMx = CX, geoMy = CY;
 const wrap = document.getElementById('geoWrap');
 
-// Resize canvas to fill container
-function resizeCanvas(){
-  const r = wrap.getBoundingClientRect();
-  // 移除 420 的限制，讓星環完全填滿並跟隨區塊縮放
-  const size = Math.min(r.width, r.height); 
-  canvas.style.width  = size + 'px';
-  canvas.style.height = size + 'px';
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+if(canvas && wrap) {
+  function resizeCanvas(){
+    const r = wrap.getBoundingClientRect();
+    const size = Math.min(r.width, r.height);
+    canvas.style.width  = size + 'px';
+    canvas.style.height = size + 'px';
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-wrap.addEventListener('mousemove', e => {
-  const r = wrap.getBoundingClientRect();
-  geoMx = e.clientX - r.left;
-  geoMy = e.clientY - r.top;
-});
-wrap.addEventListener('mouseleave', () => { geoMx = CX; geoMy = CY; });
-
-const GOLD = 'rgba(200,169,110,';
-
-function drawGeo(ts){
-  ctx.clearRect(0,0,W,H);
-  const ang = ts * 0.0004;
-  const dx  = (geoMx - CX) * 0.045;
-  const dy  = (geoMy - CY) * 0.045;
-
-  // Rings
-  [
-    {r:160, alpha:0.14},
-    {r:110, alpha:0.18},
-    {r:62,  alpha:0.22}
-  ].forEach(({r, alpha}, i) => {
-    ctx.beginPath();
-    ctx.arc(CX + dx*(i+1)*0.35, CY + dy*(i+1)*0.35, r, 0, Math.PI*2);
-    ctx.strokeStyle = GOLD + alpha + ')';
-    ctx.lineWidth = 0.5;
-    ctx.stroke();
+  wrap.addEventListener('mousemove', e => {
+    const r = wrap.getBoundingClientRect();
+    geoMx = e.clientX - r.left;
+    geoMy = e.clientY - r.top;
   });
+  wrap.addEventListener('mouseleave', () => { geoMx = CX; geoMy = CY; });
 
-  // Cross lines
-  ctx.strokeStyle = GOLD + '0.1)'; ctx.lineWidth = 0.5;
-  ctx.beginPath(); ctx.moveTo(CX+dx, 0); ctx.lineTo(CX+dx, H); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(0, CY+dy); ctx.lineTo(W, CY+dy); ctx.stroke();
+  const GOLD = 'rgba(200,169,110,';
 
-  // Outer rotating dots (8)
-  for(let i=0; i<8; i++){
-    const a  = ang + i * Math.PI/4;
-    const px = CX + dx + Math.cos(a)*160;
-    const py = CY + dy + Math.sin(a)*160;
+  function drawGeo(ts){
+    ctx.clearRect(0,0,W,H);
+    const ang = ts * 0.0004;
+    const dx  = (geoMx - CX) * 0.045;
+    const dy  = (geoMy - CY) * 0.045;
+
+    [
+      {r:160, alpha:0.14}, {r:110, alpha:0.18}, {r:62,  alpha:0.22}
+    ].forEach(({r, alpha}, i) => {
+      ctx.beginPath();
+      ctx.arc(CX + dx*(i+1)*0.35, CY + dy*(i+1)*0.35, r, 0, Math.PI*2);
+      ctx.strokeStyle = GOLD + alpha + ')';
+      ctx.lineWidth = 0.5; ctx.stroke();
+    });
+
+    ctx.strokeStyle = GOLD + '0.1)'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(CX+dx, 0); ctx.lineTo(CX+dx, H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, CY+dy); ctx.lineTo(W, CY+dy); ctx.stroke();
+
+    for(let i=0; i<8; i++){
+      const a  = ang + i * Math.PI/4;
+      const px = CX + dx + Math.cos(a)*160;
+      const py = CY + dy + Math.sin(a)*160;
+      ctx.beginPath();
+      ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2);
+      ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')'; ctx.fill();
+    }
+
+    for(let i=0; i<4; i++){
+      const a  = -ang*1.6 + i * Math.PI/2;
+      const px = CX + dx*0.65 + Math.cos(a)*110;
+      const py = CY + dy*0.65 + Math.sin(a)*110;
+      ctx.beginPath();
+      ctx.arc(px, py, 2.5, 0, Math.PI*2);
+      ctx.fillStyle = GOLD + '0.4)'; ctx.fill();
+    }
+
+    for(let i=0; i<2; i++){
+      const a  = ang*0.8 + i * Math.PI;
+      const px = CX + dx*0.3 + Math.cos(a)*62;
+      const py = CY + dy*0.3 + Math.sin(a)*62;
+      ctx.beginPath();
+      ctx.arc(px, py, 2, 0, Math.PI*2);
+      ctx.fillStyle = GOLD + '0.55)'; ctx.fill();
+    }
+
+    const pulse = 0.5 + 0.5 * Math.sin(ts * 0.002);
     ctx.beginPath();
-    ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2);
-    ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')';
-    ctx.fill();
-  }
+    ctx.arc(CX + dx*0.15, CY + dy*0.15, 5, 0, Math.PI*2);
+    ctx.fillStyle = GOLD + '1)'; ctx.fill();
 
-  // Mid ring counter-rotating dots (4)
-  for(let i=0; i<4; i++){
-    const a  = -ang*1.6 + i * Math.PI/2;
-    const px = CX + dx*0.65 + Math.cos(a)*110;
-    const py = CY + dy*0.65 + Math.sin(a)*110;
     ctx.beginPath();
-    ctx.arc(px, py, 2.5, 0, Math.PI*2);
-    ctx.fillStyle = GOLD + '0.4)';
-    ctx.fill();
+    ctx.arc(CX + dx*0.15, CY + dy*0.15, 14 + pulse*6, 0, Math.PI*2);
+    ctx.strokeStyle = GOLD + (0.3 - pulse*0.25) + ')';
+    ctx.lineWidth = 0.5; ctx.stroke();
+
+    ctx.font = '500 9px Outfit, sans-serif';
+    ctx.fillStyle = GOLD + '0.5)';
+    ctx.fillText('技術軌', CX + dx*0.15 + 16, CY + dy*0.15 - 5);
+    ctx.fillStyle = GOLD + '0.32)';
+    ctx.fillText('品牌軌', CX + dx*0.15 + 16, CY + dy*0.15 + 9);
+    ctx.fillStyle = GOLD + '0.18)';
+    ctx.fillText('MATERIAL', CX + dx + 16, 18);
+    ctx.fillText('MARKET',   CX + dx + 16, H - 8);
+
+    requestAnimationFrame(drawGeo);
   }
-
-  // Inner ring slowly rotating (2)
-  for(let i=0; i<2; i++){
-    const a  = ang*0.8 + i * Math.PI;
-    const px = CX + dx*0.3 + Math.cos(a)*62;
-    const py = CY + dy*0.3 + Math.sin(a)*62;
-    ctx.beginPath();
-    ctx.arc(px, py, 2, 0, Math.PI*2);
-    ctx.fillStyle = GOLD + '0.55)';
-    ctx.fill();
-  }
-
-  // Centre dot + pulse ring
-  const pulse = 0.5 + 0.5 * Math.sin(ts * 0.002);
-  ctx.beginPath();
-  ctx.arc(CX + dx*0.15, CY + dy*0.15, 5, 0, Math.PI*2);
-  ctx.fillStyle = GOLD + '1)'; ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(CX + dx*0.15, CY + dy*0.15, 14 + pulse*6, 0, Math.PI*2);
-  ctx.strokeStyle = GOLD + (0.3 - pulse*0.25) + ')';
-  ctx.lineWidth = 0.5; ctx.stroke();
-
-  // Labels
-  ctx.font = '500 9px Outfit, sans-serif';
-  ctx.fillStyle = GOLD + '0.5)';
-  ctx.fillText('技術軌', CX + dx*0.15 + 16, CY + dy*0.15 - 5);
-  ctx.fillStyle = GOLD + '0.32)';
-  ctx.fillText('品牌軌', CX + dx*0.15 + 16, CY + dy*0.15 + 9);
-
-  ctx.fillStyle = GOLD + '0.18)';
-  ctx.fillText('MATERIAL', CX + dx + 16, 18);
-  ctx.fillText('MARKET',   CX + dx + 16, H - 8);
-
   requestAnimationFrame(drawGeo);
 }
-requestAnimationFrame(drawGeo);
 
-/* ── SCROLL REVEAL ── */
 /* ── MOBILE MENU TOGGLE ── */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
+const mobileClose = document.getElementById('mobileClose');
 
-// 點擊漢堡按鈕切換選單狀態
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('active');
-});
+if(hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  });
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    });
+  });
+}
 
-// 點擊選單內的連結後，自動關閉選單
-mobileLinks.forEach(link => {
-  link.addEventListener('click', () => {
+if(mobileClose && hamburger && mobileMenu) {
+  mobileClose.addEventListener('click', () => {
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('active');
   });
-});
+}
+
+/* ── SCROLL REVEAL ── */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -974,14 +937,6 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(e.target);
     }
   });
-
-const mobileClose = document.getElementById('mobileClose');
-
-// 點擊叉叉時，將選單與漢堡按鈕復原
-mobileClose.addEventListener('click', () => {
-  hamburger.classList.remove('active');
-  mobileMenu.classList.remove('active');
-});
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
