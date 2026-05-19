@@ -458,6 +458,38 @@ section[id] {
 }
 .ml-article:last-child{border-right:none;}
 .ml-article:hover{background:rgba(200,169,110,0.03);}
+/* 文章卡片背景圖設定 */
+.ml-article-bg {
+  position: relative;
+  overflow: hidden; /* 確保底圖不會超出版面 */
+  z-index: 1;
+}
+
+/* 使用偽元素將圖片墊在最底層，並加上深色遮罩保護文字 */
+.ml-article-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; /* 將底圖推到文字的後方 */
+  /* 第一層是半透明深色漸層（保護文字），第二層是你的圖片（object-fit: cover 特性） */
+  background-image: 
+    linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)),
+    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779178526/%E8%A6%96%E8%A6%BA_et90zm.jpg');
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease; /* 為了加入懸停時微放大的高級感 */
+}
+
+/* 滑鼠移過去時，底圖會有微微放大的精緻互動 */
+.ml-article-bg:hover::before {
+  transform: scale(1.05);
+}
+
+/* 確保有背景圖的文章卡片內，文字的層級在最上面 */
+.ml-article-bg > * {
+  position: relative;
+  z-index: 2;
+}
 
 /* 文章標號與分類 */
 .ml-article-top { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
@@ -776,8 +808,8 @@ section[id] {
   </div>
   <div class="ml-articles">
     
-    <a class="ml-article reveal" href="journal/brand-strategy-01.html">
-      <div class="ml-article-top">
+    <a class="ml-article reveal ml-article-bg" href="journal/brand-strategy-01.html">
+  <div class="ml-article-top">
         <div class="ml-article-num">01</div>
         <div class="ml-article-cat">品牌策略</div>
       </div>
