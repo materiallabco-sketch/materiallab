@@ -101,6 +101,10 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
+/* 讓所有帶有 id 的區塊，在被錨點連結點擊跳轉時，上方自動預留導覽列的高度，避免被遮擋 */
+section[id] {
+  scroll-margin-top: 80px; 
+}
 
 /* MOBILE MENU */
 .ml-hamburger {
@@ -409,16 +413,21 @@ body::before{
 .ml-person:last-child{border-right:none;}
 .ml-person:hover{background:rgba(200,169,110,0.03);}
 .ml-person-avatar {
-  width: 140px;        /* 關鍵：固定寬度，讓照片在電腦上縮小、變精緻 */
-  aspect-ratio: 4/5;   /* 維持優雅的直幅人像比例 */
+  width: 140px;
+  /* 稍微調整比例，從 4/5 變成接近正方一點的 1/1.1，減少相片上下被切掉的機率 */
+  aspect-ratio: 1 / 1.1; 
   background: rgba(200,169,110,0.05);
   overflow: hidden;
   margin-bottom: 24px;
+  border-radius: 2px; /* 加上極小的圓角，讓卡片看起來更精緻 */
 }
 .ml-person-avatar img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%; height: 100%; 
+  object-fit: cover;
+  /* 加上 object-position: top center; 確保裁切時以「頭部」為基準，人臉不會被切掉 */
+  object-position: top center; 
   transition: transform 0.6s ease, filter 0.6s ease;
-  filter: grayscale(15%); /* 微調灰階，讓照片更融入暗色系科技感 */
+  filter: grayscale(15%); 
 }
 .ml-person:hover .ml-person-avatar img {
   transform: scale(1.05); /* 滑過時優雅放大 */
