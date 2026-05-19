@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下一場產品戰爭，不在規格，而在記憶點｜Material Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#2A3941;--bg2:#222F36;--bg3:#1E2A30;
+  --gold:#C8A96E;--text:#EEE8DC;
+  --text2:rgba(238,232,220,0.65);--text3:rgba(238,232,220,0.35);
+  --border:rgba(238,232,220,0.1);
+}
+body{font-family:'Outfit', 'Noto Sans TC', sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ── NAV ── */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;border-bottom:0.5px solid var(--border);
+  background:rgba(42,57,65,0.95);
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);
+}
+.nav-logo{
+  display:flex;align-items:center;
+}
+.nav-logo img{
+  height:24px;width:auto;object-fit:contain;display:block;
+}
+.nav-back{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px;cursor:pointer;transition:color 0.2s;text-decoration:none;}
+.nav-back:hover{color:var(--gold);}
+
+/* ── PROGRESS BAR ── */
+.progress{height:1.5px;background:var(--border);position:sticky;top:61px;z-index:99;}
+.progress-fill{height:100%;background:var(--gold);width:15%;transition:width 0.1s;}
+
+/* ── ARTICLE HERO ── */
+.art-hero{
+  max-width:1080px;margin:0 auto;
+  padding:80px 48px 64px;
+  border-bottom:0.5px solid var(--border);
+  display:grid;grid-template-columns:1fr 220px;gap:56px;align-items:end;
+}
+.art-breadcrumb{
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:24px;
+  display:flex;align-items:center;gap:6px;
+}
+.art-breadcrumb em{color:var(--gold);font-style:normal;}
+.art-cat{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.art-cat::before{content:'';display:inline-block;width:16px;height:0.5px;background:var(--gold);}
+.art-hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;line-height:1.15;
+  color:var(--text);letter-spacing:-0.5px;
+}
+.art-hero-title em{font-style:italic;color:var(--gold);}
+.art-hero-meta{border-left:0.5px solid var(--border);padding-left:32px;display:flex;flex-direction:column;gap:24px;}
+.meta-item .meta-label{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.meta-item .meta-val{font-size:12px;color:var(--text2);line-height:1.5;}
+.meta-item .meta-val strong{color:var(--text);font-weight:400;font-size:14px;}
+
+/* ── LAYOUT: content + sidebar ── */
+.art-layout{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 252px;
+  border-bottom:0.5px solid var(--border);
+}
+
+/* ── CONTENT ── */
+.art-content{
+  padding:64px 64px 80px 48px;
+  border-right:0.5px solid var(--border);
+}
+
+/* Images & Media */
+.art-img-full{
+  width:100%;height:auto;margin:32px 0;
+  border:0.5px solid var(--border);
+  filter:grayscale(10%);transition:filter 0.4s;display:block;
+}
+.art-img-full:hover{filter:grayscale(0%);}
+.art-img-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin:40px 0;
+}
+.art-img-grid img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;
+  border:0.5px solid var(--border);
+  background:rgba(200,169,110,0.05);
+  filter:grayscale(10%);transition:filter 0.4s;
+}
+.art-img-grid img:hover{filter:grayscale(0%);}
+.img-caption{
+  font-size:11px;color:var(--text3);text-align:center;
+  margin-top:-16px;margin-bottom:32px;letter-spacing:0.05em;
+}
+
+/* Lead paragraph */
+.art-lead{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:300;line-height:1.75;
+  color:rgba(238,232,220,0.85);margin-bottom:40px;
+}
+
+/* Body paragraph */
+.art-p{font-size:15px;line-height:2.0;color:var(--text2);margin-bottom:24px;font-weight:300;}
+
+/* H2 */
+.art-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:300;color:var(--text);
+  margin:64px 0 24px;line-height:1.2;
+}
+.art-h2 em{font-style:italic;color:var(--gold);}
+
+/* H3 */
+.art-h3{
+  font-size:14px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--gold);margin:40px 0 16px;
+}
+
+/* Pull quote */
+.art-quote{
+  border-left:2px solid var(--gold);
+  padding:20px 32px;margin:48px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-style:italic;font-weight:300;
+  color:var(--gold);line-height:1.6;
+  background:linear-gradient(90deg, rgba(200,169,110,0.08) 0%, rgba(200,169,110,0) 100%);
+}
+
+/* Callout */
+.art-callout{
+  border:0.5px solid rgba(200,169,110,0.22);
+  background:rgba(200,169,110,0.04);
+  padding:32px;margin:40px 0;border-radius:2px;
+}
+.art-callout-label{
+  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.art-callout-label::before{content:'';display:inline-block;width:12px;height:0.5px;background:var(--gold);}
+.art-callout-text{font-size:14px;line-height:1.9;color:var(--text2);font-weight:300;}
+
+/* Numbered list (4 Steps Framework) */
+.art-numlist{list-style:none;margin:24px 0 40px;counter-reset:nlist;}
+.art-numlist li{
+  counter-increment:nlist;
+  display:flex;align-items:start;gap:16px;
+  font-size:15px;line-height:1.9;color:var(--text2);font-weight:300;
+  padding:20px 0;border-bottom:0.5px solid var(--border);
+}
+.art-numlist li:last-child{border-bottom:none;}
+.art-numlist li::before{
+  content:counter(nlist,decimal-leading-zero);
+  font-family:'Cormorant Garamond',serif;font-size:16px;
+  color:rgba(200,169,110,0.6);padding-top:3px;
+  flex-shrink:0;width:24px;
+}
+.art-numlist-content{
+  flex:1;
+}
+.art-numlist-title{
+  color:var(--text);font-weight:400;display:block;margin-bottom:6px;font-size:16px;
+}
+
+/* Bullet list */
+.art-bullets{list-style:none;margin:16px 0 32px;}
+.art-bullets li{
+  display:flex;align-items:start;gap:12px;
+  font-size:15px;line-height:1.9;color:var(--text2);padding:8px 0;font-weight:300;
+}
+.art-bullets li::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;margin-top:11px;
+}
+
+/* Divider */
+.art-divider{
+  display:flex;align-items:center;gap:16px;margin:56px 0;
+}
+.art-divider::before,.art-divider::after{
+  content:'';flex:1;height:0.5px;background:var(--border);
+}
+.art-divider span{
+  font-size:14px;color:rgba(200,169,110,0.35);
+  font-family:'Cormorant Garamond',serif;
+}
+
+/* CTA block */
+.art-cta-block{
+  background:var(--bg2);border:0.5px solid var(--border);
+  padding:40px;margin:56px 0 0;border-radius:2px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+}
+.art-cta-text{font-size:14px;color:var(--text2);line-height:1.8;max-width:400px;font-weight:300;}
+.art-cta-text strong{color:var(--text);font-weight:400;display:block;margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:0.02em;}
+.art-cta-btn{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);border:none;
+  padding:14px 28px;border-radius:2px;cursor:pointer;white-space:nowrap;
+  flex-shrink:0;transition:all 0.25s;text-decoration:none;
+}
+.art-cta-btn:hover{background:var(--text);color:var(--bg);}
+
+/* ── SIDEBAR ── */
+.art-sidebar{padding:64px 32px;position:sticky;top:60px;align-self:start;max-height:calc(100vh - 60px);overflow-y:auto;}
+.sidebar-block{margin-bottom:48px;}
+.sidebar-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+
+/* TOC */
+.toc-item{
+  font-size:13px;color:var(--text3);
+  padding:10px 0 10px 14px;border-left:1.5px solid transparent;
+  cursor:pointer;transition:all 0.2s;line-height:1.5;
+  border-bottom:0.5px solid var(--border);text-decoration:none;display:block;
+}
+.toc-item:last-child{border-bottom:none;}
+.toc-item:hover{color:var(--text2);border-left-color:rgba(200,169,110,0.3);}
+.toc-item.active{color:var(--gold);border-left-color:var(--gold);}
+
+/* Read time / share */
+.sidebar-stat{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 0;border-bottom:0.5px solid var(--border);
+}
+.sidebar-stat:last-child{border-bottom:none;}
+.stat-k{font-size:11px;color:var(--text3);letter-spacing:0.06em;}
+.stat-v{font-size:13px;color:var(--text2);}
+
+/* Related */
+.related-item{padding:12px 0;border-bottom:0.5px solid var(--border);cursor:pointer;display:block;text-decoration:none;}
+.related-item:last-child{border-bottom:none;}
+.related-cat{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:12px;color:var(--text2);line-height:1.6;transition:color 0.2s;}
+.related-item:hover .related-title{color:var(--text);}
+
+/* ── AUTHOR ── */
+.art-author{
+  max-width:1080px;margin:0 auto;
+  padding:48px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:0.5px solid var(--border);
+}
+.author-left{display:flex;align-items:center;gap:24px;}
+.author-avatar{
+  width:60px;height:60px;border-radius:50%;
+  background:rgba(200,169,110,0.08);border:0.5px solid rgba(200,169,110,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);flex-shrink:0;
+}
+.author-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px;letter-spacing:0.02em;}
+.author-role{font-size:12px;color:rgba(200,169,110,0.6);line-height:1.5;}
+.art-contact-btn{
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:transparent;color:var(--gold);
+  border:0.5px solid var(--gold);padding:12px 24px;border-radius:2px;cursor:pointer;
+  transition:all 0.25s;text-decoration:none;
+}
+.art-contact-btn:hover{background:var(--gold);color:var(--bg);}
+
+/* ── NEXT ARTICLE ── */
+.art-next{
+  max-width:1080px;margin:0 auto;
+  padding:48px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:background 0.3s;text-decoration:none;
+}
+.art-next:hover{background:rgba(200,169,110,0.03);}
+.next-label{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.next-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:300;color:var(--text);
+}
+.next-arrow{
+  font-family:'Cormorant Garamond',serif;font-size:32px;
+  color:rgba(200,169,110,0.4);transition:transform 0.3s,color 0.3s;
+}
+.art-next:hover .next-arrow{transform:translateX(8px);color:var(--gold);}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .art-hero, .art-layout { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+  .art-hero-meta { border-left: none; padding-left: 0; border-top: 0.5px solid var(--border); padding-top: 24px; flex-direction: row; flex-wrap: wrap; }
+  .art-content { padding: 0 0 48px 0; border-right: none; }
+  .art-sidebar { padding: 48px 0; border-top: 0.5px solid var(--border); position: relative; top: 0; max-height: none; }
+  .art-hero-title { font-size: 36px; }
+  .art-img-grid { grid-template-columns: 1fr; gap: 8px; }
+  .art-cta-block { flex-direction: column; align-items: flex-start; }
+  .art-author { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
+  .art-next { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <a href="#" class="nav-back">← Back to Journal</a>
+</div>
+
+<div class="progress"><div class="progress-fill" id="progressBar"></div></div>
+
+<div class="art-hero">
+  <div>
+    <div class="art-breadcrumb">Journal &nbsp;/&nbsp; <em>品牌策略</em></div>
+    <div class="art-cat">品牌化 Insight</div>
+    <h1 class="art-hero-title">
+      下一場產品戰爭，<br>不在規格，而在<em>記憶點</em>
+    </h1>
+  </div>
+  <div class="art-hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">作者</div>
+      <div class="meta-val"><strong>Allen Hou</strong><br>設計總監 · Material Lab</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">閱讀時間</div>
+      <div class="meta-val">約 8 分鐘</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">發佈年份</div>
+      <div class="meta-val">2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="art-layout">
+
+  <div class="art-content">
+    
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176025/jp65_bnlley.jpg" alt="材料品牌化" class="art-img-full">
+
+    <p class="art-lead">
+      台灣擁有世界頂尖的材料技術與製造實力，但在全球採購市場上，競爭往往只剩下一件事：價格。當產品差異化落入了規格表與報價單的數字戰，利潤被無情壓縮便成了必然的宿命。材料 brand 化，正是產品在消費者心中留下名字、奪回定價權的第一個起點。
+    </p>
+
+    <p class="art-p">在我們與全球眾多材料企業及工廠端合作的過程中，最常在會議室裡聽見的感嘆是：</p>
+
+    <div class="art-quote">「我們的材料真的比別人好，各項測試數據都贏過對手，但市場就是記不住我們。」</div>
+
+    <p class="art-p">這不是單一企業的痛點，而是整個代工產業鏈面臨的現象。在快速迭代與供應鏈全球化的今日，技術門檻早已不再是唯一的護城河。「被看見、被選擇、被記住」正成為高端材料躍升為獨立品牌的關鍵門票。而許多製造商仍迷信「等公司規模更大、產能更穩定再來做品牌」，卻忽略了品牌化是一場殘酷的心智卡位賽。</p>
+
+    <div class="art-h2" id="sec-1">材料，不再只是<em>「藏在背後」</em>的無名英雄</div>
+    <p class="art-p">傳統上，材料商長期處於價值鏈的末端。即使擁有獨家專利、環保配方與嚴格認證，最終卻只能在報價單中競爭「每公斤 / 每碼」的微薄利潤。但若我們觀察當今市場上最成功的消費性產品，會發現一個不可逆的趨勢：品牌越來越主動標示其使用的材料來源與名稱，甚至讓「材料」直接成為產品敘事的核心主角。</p>
+
+    <div class="art-img-grid">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176024/goretex1_sfjddj.jpg" alt="GORE-TEX Logo">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176023/cordura1_v6nv1d.jpg" alt="CORDURA Logo">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176024/3m1_fz9ehc.jpg" alt="3M Logo">
+    </div>
+    <div class="img-caption">材料界的經典品牌：GORE-TEX, CORDURA, 3M</div>
+
+    <p class="art-p">以近年席捲全球的高端戶外機能風潮（Gorpcore）為例，在 Salomon 或 Arc'teryx 等頂尖品牌的鞋款與服飾上，GORE-TEX 的菱形黑標、CORDURA 的耐磨吊牌，其視覺辨識度甚至與服裝本身的 Logo 齊平。這證明了：消費者購買的不僅是服裝的剪裁，更是對這些「超級材料」背後所承諾的極致性能買單。</p>
+
+    <div class="art-h2" id="sec-2">材料品牌化的三大<em>推進力</em></div>
+
+    <div class="art-h3">一、記憶點創造絕對的選擇權</div>
+    <p class="art-p">品牌的本質，是在複雜的選項中成為採購方與消費者的「第一選擇」。當採購經理面對桌上 50 份規格相近的型錄時，大腦會自動篩選掉難以記憶的技術代碼（如 Polyester XY-200）。當你為材料精準命名、建立視覺識別與故事，你便創造了讓下游品牌與消費者「指名選用」的可能性。若你的材料沒有名字、不被記得，它永遠只能是備胎。</p>
+
+    <div class="art-h3">二、讓硬核技術進入消費者的生活語境</div>
+    <p class="art-p">現代消費者高度在意產品的來源、碳足跡與永續價值，而這正是高端材料商最具說服力的戰場。技術規格表上的「吸濕排汗係數」或「二氧化碳減量百分比」對終端消費者是無感的；你必須把技術轉譯為「跑馬拉松時的極致乾爽體驗」或是「對地球更溫柔的選擇」。</p>
+    <p class="art-p">例如：<strong>TENCEL™</strong> 讓大眾知道木漿纖維等於「永續與柔軟可以共存」；<strong>ECONYL®</strong> 則把海廢再生尼龍變成「從海洋垃圾到精品包袋」的敘事起點。同樣的，無論是牡蠣殼結合寶特瓶的永續紗線、具備碳捕捉技術的創新纖維，還是利用農業廢棄物（如鳳梨葉）製成的環保皮革，只要進入了消費者的語境，就不再只是冷冰冰的物理變化，而是具備情感重量的選擇。</p>
+
+    <div class="art-h3">三、由成本中心躍昇為價值共創者</div>
+    <p class="art-p">材料若能進入品牌敘事，就能與下專客戶形成緊密的「共創生態系（Co-creation）」。這將徹底改變材料商在談判桌上的地位：你不再只是被動接受砍價的供應商，而是「讓下游品牌更有說服力的最佳盟友」。當品牌端需要 ESG 的行銷題材，而你的材料自帶故事與光環時，議價空間自然大幅拓寬。</p>
+
+    <div class="art-img-grid">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176023/goretex_te177q.jpg" alt="GORE-TEX Sample">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176024/cordura-logo-png_seeklogo-397186_nazra1.png" alt="CORDURA Sample">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176023/3m_jo0hng.jpg" alt="3M Sample">
+    </div>
+    <div class="img-caption">實體材料的視覺呈現，是建立信任感的第一線</div>
+
+    <div class="art-h2" id="sec-3">實戰指南：材料品牌化的<em>四步框架</em></div>
+    <p class="art-p">品牌化絕非只是設計一個 Logo 或印製精美的型錄，它是一套從技術端貫穿到市場端的戰略工程。我們將其濃縮為四個關鍵步驟：</p>
+
+    <ul class="art-numlist">
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">命名與定位 (Naming & Positioning)</strong>
+          捨棄實驗室裡的工程代碼，為材料建立一個具備延展性、能觸發聯想的品牌名，並確立其在市場上的核心定位基調。
+        </div>
+      </li>
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">價值語言轉譯 (Value Translation)</strong>
+          打破「工程師思維」，把高深艱澀的技術術語，轉譯為設計師、行銷人與終端消費者都能秒懂的情境敘事與利益點。
+        </div>
+      </li>
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">應用端共創 (Application Co-creation)</strong>
+          品牌不只活在網頁上，更活在產品上。設計專屬的吊牌、織標、聯名包裝與宣傳語，為下游合作品牌提供立即可用的行銷彈藥，創造協作式的市場記憶。
+        </div>
+      </li>
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">一致性經營 (Consistent Management)</strong>
+          從參展的視覺識別、業務談判的語氣、到樣品袋的材質觸感，全面維持材料品牌的長期辨識度與頂級信任感。
+        </div>
+      </li>
+    </ul>
+
+    <div class="art-callout">
+      <div class="art-callout-label">核心洞察</div>
+      <div class="art-callout-text">根據 Material Lab 的實務觀察，具備清晰品牌識別與應用情境的材料商，在展會後取得「主動指名索取樣品」的比例，較傳統僅提供規格表的廠商高出極大倍數。這證明了視覺與敘事能有效降低採購方的決策阻力。</div>
+    </div>
+
+    <div class="art-h2" id="sec-4">讓你的材料，學會<em>自己說話</em></div>
+    <p class="art-p">在未來的供應鏈賽局裡，材料不該只是安靜地讓產品「做得出來」，而應該是強勢地讓產品「說得出話來」。品牌化的材料，不但能賦予終端產品無加取代的靈魂，更能帶領企業真正跳脫價格紅海，邁向以價值驅動的藍海。</p>
+    <p class="art-p">記住這句話：<strong>當你能讓別人清楚記住你是誰，市場也將記得你值得被選擇。</strong></p>
+
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176025/goretexd_aypxzg.jpg" class="art-img-full" style="margin-bottom:16px;">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176025/cordurad_zo1yfh.jpg" class="art-img-full" style="margin-top:0;margin-bottom:16px;">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779176025/3md_zy1jn8.jpg" class="art-img-full" style="margin-top:0;">
+
+    <div class="art-divider"><span>◆</span></div>
+
+    <div class="art-cta-block">
+      <div class="art-cta-text">
+        <strong>準備好讓你的技術被世界記住了嗎？</strong>
+        材料品牌化，不是因為要做行銷，而是因為市場正在改變選擇的方式。告訴我們你的材料特色，Material Lab 提供專屬的定位策略建議。
+      </div>
+      <a href="mailto:materiallabco@gmail.com" class="art-cta-btn">與我們聊聊 →</a>
+    </div>
+
+  </div>
+
+  <div class="art-sidebar">
+    <div class="sidebar-block">
+      <div class="sidebar-label">本文目錄</div>
+      <a href="#sec-1" class="toc-item">材料，不再只是藏在背後</a>
+      <a href="#sec-2" class="toc-item">材料品牌化的三大推進力</a>
+      <a href="#sec-3" class="toc-item">實戰指南：四步框架</a>
+      <a href="#sec-4" class="toc-item">讓你的材料自己說話</a>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">文章資訊</div>
+      <div class="sidebar-stat">
+        <span class="stat-k">閱讀時間</span>
+        <span class="stat-v">8 min</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="stat-k">分類</span>
+        <span class="stat-v">材料品牌化 Insight</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="stat-k">發佈</span>
+        <span class="stat-v">2026</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">延伸閱讀</div>
+      <a href="#" class="related-item">
+        <div class="related-cat">材料 4P</div>
+        <div class="related-title">材料的新行銷 4P：從規格競爭走向價值定位</div>
+      </a>
+      <a href="#" class="related-item">
+        <div class="related-cat">視覺識別</div>
+        <div class="related-title">材料視覺一致性：留在市場記憶裡的關鍵</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="art-author">
+  <div class="author-left">
+    <div class="author-avatar">AH</div>
+    <div>
+      <div class="author-name">Allen Hou · Material Lab</div>
+      <div class="author-role">設計總監 — 專注產品 Total Solution，將材料技術精準轉譯為終端市場的機能美學。</div>
+    </div>
+  </div>
+  <a href="mailto:materiallabco@gmail.com" class="art-contact-btn">預約諮詢</a>
+</div>
+
+<a href="#" class="art-next">
+  <div>
+    <div class="next-label">下一篇</div>
+    <div class="next-title">材料的新行銷 4P：從規格競爭走向價值定位</div>
+  </div>
+  <div class="next-arrow">→</div>
+</a>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+  });
+</script>
+
+</body>
+</html>
