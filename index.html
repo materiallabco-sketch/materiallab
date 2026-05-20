@@ -1106,28 +1106,56 @@ if(canvas && wrap) {
       ctx.lineWidth = 0.5; ctx.stroke();
     });
 
+    // Cross lines (原本的十字構造線，保留)
     ctx.strokeStyle = GOLD + '0.1)'; ctx.lineWidth = 0.5;
     ctx.beginPath(); ctx.moveTo(CX+dx, 0); ctx.lineTo(CX+dx, H); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, CY+dy); ctx.lineTo(W, CY+dy); ctx.stroke();
 
+    /* ── 01 / 外星環：技術軌動態數據標籤 ── */
+    const techLabels = ['性能差異化', '情境語言轉譯', '技術文件升級'];
+    let techIdx = 0;
+    
     for(let i=0; i<8; i++){
       const a  = ang + i * Math.PI/4;
       const px = CX + dx + Math.cos(a)*160;
       const py = CY + dy + Math.sin(a)*160;
       ctx.beginPath();
       ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2);
-      ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')'; ctx.fill();
+      ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')';
+      ctx.fill();
+
+      // 在特定軌道圓點旁，注入技術軌關鍵字（順時針緩慢懸浮旋轉）
+      if ((i === 1 || i === 3 || i === 5) && techIdx < techLabels.length) {
+        ctx.font = '300 8.5px Outfit, sans-serif';
+        ctx.fillStyle = GOLD + '0.38)'; // 低調優雅的透明度
+        ctx.fillText(techLabels[techIdx], px + 10, py + 3);
+        techIdx++;
+      }
     }
 
+    /* ── 02 / 中星環：品牌軌動態數據標籤 ── */
+    const brandLabels = ['材料命名系統', '視覺識別', '包裝設計'];
+    let brandIdx = 0;
+    
     for(let i=0; i<4; i++){
       const a  = -ang*1.6 + i * Math.PI/2;
       const px = CX + dx*0.65 + Math.cos(a)*110;
       const py = CY + dy*0.65 + Math.sin(a)*110;
       ctx.beginPath();
       ctx.arc(px, py, 2.5, 0, Math.PI*2);
-      ctx.fillStyle = GOLD + '0.4)'; ctx.fill();
+      ctx.fillStyle = GOLD + '0.4)';
+      ctx.fill();
+
+      // 在軌道圓點旁，注入品牌軌關鍵字（逆時針錯開旋轉，創造視覺視差）
+      if (i < 3 && brandIdx < brandLabels.length) {
+        ctx.font = '300 8.5px Outfit, sans-serif';
+        ctx.fillStyle = GOLD + '0.38)';
+        ctx.fillText(brandLabels[brandIdx], px + 10, py + 3);
+        brandIdx++;
+      }
     }
 
+    // Inner ring slowly rotating (原本的內星環圓點，保留)
     for(let i=0; i<2; i++){
       const a  = ang*0.8 + i * Math.PI;
       const px = CX + dx*0.3 + Math.cos(a)*62;
