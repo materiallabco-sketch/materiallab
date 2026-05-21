@@ -26,14 +26,15 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 #cursor.hover{width:6px;height:6px;}
 #cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
 
-/* ─── 核心排版：將所有區塊的內容收攏至 1080px 正中央 ─── */
-.cs-hero, .cs-meta, .cs-body, .gt-section, .spec-grid, .layer-list, .cs-next, .ml-nav, .ml-footer, .media-center-wrap {
+/* ─── 內文區塊收攏至 1080px 正中央 ─── */
+/* 注意：此處已排除 ml-nav 與 ml-footer，讓它們維持首頁的滿版設計 */
+.cs-hero, .cs-meta, .cs-body, .gt-section, .spec-grid, .layer-list, .media-center-wrap, .next-case {
     padding-left: max(48px, calc((100vw - var(--content-width)) / 2));
     padding-right: max(48px, calc((100vw - var(--content-width)) / 2));
 }
 
-/* NAV */
-.ml-nav{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+/* NAV - 恢復與首頁一致的滿版配置 */
+.ml-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .ml-logo img{height:28px;width:auto;object-fit:contain;}
 .ml-nav-links{display:flex;gap:32px;list-style:none;}
 .ml-nav-links a{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;cursor:none;}
@@ -55,15 +56,15 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 .cs-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); }
 .cs-meta-value { font-size: 13px; color: var(--text); line-height: 1.6; }
 
-/* ─── 影音與圖片居中收攏設定 ─── */
+/* ─── 影音與圖片容器 (穩定顯示版) ─── */
 .media-center-wrap {
     border-bottom: 0.5px solid var(--border);
     padding-top: 64px;
     padding-bottom: 64px;
-    background: var(--bg2); /* 讓媒體區塊有淡淡的底色區分 */
+    background: var(--bg2); 
 }
 
-/* 完美對應 YouTube 16:9 比例的容器 */
+/* YouTube 影片容器 (強制 16:9) */
 .media-iframe-container {
     width: 100%;
     aspect-ratio: 16/9;
@@ -76,20 +77,18 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    pointer-events: none; /* 防止誤觸暫停 */
+    pointer-events: none;
 }
 
-/* 讓圖片維持原比例、置中的容器 */
+/* 圖片容器 (不裁切，維持原圖尺寸比例) */
 .media-img-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 .media-img-container img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    object-fit: contain; /* 保證絕對不裁切 */
+    display: block;
     border-radius: 4px;
 }
 
@@ -101,23 +100,20 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 .cs-h2 em { font-style: italic; color: var(--gold); }
 .cs-p { font-size: 14px; line-height: 2; color: var(--text2); margin-bottom: 24px; font-weight: 300; }
 
-/* 針對雙欄圖片的專屬調整 */
+/* 針對雙欄圖片的專屬調整 (去除邊線，靠間距隔開) */
 section.cs-body-img {
     padding-top: 64px;
     padding-bottom: 64px;
-    align-items: center; /* 如果兩張圖片高度不同，讓它們垂直置中 */
     background: var(--bg2);
 }
 section.cs-body-img .cs-col {
     padding: 0;
     border: none;
-    display: flex;
-    justify-content: center;
 }
 section.cs-body-img .cs-col img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    object-fit: contain; /* 保證雙欄圖絕對不裁切 */
+    display: block;
     border-radius: 4px;
 }
 
@@ -152,14 +148,16 @@ section.cs-body-img .cs-col img {
 .lang-item.brand { color: var(--text); }
 .lang-item.brand::before { content: '✦'; color: var(--gold); font-size: 12px; margin-top: 2px; }
 
-/* NEXT PROJECT */
-.cs-next { padding-top: 120px; padding-bottom: 120px; text-align: center; border-bottom: 0.5px solid var(--border); display: block; text-decoration: none; cursor: none; }
-.cs-next:hover .cs-next-title { color: var(--gold); letter-spacing: 0.02em; }
-.cs-next-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3); margin-bottom: 24px; }
-.cs-next-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--text); transition: all 0.4s ease; }
+/* NEXT PROJECT - 恢復精緻箭頭與左右排版 */
+.next-case { border-bottom: 0.5px solid var(--border); padding-top: 56px; padding-bottom: 56px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: background 0.25s; cursor: none; }
+.next-case:hover { background: rgba(200, 169, 110, 0.03); }
+.nc-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.nc-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text); }
+.nc-arrow { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 300; color: rgba(200, 169, 110, 0.35); transition: transform 0.25s, color 0.25s; }
+.next-case:hover .nc-arrow { transform: translateX(8px); color: var(--gold); }
 
-/* FOOTER */
-.ml-footer { padding-top: 32px; padding-bottom: 32px; display: flex; align-items: center; justify-content: space-between; }
+/* FOOTER - 恢復與首頁一致的滿版配置 */
+.ml-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
 .ml-footer-copy { font-size: 11px; color: var(--text3); }
 
 @media(max-width:900px){
@@ -170,6 +168,7 @@ section.cs-body-img .cs-col img {
   .spec-cell:last-child { border-bottom: none; }
   .gt-grid { gap: 32px; }
   .ml-nav-links, .ml-nav-cta { display: none; }
+  .ml-nav, .ml-footer { padding-left: 24px; padding-right: 24px; }
   
   section.cs-body-img .cs-col { padding-bottom: 24px; }
   section.cs-body-img .cs-col:last-child { padding-bottom: 0; }
@@ -344,9 +343,12 @@ section.cs-body-img .cs-col img {
   </div>
 </section>
 
-<a href="../index.html#cases" class="cs-next">
-  <div class="cs-next-label">Back to Work</div>
-  <div class="cs-next-title">返回合作案例清單 ↗</div>
+<a href="../index.html#cases" class="next-case">
+  <div>
+    <div class="nc-label">Back to Work</div>
+    <div class="nc-title">返回合作案例清單</div>
+  </div>
+  <div class="nc-arrow">→</div>
 </a>
 
 <footer class="ml-footer">
