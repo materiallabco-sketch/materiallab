@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>材料視覺一致性：為什麼你的樣品卡就是品牌櫥窗｜Material Lab</title>
+<meta name="description" content="從樣品卡到展會攤位——每一個材料觸點都在說話。以頂尖視覺陳列（VM）設計師的角度，揭示視覺一致性如何成為材料商最被低估的競爭武器。">
+<link rel="icon" href="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779098464/weblogo_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_swrkxv.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#2A3941;--bg2:#222F36;--bg3:#1E2A30;
+  --gold:#C8A96E;--text:#EEE8DC;
+  --text2:rgba(238,232,220,0.65);--text3:rgba(238,232,220,0.35);
+  --border:rgba(238,232,220,0.1);
+}
+body{font-family:'Outfit','Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ── NAV ── */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;border-bottom:0.5px solid var(--border);
+  background:rgba(42,57,65,0.95);
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);
+}
+.nav-logo{display:flex;align-items:center;}
+.nav-logo img{height:24px;width:auto;object-fit:contain;display:block;}
+.nav-back{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:6px;cursor:pointer;transition:color 0.2s;text-decoration:none;}
+.nav-back:hover{color:var(--gold);}
+
+/* ── PROGRESS BAR ── */
+.progress{height:1.5px;background:var(--border);position:sticky;top:61px;z-index:99;}
+.progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s;}
+
+/* ── ARTICLE HERO ── */
+.art-hero{
+  max-width:1080px;margin:0 auto;
+  padding:80px 48px 64px;
+  border-bottom:0.5px solid var(--border);
+  display:grid;grid-template-columns:1fr 220px;gap:56px;align-items:end;
+}
+.art-breadcrumb{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;display:flex;align-items:center;gap:6px;}
+.art-breadcrumb em{color:var(--gold);font-style:normal;}
+.art-cat{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.art-cat::before{content:'';display:inline-block;width:16px;height:0.5px;background:var(--gold);}
+.art-hero-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1.15;color:var(--text);letter-spacing:-0.5px;}
+.art-hero-title em{font-style:italic;color:var(--gold);}
+.art-hero-meta{border-left:0.5px solid var(--border);padding-left:32px;display:flex;flex-direction:column;gap:24px;}
+.meta-item .meta-label{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.meta-item .meta-val{font-size:12px;color:var(--text2);line-height:1.5;}
+.meta-item .meta-val strong{color:var(--text);font-weight:400;font-size:14px;}
+
+/* ── LAYOUT ── */
+.art-layout{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 252px;border-bottom:0.5px solid var(--border);}
+
+/* ── CONTENT ── */
+.art-content{padding:64px 64px 80px 48px;border-right:0.5px solid var(--border);}
+
+/* Lead */
+.art-lead{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.75;color:rgba(238,232,220,0.85);margin-bottom:40px;}
+
+/* Body */
+.art-p{font-size:15px;line-height:2.0;color:var(--text2);margin-bottom:24px;font-weight:300;}
+.art-p strong{color:var(--text);font-weight:400;}
+
+/* H2 */
+.art-h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text);margin:64px 0 24px;line-height:1.2;}
+.art-h2 em{font-style:italic;color:var(--gold);}
+
+/* H3 */
+.art-h3{font-size:14px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);margin:40px 0 16px;}
+
+/* Pull quote */
+.art-quote{border-left:2px solid var(--gold);padding:20px 32px;margin:48px 0;font-family:'Cormorant Garamond',serif;font-size:26px;font-style:italic;font-weight:300;color:var(--gold);line-height:1.6;background:linear-gradient(90deg,rgba(200,169,110,0.08) 0%,rgba(200,169,110,0) 100%);}
+
+/* Callout */
+.art-callout{border:0.5px solid rgba(200,169,110,0.22);background:rgba(200,169,110,0.04);padding:32px;margin:40px 0;border-radius:2px;}
+.art-callout-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.art-callout-label::before{content:'';display:inline-block;width:12px;height:0.5px;background:var(--gold);}
+.art-callout-text{font-size:14px;line-height:1.9;color:var(--text2);font-weight:300;}
+
+/* Touchpoint audit visual */
+.touchpoint-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border);margin:48px 0;}
+.tp-card{background:var(--bg);padding:28px 24px;position:relative;transition:background 0.3s;}
+.tp-card:hover{background:var(--bg2);}
+.tp-rank{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.tp-rank-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.rank-high{background:#C8A96E;}
+.rank-mid{background:rgba(200,169,110,0.5);}
+.rank-low{background:rgba(200,169,110,0.2);}
+.tp-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--text);margin-bottom:8px;}
+.tp-desc{font-size:12px;line-height:1.75;color:var(--text2);}
+.tp-freq{
+  margin-top:16px;padding-top:12px;border-top:0.5px solid var(--border);
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.tp-freq-label{color:var(--text3);}
+.tp-freq-val{color:var(--gold);}
+
+/* Before / After comparison */
+.ba-wrap{margin:48px 0;}
+.ba-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.ba-col{background:var(--bg2);padding:32px;}
+.ba-col-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.ba-col-label.before{color:var(--text3);}
+.ba-col-label.after{color:var(--gold);}
+.ba-col-label::before{content:'';display:inline-block;width:10px;height:0.5px;}
+.before::before{background:var(--text3);}
+.after::before{background:var(--gold);}
+.ba-item{
+  font-size:13px;line-height:1.7;color:var(--text2);
+  padding:10px 0;border-bottom:0.5px solid var(--border);
+  display:flex;align-items:start;gap:10px;
+}
+.ba-item:last-child{border-bottom:none;}
+.ba-icon{flex-shrink:0;font-size:12px;margin-top:2px;}
+
+/* Design principle cards */
+.principle-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:0.5px solid var(--border);margin:40px 0;}
+.principle-item{
+  background:var(--bg);padding:28px 32px;
+  display:grid;grid-template-columns:48px 1fr;gap:24px;align-items:start;
+  transition:background 0.3s;
+}
+.principle-item:hover{background:rgba(200,169,110,0.03);}
+.principle-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:300;
+  color:rgba(200,169,110,0.25);line-height:1;padding-top:4px;
+}
+.principle-body{}
+.principle-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;}
+.principle-title em{font-style:italic;color:var(--gold);}
+.principle-desc{font-size:13px;line-height:1.85;color:var(--text2);}
+
+/* System elements table */
+.system-table{width:100%;border-collapse:collapse;margin:32px 0;}
+.system-table th{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);padding:12px 16px;text-align:left;border-bottom:0.5px solid var(--border);font-weight:400;}
+.system-table th.gold{color:var(--gold);}
+.system-table td{font-size:13px;color:var(--text2);padding:14px 16px;border-bottom:0.5px solid var(--border);line-height:1.6;vertical-align:top;}
+.system-table td.em{color:var(--text);font-weight:400;}
+.system-table tr:last-child td{border-bottom:none;}
+.system-table tr:hover td{background:rgba(200,169,110,0.025);}
+
+/* Numlist */
+.art-numlist{list-style:none;margin:24px 0 40px;counter-reset:nlist;}
+.art-numlist li{counter-increment:nlist;display:flex;align-items:start;gap:16px;font-size:15px;line-height:1.9;color:var(--text2);font-weight:300;padding:20px 0;border-bottom:0.5px solid var(--border);}
+.art-numlist li:last-child{border-bottom:none;}
+.art-numlist li::before{content:counter(nlist,decimal-leading-zero);font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(200,169,110,0.6);padding-top:3px;flex-shrink:0;width:24px;}
+.art-numlist-content{flex:1;}
+.art-numlist-title{color:var(--text);font-weight:400;display:block;margin-bottom:6px;font-size:16px;}
+
+/* Image Grids */
+.art-img-grid-2{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin:40px 0 16px 0;
+}
+.art-img-grid-2 img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  border:0.5px solid var(--border);
+  background:rgba(200,169,110,0.05);
+  filter:grayscale(10%);transition:filter 0.4s;
+}
+.art-img-grid-2 img:hover{filter:grayscale(0%);}
+.img-caption{
+  font-size:11px;color:var(--text3);text-align:center;
+  margin-bottom:40px;letter-spacing:0.05em;
+}
+
+/* Divider */
+.art-divider{display:flex;align-items:center;gap:16px;margin:56px 0;}
+.art-divider::before,.art-divider::after{content:'';flex:1;height:0.5px;background:var(--border);}
+.art-divider span{font-size:14px;color:rgba(200,169,110,0.35);font-family:'Cormorant Garamond',serif;}
+
+/* CTA */
+.art-cta-block{background:var(--bg2);border:0.5px solid var(--border);padding:40px;margin:56px 0 0;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.art-cta-text{font-size:14px;color:var(--text2);line-height:1.8;max-width:400px;font-weight:300;}
+.art-cta-text strong{color:var(--text);font-weight:400;display:block;margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:0.02em;}
+.art-cta-btn{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;background:var(--gold);color:var(--bg);border:none;padding:14px 28px;border-radius:2px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all 0.25s;text-decoration:none;}
+.art-cta-btn:hover{background:var(--text);color:var(--bg);}
+
+/* ── SIDEBAR ── */
+.art-sidebar{padding:64px 32px;position:sticky;top:60px;align-self:start;max-height:calc(100vh - 60px);overflow-y:auto;}
+.sidebar-block{margin-bottom:48px;}
+.sidebar-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+.toc-item{font-size:13px;color:var(--text3);padding:10px 0 10px 14px;border-left:1.5px solid transparent;cursor:pointer;transition:all 0.2s;line-height:1.5;border-bottom:0.5px solid var(--border);text-decoration:none;display:block;}
+.toc-item:last-child{border-bottom:none;}
+.toc-item:hover{color:var(--text2);border-left-color:rgba(200,169,110,0.3);}
+.toc-item.active{color:var(--gold);border-left-color:var(--gold);}
+.sidebar-stat{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:0.5px solid var(--border);}
+.sidebar-stat:last-child{border-bottom:none;}
+.stat-k{font-size:11px;color:var(--text3);letter-spacing:0.06em;}
+.stat-v{font-size:13px;color:var(--text2);}
+.related-item{padding:12px 0;border-bottom:0.5px solid var(--border);cursor:pointer;display:block;text-decoration:none;}
+.related-item:last-child{border-bottom:none;}
+.related-cat{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:12px;color:var(--text2);line-height:1.6;transition:color 0.2s;}
+.related-item:hover .related-title{color:var(--text);}
+
+/* ── AUTHOR ── */
+.art-author{max-width:1080px;margin:0 auto;padding:48px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);}
+.author-left{display:flex;align-items:center;gap:24px;}
+.author-avatar{width:60px;height:60px;border-radius:50%;background:rgba(200,169,110,0.08);border:0.5px solid rgba(200,169,110,0.3);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);flex-shrink:0;}
+.author-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px;letter-spacing:0.02em;}
+.author-role{font-size:12px;color:rgba(200,169,110,0.6);line-height:1.5;}
+.art-contact-btn{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:12px 24px;border-radius:2px;cursor:pointer;transition:all 0.25s;text-decoration:none;}
+.art-contact-btn:hover{background:var(--gold);color:var(--bg);}
+
+/* ── NEXT ── */
+.art-next{max-width:1080px;margin:0 auto;padding:48px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.3s;text-decoration:none;}
+.art-next:hover{background:rgba(200,169,110,0.03);}
+.next-label{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.next-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);}
+.next-arrow{font-family:'Cormorant Garamond',serif;font-size:32px;color:rgba(200,169,110,0.4);transition:transform 0.3s,color 0.3s;}
+.art-next:hover .next-arrow{transform:translateX(8px);color:var(--gold);}
+
+/* Responsive */
+@media(max-width:900px){
+  .art-hero,.art-layout{grid-template-columns:1fr;gap:32px;padding:40px 24px;}
+  .art-hero-meta{border-left:none;padding-left:0;border-top:0.5px solid var(--border);padding-top:24px;flex-direction:row;flex-wrap:wrap;}
+  .art-content{padding:40px 24px 48px;border-right:none;}
+  .art-sidebar{padding:48px 24px;border-top:0.5px solid var(--border);position:relative;top:0;max-height:none;}
+  .art-hero-title{font-size:36px;}
+  .touchpoint-grid{grid-template-columns:1fr;}
+  .ba-grid{grid-template-columns:1fr;}
+  .art-img-grid-2{grid-template-columns:1fr;}
+  .art-cta-block{flex-direction:column;align-items:flex-start;}
+  .art-author{flex-direction:column;align-items:flex-start;gap:24px;padding:40px 24px;}
+  .art-next{padding:40px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <a href="../index.html#journal" class="nav-back">← Back to Journal</a>
+</div>
+
+<div class="progress"><div class="progress-fill" id="progressBar"></div></div>
+
+<div class="art-hero">
+  <div>
+    <div class="art-breadcrumb">Journal &nbsp;/&nbsp; <em>視覺識別</em></div>
+    <div class="art-cat">視覺識別 · 觸點設計</div>
+    <h1 class="art-hero-title">
+      材料視覺一致性：<br>為什麼你的<em>樣品卡</em><br>就是品牌櫥窗
+    </h1>
+  </div>
+  <div class="art-hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">作者</div>
+      <div class="meta-val"><strong>Allen Hou</strong><br>設計總監 · Material Lab</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">閱讀時間</div>
+      <div class="meta-val">約 7 分鐘</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">發佈年份</div>
+      <div class="meta-val">2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="art-layout">
+
+  <div class="art-content">
+
+    <p class="art-lead">
+      在國際頂尖消費品牌的視覺陳列（Visual Merchandising）經驗中，有一條鐵律：最微小的陳列細節，決定了品牌溢價的高度。當我們把這個視角帶入 B2B 材料產業，我們發現多數廠商忽略了他們最重要的「實體櫥窗」——不是造價百萬的展會攤位，而是那一張張遞到採購與設計師手中的「樣品卡（Swatch Card）」。
+    </p>
+    
+    <div class="art-img-grid-2">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327759/xproe_rrvakn.jpg" alt="Xpore 樣品卡陳列">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327758/primaloft_c1qaqu.jpg" alt="PrimaLoft 品牌識別">
+    </div>
+    <div class="img-caption">頂尖材料品牌的視覺陳列示範：Xpore, PrimaLoft</div>
+
+    <p class="art-p">許多材料商花大錢製作精美的外包裝袋，卻忽略了殘酷的實務真相：設計師拿到樣品後，外包裝袋通常第一時間就被扔進垃圾桶了。真正被釘在 Mood Board（情緒板）上、被收進設計圖書館裡反覆比對的，是那塊布料、那張卡頭（Header Card）以及背面的資訊標籤。<strong>如果你的樣品卡視覺邏輯雜亂，就等於把精品放在大賣場的特價花車上。</strong></p>
+
+    <div class="art-quote">「設計不是讓東西看起來漂亮，而是建立精準的『資訊層級』——讓對的人在三秒內，看見你真正的價值。」</div>
+
+    <div class="art-h2" id="sec-1">觸點盤點：<em>材料品牌的真實接觸面</em></div>
+
+    <p class="art-p">在建立視覺識別之前，頂尖陳列顧問的第一步永遠是「觸點盤點」（Touchpoint Audit）。對於 B2B 材料商而言，我們必須誠實面對採購方的真實使用情境，並按影響力重新排序：</p>
+
+    <div class="touchpoint-grid">
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-high"></div><span style="color:var(--gold);font-size:10px;letter-spacing:0.12em;">極高影響力</span></div>
+        <div class="tp-name">樣品卡 · 資訊背標</div>
+        <div class="tp-desc">這是材料界真正的「商品陳列」。許多廠商把布料隨便釘上一張印滿 Excel 數據的白紙，卻不知這張紙決定了你在設計師心中的定位是「創新者」還是「廉價代工」。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">設計與採購期天天看</span></div>
+      </div>
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-high"></div><span style="color:var(--gold);font-size:10px;letter-spacing:0.12em;">高影響力</span></div>
+        <div class="tp-name">技術型錄 · 規格表</div>
+        <div class="tp-desc">採購方在評估階段反覆翻閱的文件。字型選擇、資訊層次、圖表設計，都在無聲地影響「這家公司有沒有嚴謹看待細節」的判斷。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">評估期高頻</span></div>
+      </div>
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-high"></div><span style="color:var(--gold);font-size:10px;letter-spacing:0.12em;">高影響力</span></div>
+        <div class="tp-name">展會攤位陳列</div>
+        <div class="tp-desc">三天內與數百位潛在客戶建立心智連結的實體櫥窗。空間的視覺動線與材料展示方式，決定了你被記住的方式，或者被遺忘的速度。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">年度關鍵場景</span></div>
+      </div>
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-mid"></div><span style="color:rgba(200,169,110,0.6);font-size:10px;letter-spacing:0.12em;">中影響力</span></div>
+        <div class="tp-name">官方網站</div>
+        <div class="tp-desc">採購方在初步篩選時必訪的數位門面。載入速度、首頁的第一句話、材料的影像風格，決定了對方是否願意發出詢價 Email。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">初篩必訪</span></div>
+      </div>
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-mid"></div><span style="color:rgba(200,169,110,0.6);font-size:10px;letter-spacing:0.12em;">中影響力</span></div>
+        <div class="tp-name">業務 Email · 簽名檔</div>
+        <div class="tp-desc">每一封往來郵件都是觸點。一個雜亂的 Email 簽名，或是沒有一致 Logo 的純文字信件，正悄悄抵消前期的所有品牌投資。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">合作期超高頻</span></div>
+      </div>
+
+      <div class="tp-card">
+        <div class="tp-rank"><div class="tp-rank-dot rank-low"></div><span style="color:rgba(200,169,110,0.3);font-size:10px;letter-spacing:0.12em;">長尾影響力</span></div>
+        <div class="tp-name">社群 · LinkedIn</div>
+        <div class="tp-desc">對於目標市場包含國際設計師或高端機能品牌的廠商，一致的數位視覺語言能建立強大的長期 B2B 存在感。</div>
+        <div class="tp-freq"><span class="tp-freq-label">接觸頻率</span><span class="tp-freq-val">長期積累</span></div>
+      </div>
+
+    </div>
+
+    <div class="art-h2" id="sec-2">不一致的代價：<em>採購方的大腦在算一筆帳</em></div>
+
+    <p class="art-p">採購方不會坐下來拿出清單逐一評估你的視覺。他們的大腦會自動完成這件事——在幾秒內，在潛意識層面。視覺認知心理學告訴我們：不一致的視覺訊號，會觸發大腦的「異常警報」，讓人對這個品牌產生模糊的不信任感。</p>
+
+    <div class="ba-wrap">
+      <div class="ba-label">視覺陳列一致性 · 前後對比</div>
+      <div class="ba-grid">
+        <div class="ba-col">
+          <div class="ba-col-label before">缺乏系統的狀態</div>
+          <div class="ba-item"><span class="ba-icon" style="color:rgba(200,169,110,0.3);">—</span>樣品背標是用點陣印表機印的，格式與字體凌亂</div>
+          <div class="ba-item"><span class="ba-icon" style="color:rgba(200,169,110,0.3);">—</span>背標掉了之後，設計師完全認不出這是哪家廠商的布</div>
+          <div class="ba-item"><span class="ba-icon" style="color:rgba(200,169,110,0.3);">—</span>Logo 有三個版本，業務自己都不確定哪個是最新的</div>
+          <div class="ba-item"><span class="ba-icon" style="color:rgba(200,169,110,0.3);">—</span>型錄用黑底金字，樣品卡卻是毫無設計感的白底黑字</div>
+          <div class="ba-item"><span class="ba-icon" style="color:rgba(200,169,110,0.3);">—</span>採購方感覺：「這家公司似乎還停留在代工思維」</div>
+        </div>
+        <div class="ba-col">
+          <div class="ba-col-label after">建立系統的狀態</div>
+          <div class="ba-item"><span class="ba-icon" style="color:var(--gold);">+</span>統一的標籤版型、清晰的品牌字體與導流的 QR Code</div>
+          <div class="ba-item"><span class="ba-icon" style="color:var(--gold);">+</span>樣品卡（Header Card）具備高辨識度的品牌專屬色與壓紋</div>
+          <div class="ba-item"><span class="ba-icon" style="color:var(--gold);">+</span>展會攤位、型錄、樣品卡的視覺語彙完美呼應</div>
+          <div class="ba-item"><span class="ba-icon" style="color:var(--gold);">+</span>業務信件擁有統一的高質感簽名格式</div>
+          <div class="ba-item"><span class="ba-icon" style="color:var(--gold);">+</span>採購方感覺：「這是一家擁有國際水準的戰略夥伴」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-callout">
+      <div class="art-callout-label">設計總監的實戰觀察</div>
+      <div class="art-callout-text">在我們的實務經驗中，當材料商將「布卡背標」與「卡頭設計」系統化後，最常見的客戶回饋是「你們的材料看起來變高級了」。視覺一致性的真正效果，是專業度與信任感的隱性提升，它能讓你在未開口前，就先贏得溢價的談判籌碼。</div>
+    </div>
+
+    <div class="art-h2" id="sec-3">視覺識別系統：<em>不是風格手冊，是模組化武器</em></div>
+
+    <p class="art-p">許多材料商聽到「視覺識別系統」就想到一本厚厚的 Brand Guideline，充滿了 Pantone 色號——然後束之高閣，從未被真正使用。真正的 B2B 視覺系統，必須高度模組化且具備實戰價值。</p>
+
+    <p class="art-p">它應該能回答一個問題：<strong>當業務明天早上要把 50 塊新款布料送給一個國際大廠，他能在半小時內產出完美對齊品牌規範的樣品卡嗎？</strong></p>
+
+    <table class="system-table">
+      <thead>
+        <tr>
+          <th>識別元素</th>
+          <th class="gold">材料品牌的特殊考量</th>
+          <th>常見致命傷</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="em">色彩系統</td>
+          <td>主色需在工業印刷（布卡卡頭）和數位（PDF）都能精準呈現</td>
+          <td>選用在實際印刷中容易嚴重偏色的鮮豔 RGB 色彩</td>
+        </tr>
+        <tr>
+          <td class="em">資訊層級 (Typography)</td>
+          <td>需在極小尺寸的標籤上，明確區分「品牌名」、「主打性能」與「常規規格」</td>
+          <td>字級全部一樣大，像在看合約書，抓不到賣點</td>
+        </tr>
+        <tr>
+          <td class="em">模組化版型</td>
+          <td>背標與型錄必須是填空題，業務只需輸入數據，版面自動生成</td>
+          <td>每次出新布料，業務都要打開 Word 重新排版一次</td>
+        </tr>
+        <tr>
+          <td class="em">數位引導 (QR Code)</td>
+          <td>實體樣品空間有限，必須將 QR Code 視為視覺系統的一部分，導向完整數據</td>
+          <td>標籤上塞滿密密麻麻的檢測報告，導致視覺災難</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="art-img-grid-2">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327759/Lite-1.bio_uraqbn.jpg" alt="Lite-1.bio 視覺系統">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327759/pic_l1hw8g.jpg" alt="樣品展示系統設計">
+    </div>
+    <div class="img-caption">模組化的實體觸點設計：Lite-1.bio 與樣品展示系統</div>
+
+    <div class="art-h2" id="sec-4">三個陳列原則：<em>讓材料觸點自己說話</em></div>
+
+    <div class="principle-list">
+
+      <div class="principle-item">
+        <div class="principle-num">01</div>
+        <div class="principle-body">
+          <div class="principle-title">資訊層級的<em>櫥窗邏輯</em></div>
+          <div class="principle-desc">如同精品店的櫥窗不會擺滿所有庫存，你的樣品卡也不該塞滿所有數據。視覺設計必須建立清晰的「資訊層級」——第一眼看到品牌與材料名稱，第二眼看到核心價值（如：極致輕量耐磨），最後才是成分與規格表。少即是多。</div>
+        </div>
+      </div>
+
+      <div class="principle-item">
+        <div class="principle-num">02</div>
+        <div class="principle-body">
+          <div class="principle-title">物理觸點的<em>拆箱體驗</em></div>
+          <div class="principle-desc">材料品牌有一個消費品無法比擬的優勢：你的產品本身就是觸覺體驗的載體。樣品卡的厚度、紙張的磅數、甚至標籤貼紙的霧面質感，這些實體觸感是視覺識別的延伸，也是建立「高端感知」最直接的方式。拿在手上的那一刻，勝負已分。</div>
+        </div>
+      </div>
+
+      <div class="principle-item">
+        <div class="principle-num">03</div>
+        <div class="principle-body">
+          <div class="principle-title">系統優先於<em>風格</em></div>
+          <div class="principle-desc">許多材料商花大錢做出極具藝術感的視覺系統，但六個月後，業務卻因為「太難用」而退回 Word 排版。最好的視覺系統，是一個業務團隊願意且能零門檻執行的「模組化系統」。「用得上且能維持一致」永遠比「單次看起來很厲害」更重要。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="art-h2" id="sec-5">從哪裡開始：<em>材料觸點的優先改造順序</em></div>
+
+    <p class="art-p">視覺一致性不需要一次全部解決。對大多數材料商而言，最快產生實質業績影響力的路徑是：從業務員天天在發的實體工具開始改造。</p>
+
+    <ul class="art-numlist">
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">第一步：樣品卡（Header Card）與背標系統（第 1-2 週）</strong>
+          重新設計布料樣品卡與背後資訊標籤的版型。統一字體、加入清晰的品牌識別色與導流 QR Code。這是最常被忽視，卻最能立刻顛覆客戶對你品牌印象的關鍵觸點。
+        </div>
+      </li>
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">第二步：數位型錄與簡報模板（第 3-5 週）</strong>
+          建立一份模組化的 PDF 產品型錄與報價 PPT 模板。讓業務能在一小時內生成符合國際視覺標準的文件，徹底消滅用 Excel 截圖報價的廉價感。
+        </div>
+      </li>
+      <li>
+        <div class="art-numlist-content">
+          <strong class="art-numlist-title">第三步：Email 簽名與數位接觸點（第 6 週）</strong>
+          統一全公司的 Email 簽名檔，並確保官網首頁的英雄區（Hero Section）視覺語彙，與實體樣品卡完美對齊。
+        </div>
+      </li>
+    </ul>
+
+    <div class="art-quote">「品牌不是你說自己有多強，而是採購方在翻開樣品卡的那一秒，感受到你是什麼等級。」</div>
+
+    <div class="art-h2" id="sec-6">結語：<em>視覺一致性是你最無聲、卻最強大的業務員</em></div>
+
+    <p class="art-p">真人業務員需要薪水、差旅費，甚至會離職；但一套設計精良、視覺一致的樣品卡系統，卻能在沒有任何業務在場的情況下，默默為你的品牌發聲——在採購辦公室的桌上，在國際設計師的布料庫裡，在下一次季度選材討論的會議室中。</p>
+
+    <p class="art-p">這就是視覺一致性的真正價值：<strong>它讓你的專業度，在你離開會議室後，繼續發揮影響力。</strong></p>
+
+    <p class="art-p">從重新設計那張小小的樣品背標開始吧。不需要等到公司擴編，不需要等到新廠房落成。高端品牌溢價的複利，從你決定統一視覺語言的那一天就開始累積了。</p>
+
+    <div class="art-divider"><span>◆</span></div>
+
+    <div class="art-cta-block">
+      <div class="art-cta-text">
+        <strong>你的樣品卡，是否正在拉低你的材料價值？</strong>
+        Material Lab 提供材料品牌觸點健診——我們將以頂尖陳列邏輯，幫你盤點目前的樣品展示與行銷物缺口，並給出具體的模組化改造建議。
+      </div>
+      <a href="mailto:materiallabco@gmail.com" class="art-cta-btn">預約觸點健診 →</a>
+    </div>
+
+  </div>
+
+  <div class="art-sidebar">
+    <div class="sidebar-block">
+      <div class="sidebar-label">本文目錄</div>
+      <a href="#sec-1" class="toc-item">觸點盤點：真實的接觸面</a>
+      <a href="#sec-2" class="toc-item">不一致的隱性代價</a>
+      <a href="#sec-3" class="toc-item">模組化的視覺識別系統</a>
+      <a href="#sec-4" class="toc-item">三個陳列邏輯與原則</a>
+      <a href="#sec-5" class="toc-item">從哪裡開始改造</a>
+      <a href="#sec-6" class="toc-item">最無聲的超級業務員</a>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">文章資訊</div>
+      <div class="sidebar-stat">
+        <span class="stat-k">閱讀時間</span>
+        <span class="stat-v">7 min</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="stat-k">分類</span>
+        <span class="stat-v">視覺識別</span>
+      </div>
+      <div class="sidebar-stat">
+        <span class="stat-k">發佈</span>
+        <span class="stat-v">2026</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">延伸閱讀</div>
+      <a href="brand-strategy-01.html" class="related-item">
+        <div class="related-cat">品牌化 Insight</div>
+        <div class="related-title">下一場產品戰爭，不在規格，而在記憶點</div>
+      </a>
+      <a href="brand-strategy-02.html" class="related-item">
+        <div class="related-cat">材料 4P</div>
+        <div class="related-title">材料的新行銷 4P：從規格競爭走向價值定位</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="art-author">
+  <div class="author-left">
+    <div class="author-avatar">AH</div>
+    <div>
+      <div class="author-name">Allen Hou · Material Lab</div>
+      <div class="author-role">設計總監 — 具備頂尖視覺陳列（VM）與產品開發經驗，專注將材料技術轉譯為高端品牌語彙。</div>
+    </div>
+  </div>
+  <a href="mailto:materiallabco@gmail.com" class="art-contact-btn">預約諮詢</a>
+</div>
+
+<a href="brand-strategy-02.html" class="art-next">
+  <div>
+    <div class="next-label">上一篇</div>
+    <div class="next-title">材料的新行銷 4P：從規格競爭走向價值定位</div>
+  </div>
+  <div class="next-arrow">→</div>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+  const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  const scrolled=(winScroll/height)*100;
+  document.getElementById('progressBar').style.width=scrolled+'%';
+});
+
+const sections=document.querySelectorAll('[id^="sec-"]');
+const tocItems=document.querySelectorAll('.toc-item');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id=entry.target.getAttribute('id');
+      tocItems.forEach(item=>{
+        item.classList.toggle('active',item.getAttribute('href')==='#'+id);
+      });
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
