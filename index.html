@@ -506,51 +506,75 @@ section[id] {
 .ml-cta-email-addr:hover{letter-spacing:0.04em;}
 
 /* PEOPLE */
-.ml-people{
-  display:grid;grid-template-columns:1fr 1fr 1fr 1fr; /* 切分成 4 格，完美放入 1引言 + 3人 */
-  border-bottom:0.5px solid var(--border);position:relative;z-index:1;
+/* PEOPLE */
+.ml-people {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr; /* 左側引言佔比稍大，右側分為兩欄放成員 */
+  border-bottom: 0.5px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
+
+/* 引言區塊：讓它跨越兩列，成為穩固的左側基礎 */
 .ml-people-intro {
   padding: 80px 48px;
   border-right: 0.5px solid var(--border);
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; /* 讓文字靠上對齊，更顯大氣 */
+  grid-row: span 2; /* 關鍵：跨越兩列高度 */
 }
-.ml-people-intro-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:30px;font-weight:300;color:var(--text);line-height:1.2;margin-top:16px;
+.ml-people-intro-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; /* 稍微放大標題 */
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 16px;
 }
-.ml-people-intro-sub{font-size:12px;color:var(--text2);line-height:1.8;margin-top:16px;}
+.ml-people-intro-sub {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-top: 24px;
+  max-width: 80%; /* 控制行長，提升易讀性 */
+}
+
+/* 成員卡片區塊 */
 .ml-person {
-  padding: 64px 32px;
+  padding: 64px 48px; /* 稍微加大左右內距，留白更優雅 */
   border-right: 0.5px solid var(--border);
-  cursor: none; transition: background 0.3s;
+  border-bottom: 0.5px solid var(--border); /* 加上底線，確保上下排有分隔 */
+  cursor: none; 
+  transition: background 0.3s; 
 }
-.ml-person:last-child{border-right:none;}
-.ml-person:hover{background:rgba(200,169,110,0.03);}
+/* 處理邊框邏輯：右側兩欄的邊框設定 */
+.ml-person:nth-child(even) { border-right: none; } /* 消除最右側的邊框 */
+.ml-person:nth-last-child(-n+2) { border-bottom: none; } /* 消除最底下那一排的底線 */
+
+.ml-person:hover { background: rgba(200,169,110,0.03); }
 .ml-person-avatar {
   width: 140px;
-  /* 稍微調整比例，從 4/5 變成接近正方一點的 1/1.1，減少相片上下被切掉的機率 */
   aspect-ratio: 1 / 1.1; 
   background: rgba(200,169,110,0.05);
   overflow: hidden;
   margin-bottom: 24px;
-  border-radius: 2px; /* 加上極小的圓角，讓卡片看起來更精緻 */
+  border-radius: 2px; 
 }
 .ml-person-avatar img {
   width: 100%; height: 100%; 
   object-fit: cover;
-  /* 加上 object-position: top center; 確保裁切時以「頭部」為基準，人臉不會被切掉 */
   object-position: top center; 
   transition: transform 0.6s ease, filter 0.6s ease;
   filter: grayscale(15%); 
 }
 .ml-person:hover .ml-person-avatar img {
-  transform: scale(1.05); /* 滑過時優雅放大 */
-  filter: grayscale(0%); /* 滑過時恢復全彩 */
+  transform: scale(1.05); 
+  filter: grayscale(0%); 
 }
-.ml-person-name{font-size:16px;font-weight:500;color:var(--text);margin-bottom:4px;}
-.ml-person-role{font-size:12px;color:rgba(200,169,110,0.6);margin-bottom:14px;letter-spacing:0.03em;}
-.ml-person-bio{font-size:12px;color:var(--text2);line-height:1.8;}
+.ml-person-name { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.ml-person-role { font-size: 12px; color: rgba(200,169,110,0.6); margin-bottom: 14px; letter-spacing: 0.03em; }
+.ml-person-bio { font-size: 12px; color: var(--text2); line-height: 1.8; }
 
 /* JOURNAL */
 /* JOURNAL */
@@ -637,6 +661,37 @@ section[id] {
   z-index: 2;
 }
 
+/* 第三篇文章卡片背景圖設定 (視覺識別) */
+.ml-article-bg-3 {
+  position: relative;
+  overflow: hidden; 
+  z-index: 1;
+}
+
+/* 墊入第三張圖片並覆蓋半透明深色遮罩 */
+.ml-article-bg-3::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; 
+  background-image: 
+    linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)),
+    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779329276/pexels-marek-pavlik-1929759405-37269546_ec5f1d.jpg');
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease; 
+}
+
+/* 滑鼠移過去時的微放大特效 */
+.ml-article-bg-3:hover::before {
+  transform: scale(1.05);
+}
+
+/* 確保文字層級在背景之上 */
+.ml-article-bg-3 > * {
+  position: relative;
+  z-index: 2;
+}
 /* 文章標號與分類 */
 .ml-article-top { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
 .ml-article-num { font-family: 'Outfit', sans-serif; font-size: 14px; color: rgba(200,169,110,0.35); letter-spacing: 0.1em; }
@@ -710,7 +765,12 @@ section[id] {
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .ml-hero, .ml-cases-grid, .ml-people, .ml-articles {grid-template-columns:1fr;}
+  .ml-hero, .ml-cases-grid, .ml-articles {grid-template-columns:1fr;}
+  /* 手機版：讓所有人包含引言都變成單欄直排 */
+  .ml-people { grid-template-columns: 1fr; }
+  .ml-people-intro { grid-row: auto; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .ml-person { border-right: none !important; border-bottom: 0.5px solid var(--border) !important; }
+  .ml-person:last-child { border-bottom: none !important; }
   .ml-hero-right{height:320px;}
   .ml-case:nth-child(2n), .ml-case:nth-child(3), 
   .ml-people-intro, .ml-person, .ml-article {
@@ -931,6 +991,7 @@ section[id] {
       <p class="ml-people-intro-sub">Material Lab 橫跨品牌策略、材料科學與設計溝通，我們不只懂品牌，更懂台灣製造業的語言與挑戰。</p>
     </div>
   </div>
+  
   <div class="ml-person reveal">
     <div class="ml-person-avatar">
       <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alvinnew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_nxt3zk.jpg" alt="Alvin Lin">
@@ -939,6 +1000,7 @@ section[id] {
     <div class="ml-person-role">策略長</div>
     <p class="ml-person-bio">融通品牌、通路與製造端全價值鏈。以宏觀商業視角，專注協助企業主突破框架，打造強勁成長的「第二曲線」。</p>
   </div>
+  
   <div class="ml-person reveal" style="transition-delay:0.1s">
     <div class="ml-person-avatar">
       <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alicemedianew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jrvtyi.jpg" alt="Alice Song">
@@ -947,6 +1009,7 @@ section[id] {
     <div class="ml-person-role">議題策略總監</div>
     <p class="ml-person-bio">洞悉頂尖商業媒體與高階決策思維。擅長精準策動核心議題，將材料科技轉化為具備實質商業影響力的市場聲量。</p>
   </div>
+  
   <div class="ml-person reveal" style="transition-delay:0.2s">
     <div class="ml-person-avatar">
       <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/allennew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jqkc3r.jpg" alt="Allen Hou">
@@ -955,6 +1018,16 @@ section[id] {
     <div class="ml-person-role">設計總監</div>
     <p class="ml-person-bio">整合品牌、行銷與製造廠跨界思維。專注風格產品 Total Solution，將材料技術精準轉譯為終端市場的機能美學。</p>
   </div>
+  
+  <div class="ml-person reveal" style="transition-delay:0.3s">
+    <div class="ml-person-avatar">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327118/sammi_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_arggvg.jpg" alt="Sammi Yang">
+    </div>
+    <div class="ml-person-name">Sammi Yang</div>
+    <div class="ml-person-role">策略顧問</div>
+    <p class="ml-person-bio">具備深厚的數位行銷底蘊與全鏈路營銷視角。從前端內容規劃到終端媒體投放，致力於為企業建構強韌的 B2C 商業模式，極大化材料品牌的市場穿透力。</p>
+  </div>
+
 </section>
 
 <section class="ml-journal" id="journal">
@@ -997,13 +1070,13 @@ section[id] {
       </div>
     </a>
 
-    <a class="ml-article reveal" href="#" style="transition-delay:0.15s">
+    <a class="ml-article reveal ml-article-bg-3" href="journal/brand-strategy-03.html" style="transition-delay:0.15s">
       <div class="ml-article-top">
         <div class="ml-article-num">03</div>
         <div class="ml-article-cat">視覺識別</div>
       </div>
-      <div class="ml-article-title">材料視覺一致性：<br>為什麼你的樣品卡也是品牌</div>
-      <p class="ml-article-desc">從型錄到吊牌，從樣品包裝到數位呈現——每一個材料觸點都在說話。本文探討視覺一致性對材料指名採購率的實質影響，以及如何建立一套可執行的識別系統。</p>
+      <div class="ml-article-title">材料視覺一致性：<br>為什麼你的樣品卡也是品牌櫥窗</div>
+      <p class="ml-article-desc">從樣品卡到展會攤位——每一個材料觸點都在說話。以頂尖視覺陳列設計師的角度，揭示視覺一致性如何成為材料商最被低估的競爭武器。</p>
       <div class="ml-article-meta">
         <div class="ml-article-tags">
           <span class="ml-tag">視覺識別</span>
