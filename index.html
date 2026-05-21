@@ -472,6 +472,44 @@ section[id] {
 .ml-case-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,169,110,0.5);}
 .ml-case-arrow{display:inline-block;transition:transform 0.25s;}
 .ml-case:hover .ml-case-arrow{transform:translateX(5px);}
+/* CASE 01 背景圖設定 */
+.ml-case-bg {
+  position: relative;
+  overflow: hidden; 
+  z-index: 1;
+}
+
+/* 使用偽元素將起火圖片墊在最底層，並加上深色遮罩保護文字 */
+.ml-case-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; 
+  /* 深色漸層遮罩 + 背景圖 */
+  background-image: 
+    linear-gradient(to bottom, rgba(42, 57, 65, 0.8), rgba(30, 42, 48, 0.95)),
+    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348754/Gemini_Generated_Image_9mwae29mwae29mwa_qdtply.jpg');
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease; /* 微放大動畫準備 */
+}
+
+/* 滑鼠移過去時，底圖微放大，增添互動質感 */
+.ml-case-bg:hover::before {
+  transform: scale(1.05);
+}
+
+/* 確保文字層級在背景之上 */
+.ml-case-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 因為背景變暗，確保文字顏色依然清晰 */
+.ml-case-bg .ml-case-index { color: rgba(200,169,110,0.6); }
+.ml-case-bg .ml-case-name { color: #FFF; }
+.ml-case-bg .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg .ml-case-tag { color: var(--gold); }
 
 /* CTA BAND */
 .ml-cta-band{
@@ -937,13 +975,16 @@ section[id] {
     <a class="ml-cases-head-link" href="#">看全部案例 →</a>
   </div>
   <div class="ml-cases-grid">
-    <div class="ml-case reveal">
+    
+    <a href="work/firesafe-case.html" class="ml-case reveal ml-case-bg" style="text-decoration: none;">
       <div class="ml-case-index">Case 01</div>
-      <div class="ml-case-name">Ocean</div>
-      <p class="ml-case-result">海廢再生材料品牌化——從環保原料升級為具故事性的永續材料品牌，成功打入國際品牌採購視野。</p>
-      <div class="ml-case-tag">永續材料 · 品牌敘事 <span class="ml-case-arrow">→</span></div>
-    </div>
+      <div class="ml-case-name">FireSafe</div>
+      <p class="ml-case-result">重塑阻燃科技的市場語言——將生硬的化學測試數據，轉化為「爭取關鍵逃生 30 秒」的直覺情境，成功建立高端安全風格的品牌溢價。</p>
+      <div class="ml-case-tag">防焰科技 · 情境轉譯 <span class="ml-case-arrow">→</span></div>
+    </a>
+
     <div class="ml-case reveal" style="transition-delay:0.1s">
+...
       <div class="ml-case-index">Case 02</div>
       <div class="ml-case-name">OneStep</div>
       <p class="ml-case-result">功能性材料重新定位——以使用情境取代規格表，讓採購方第一次接觸就理解材料的核心優勢。</p>
