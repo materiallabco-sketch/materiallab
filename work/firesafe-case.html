@@ -14,6 +14,8 @@
 :root{
   --bg:#2A3941; --bg2:#222F36; --bg3:#1E2A30;
   --gold:#C8A96E; --text:#EEE8DC; --text2:rgba(238,232,220,0.6); --text3:rgba(238,232,220,0.3); --border:rgba(238,232,220,0.1);
+  /* 定義全域統一的內容最大寬度 */
+  --content-width: 1080px; 
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); cursor:none; overflow-x:hidden;}
@@ -24,8 +26,14 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 #cursor.hover{width:6px;height:6px;}
 #cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
 
+/* ─── 核心排版：將所有區塊的內容收攏至 1080px 正中央 ─── */
+.cs-hero, .cs-meta, .cs-body, .gt-section, .spec-grid, .layer-list, .cs-next, .ml-nav, .ml-footer, .media-center-wrap {
+    padding-left: max(48px, calc((100vw - var(--content-width)) / 2));
+    padding-right: max(48px, calc((100vw - var(--content-width)) / 2));
+}
+
 /* NAV */
-.ml-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.ml-nav{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
 .ml-logo img{height:28px;width:auto;object-fit:contain;}
 .ml-nav-links{display:flex;gap:32px;list-style:none;}
 .ml-nav-links a{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;cursor:none;}
@@ -34,7 +42,7 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
 
 /* HERO */
-.cs-hero { padding: 140px 48px 80px; position: relative; z-index: 1; border-bottom: 0.5px solid var(--border); }
+.cs-hero { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 1; border-bottom: 0.5px solid var(--border); }
 .cs-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
 .cs-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 0.5px; background: var(--gold); }
 .cs-title { font-family: 'Cormorant Garamond', serif; font-size: 88px; font-weight: 300; color: var(--text); line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; }
@@ -42,45 +50,95 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 .cs-intro { font-size: 16px; line-height: 1.8; color: var(--text2); max-width: 680px; }
 
 /* META DATA */
-.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 48px; border-bottom: 0.5px solid var(--border); }
+.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-top: 48px; padding-bottom: 48px; border-bottom: 0.5px solid var(--border); }
 .cs-meta-item { display: flex; flex-direction: column; gap: 8px; }
 .cs-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); }
 .cs-meta-value { font-size: 13px; color: var(--text); line-height: 1.6; }
 
-/* VIDEO BOXES */
-.placeholder-box { width: 100%; position: relative; overflow: hidden; border-bottom: 0.5px solid var(--border); background: var(--bg3); }
-/* 讓影片稍微放大以隱藏可能出現的 YouTube 邊緣黑邊或浮水印 */
-.placeholder-box iframe { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.15); width: 100vw; height: 100vh; z-index: 2; pointer-events: none; }
-.hero-video { height: 70vh; }
-.mid-video { height: 55vh; }
-.col-img { height: 50vh; border-right: 0.5px solid var(--border); border-bottom: none; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--bg2); position: relative; }
-.col-img::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(238,232,220,0.015) 10px, rgba(238,232,220,0.015) 20px); pointer-events: none; }
+/* ─── 影音與圖片居中收攏設定 ─── */
+.media-center-wrap {
+    border-bottom: 0.5px solid var(--border);
+    padding-top: 64px;
+    padding-bottom: 64px;
+    background: var(--bg2); /* 讓媒體區塊有淡淡的底色區分 */
+}
+
+/* 完美對應 YouTube 16:9 比例的容器 */
+.media-iframe-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.media-iframe-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* 防止誤觸暫停 */
+}
+
+/* 讓圖片維持原比例、置中的容器 */
+.media-img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.media-img-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* 保證絕對不裁切 */
+    border-radius: 4px;
+}
 
 /* BODY GRIDS */
-.cs-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid var(--border); }
-.cs-col { padding: 80px 48px; border-right: 0.5px solid var(--border); }
-.cs-col:last-child { border-right: none; }
+.cs-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid var(--border); padding-top: 80px; padding-bottom: 80px; gap: 40px; }
+.cs-col { border-right: 0.5px solid var(--border); padding-right: 40px; }
+.cs-col:last-child { border-right: none; padding-right: 0; }
 .cs-h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--text); margin-bottom: 24px; line-height: 1.2; }
 .cs-h2 em { font-style: italic; color: var(--gold); }
 .cs-p { font-size: 14px; line-height: 2; color: var(--text2); margin-bottom: 24px; font-weight: 300; }
 
+/* 針對雙欄圖片的專屬調整 */
+section.cs-body-img {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    align-items: center; /* 如果兩張圖片高度不同，讓它們垂直置中 */
+    background: var(--bg2);
+}
+section.cs-body-img .cs-col {
+    padding: 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+}
+section.cs-body-img .cs-col img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* 保證雙欄圖絕對不裁切 */
+    border-radius: 4px;
+}
+
 /* GORE-TEX STYLE NARRATIVE SECTION */
-.gt-section { padding: 100px 48px; border-bottom: 0.5px solid var(--border); background: linear-gradient(to bottom, var(--bg), var(--bg3)); }
+.gt-section { padding-top: 100px; padding-bottom: 100px; border-bottom: 0.5px solid var(--border); background: linear-gradient(to bottom, var(--bg), var(--bg3)); }
 .gt-container { max-width: 900px; margin: 0 auto; }
 .gt-quote { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; font-weight: 300; color: var(--gold); line-height: 1.4; margin-bottom: 40px; }
 .gt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px; }
 .gt-concept h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
 
 /* 3-COL SPEC GRID */
-.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 0.5px solid var(--border); }
-.spec-cell { padding: 64px 48px; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; }
-.spec-cell:last-child { border-right: none; }
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 0.5px solid var(--border); padding-top: 64px; padding-bottom: 64px; }
+.spec-cell { border-right: 0.5px solid var(--border); display: flex; flex-direction: column; padding-right: 40px; padding-left: 40px; }
+.spec-cell:first-child { padding-left: 0; }
+.spec-cell:last-child { border-right: none; padding-right: 0; }
 .sc-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 12px; }
 .sc-label { font-size: 12px; color: var(--text); margin-bottom: 6px; }
 .sc-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
 /* LAYER LIST */
-.layer-list { padding: 80px 48px; border-bottom: 0.5px solid var(--border); }
+.layer-list { padding-top: 80px; padding-bottom: 80px; border-bottom: 0.5px solid var(--border); }
 .layer-item { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 0.5px solid var(--border); }
 .layer-item:last-child { border-bottom: none; padding-bottom: 0; }
 .layer-tag { font-size: 10px; letter-spacing: 0.1em; color: var(--gold); border: 0.5px solid var(--gold); padding: 4px 10px; border-radius: 2px; flex-shrink: 0; }
@@ -95,24 +153,26 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
 .lang-item.brand::before { content: '✦'; color: var(--gold); font-size: 12px; margin-top: 2px; }
 
 /* NEXT PROJECT */
-.cs-next { padding: 120px 48px; text-align: center; border-bottom: 0.5px solid var(--border); display: block; text-decoration: none; cursor: none; }
+.cs-next { padding-top: 120px; padding-bottom: 120px; text-align: center; border-bottom: 0.5px solid var(--border); display: block; text-decoration: none; cursor: none; }
 .cs-next:hover .cs-next-title { color: var(--gold); letter-spacing: 0.02em; }
 .cs-next-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3); margin-bottom: 24px; }
 .cs-next-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--text); transition: all 0.4s ease; }
 
 /* FOOTER */
-.ml-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+.ml-footer { padding-top: 32px; padding-bottom: 32px; display: flex; align-items: center; justify-content: space-between; }
 .ml-footer-copy { font-size: 11px; color: var(--text3); }
 
 @media(max-width:900px){
   .cs-title { font-size: 56px; }
   .cs-meta, .cs-body, .spec-grid, .gt-grid { grid-template-columns: 1fr; }
-  .cs-col, .spec-cell, .col-img { border-right: none; border-bottom: 0.5px solid var(--border); }
-  .cs-col { padding: 56px 24px; }
-  .spec-cell { padding: 40px 24px; }
+  .cs-col, .spec-cell { border-right: none; padding-right: 0; padding-left: 0; }
+  .spec-cell { padding-top: 24px; padding-bottom: 24px; border-bottom: 0.5px solid var(--border); }
+  .spec-cell:last-child { border-bottom: none; }
   .gt-grid { gap: 32px; }
   .ml-nav-links, .ml-nav-cta { display: none; }
-  .cs-hero, .cs-meta, .cs-next, .ml-footer, .layer-list, .gt-section { padding-left: 24px; padding-right: 24px; }
+  
+  section.cs-body-img .cs-col { padding-bottom: 24px; }
+  section.cs-body-img .cs-col:last-child { padding-bottom: 0; }
 }
 </style>
 </head>
@@ -154,8 +214,10 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
   </div>
 </div>
 
-<div class="placeholder-box hero-video">
-  <iframe src="https://www.youtube.com/embed/axL_GXWQz2U?autoplay=1&mute=1&loop=1&playlist=axL_GXWQz2U&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="media-center-wrap">
+  <div class="media-iframe-container">
+    <iframe src="https://www.youtube.com/embed/axL_GXWQz2U?autoplay=1&mute=1&loop=1&playlist=axL_GXWQz2U&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 </div>
 
 <section class="cs-body">
@@ -170,6 +232,12 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
     <p class="cs-p">技術需要精準轉譯，才能真正落地市場。我們導入「成分品牌 (Ingredient Branding)」策略，串聯 Avier 的通路信任、中保防災的驗證，以及台化的材料實力。不再隱藏布料供應商，而是將其塑造成終端消費者指名的絕對安全標籤。</p>
   </div>
 </section>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348744/FF_g6di06.jpg" alt="IGNIX Material Narrative Overview">
+  </div>
+</div>
 
 <section class="gt-section">
   <div class="gt-container">
@@ -212,8 +280,10 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
   </div>
 </div>
 
-<div class="placeholder-box mid-video">
-  <iframe src="https://www.youtube.com/embed/Fr0MOzkV7hM?autoplay=1&mute=1&loop=1&playlist=Fr0MOzkV7hM&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="media-center-wrap">
+  <div class="media-iframe-container">
+    <iframe src="https://www.youtube.com/embed/Fr0MOzkV7hM?autoplay=1&mute=1&loop=1&playlist=Fr0MOzkV7hM&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 </div>
 
 <section class="layer-list">
@@ -244,14 +314,14 @@ body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); c
   </div>
 </section>
 
-<div class="cs-body" style="border-bottom:none;">
-  <div class="col-img">
-    [ Image 01 / 都會機能穿搭細節圖佔位區 ]
+<section class="cs-body cs-body-img">
+  <div class="cs-col">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348754/Gemini_Generated_Image_9mwae29mwae29mwa_qdtply.jpg" alt="機能穿搭細節">
   </div>
-  <div class="col-img" style="border-right:none;">
-    [ Image 02 / IGNIX™ 氧化纖維織紋特寫圖佔位區 ]
+  <div class="cs-col">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348742/%E6%A9%9F%E5%A0%B4%E5%9C%96_ypzsbv.jpg" alt="產品情境特寫">
   </div>
-</div>
+</section>
 
 <section class="cs-body" style="border-top:0.5px solid var(--border);">
   <div class="cs-col">
