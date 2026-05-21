@@ -75,7 +75,6 @@ body::before{
   align-items: center;
   text-decoration: none;
 }
-
 .ml-logo img {
   height: 28px;
   width: auto;
@@ -101,7 +100,6 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
-/* 讓所有帶有 id 的區塊，在被錨點連結點擊跳轉時，上方自動預留導覽列的高度，避免被遮擋 */
 section[id] {
   scroll-margin-top: 80px; 
 }
@@ -142,22 +140,12 @@ section[id] {
 
 .ml-mobile-close {
   position: absolute;
-  top: 32px;
-  right: 24px;
-  width: 24px;
-  height: 24px;
-  cursor: none;
+  top: 32px; right: 24px; width: 24px; height: 24px; cursor: none;
   transform: translateY(-50%);
 }
 .ml-mobile-close::before, .ml-mobile-close::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--text);
-  transition: background 0.3s;
+  content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px;
+  background: var(--text); transition: background 0.3s;
 }
 .ml-mobile-close::before { transform: rotate(45deg); }
 .ml-mobile-close::after { transform: rotate(-45deg); }
@@ -170,251 +158,97 @@ section[id] {
   position:relative;z-index:1;
 }
 .ml-hero-left {
-  padding: 120px 48px; 
-  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 120px 48px; display: flex; flex-direction: column; justify-content: space-between;
   border-right: 0.5px solid var(--border);
 }
 .ml-hero-eyebrow{
   font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
-  display:flex;align-items:center;gap:10px;
-  opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+  display:flex;align-items:center;gap:10px; opacity:0;animation:fadeUp 0.8s 0.2s forwards;
 }
-.ml-hero-eyebrow::before{
-  content:'';display:inline-block;width:28px;height:0.5px;background:var(--gold);
-}
+.ml-hero-eyebrow::before{content:'';display:inline-block;width:28px;height:0.5px;background:var(--gold);}
 .ml-hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:66px;line-height:1.0;font-weight:300;color:var(--text);
-  letter-spacing:-0.5px;margin-top:28px;
-  opacity:0;animation:fadeUp 0.9s 0.4s forwards;
+  font-family:'Cormorant Garamond',serif; font-size:66px;line-height:1.0;font-weight:300;color:var(--text);
+  letter-spacing:-0.5px;margin-top:28px; opacity:0;animation:fadeUp 0.9s 0.4s forwards;
 }
 .ml-hero-title em{font-style:italic;color:var(--gold);}
-.ml-hero-bottom{
-  opacity:0;animation:fadeUp 0.9s 0.6s forwards;
-}
-.ml-hero-sub{
-  font-size:13px;line-height:1.95;color:var(--text2);max-width:320px;margin-bottom:30px;
-}
+.ml-hero-bottom{opacity:0;animation:fadeUp 0.9s 0.6s forwards;}
+.ml-hero-sub{font-size:13px;line-height:1.95;color:var(--text2);max-width:320px;margin-bottom:30px;}
 .ml-hero-actions{display:flex;align-items:center;gap:18px;}
 .ml-btn-primary{
-  font-family:'Outfit',sans-serif;
-  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
-  background:var(--gold);color:var(--bg);border:none;
-  padding:13px 28px;border-radius:2px;cursor:none;
-  transition:all 0.25s;position:relative;overflow:hidden;
-  text-decoration:none;display:inline-block;
+  font-family:'Outfit',sans-serif; font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);border:none; padding:13px 28px;border-radius:2px;cursor:none;
+  transition:all 0.25s;position:relative;overflow:hidden; text-decoration:none;display:inline-block;
 }
-.ml-btn-primary::after{
-  content:'';position:absolute;inset:0;
-  background:rgba(255,255,255,0);transition:background 0.2s;
-}
+.ml-btn-primary::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 0.2s;}
 .ml-btn-primary:hover::after{background:rgba(255,255,255,0.12);}
 .ml-hero-email{font-size:12px;color:var(--text3);letter-spacing:0.04em;}
-
 .ml-hero-right{
   display: flex; align-items: center; justify-content: center; 
-  position: relative; overflow: hidden; cursor: none;
-  opacity: 0; animation: fadeIn 1.2s 0.3s forwards;
+  position: relative; overflow: hidden; cursor: none; opacity: 0; animation: fadeIn 1.2s 0.3s forwards;
 }
-#geoCanvas{display:block;max-width:100%;max-height:100%;}
-.ml-year-tag{
-  position:absolute;bottom:28px;right:28px;
-  font-size:10px;letter-spacing:0.1em;color:var(--text3);
-}
+.ml-year-tag{position:absolute;bottom:28px;right:28px;font-size:10px;letter-spacing:0.1em;color:var(--text3);}
 
 /* STRIP (MARQUEE) */
 .ml-strip {
-  display: flex;
-  overflow: hidden;
-  padding: 24px 0; 
-  border-bottom: 0.5px solid var(--border);
-  position: relative;
-  z-index: 1;
-  background: var(--bg);
+  display: flex; overflow: hidden; padding: 24px 0; border-bottom: 0.5px solid var(--border);
+  position: relative; z-index: 1; background: var(--bg);
 }
 .ml-marquee-group {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 80px; 
-  padding-right: 80px; 
+  display: flex; align-items: center; flex-shrink: 0; gap: 80px; padding-right: 80px; 
   animation: scrollMarquee 25s linear infinite; 
 }
-.ml-strip:hover .ml-marquee-group {
-  animation-play-state: paused;
-}
-.ml-strip-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-.ml-strip-num {
-  font-family: 'Outfit', sans-serif; 
-  font-size: 24px;
-  font-weight: 300;
-  color: var(--gold);
-  letter-spacing: 0.05em;
-}
-.ml-strip-label {
-  font-size: 13px;
-  color: var(--text2);
-  letter-spacing: 0.08em;
-}
-.ml-strip-div {
-  width: 0.5px;
-  height: 28px;
-  background: var(--border);
-  flex-shrink: 0;
-}
-@keyframes scrollMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
+.ml-strip:hover .ml-marquee-group { animation-play-state: paused; }
+.ml-strip-item { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.ml-strip-num { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; }
+.ml-strip-label { font-size: 13px; color: var(--text2); letter-spacing: 0.08em; }
+.ml-strip-div { width: 0.5px; height: 28px; background: var(--border); flex-shrink: 0; }
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* METHOD */
 /* METHOD SECTION RESTRUCTURE */
-.ml-method {
-  border-bottom: 0.5px solid var(--border);
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column; /* 改為上下兩層 */
-}
+.ml-method { border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; display: flex; flex-direction: column; }
 
-/* 上半部：標題與星環 (置中) */
+/* 上半部：標題與星環 */
 .ml-method-top {
-  padding: 100px 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  text-align: center;  
-  border-bottom: 0.5px solid var(--border);
-  position: relative; /* 設定為相對定位，讓底圖可以依附在內 */
-  overflow: hidden;   /* 確保底圖不會超出版面 */
-  z-index: 1;
+  padding: 100px 48px; display: flex; flex-direction: column; align-items: center; text-align: center;  
+  border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden; z-index: 1;
 }
-
-/* 墊入高質感的紋理底圖與保護文字的深色遮罩 */
 .ml-method-top::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; /* 推到文字與星環的後方 */
-  background-image: 
-    linear-gradient(to bottom, rgba(42, 57, 65, 0.75), rgba(30, 42, 48, 0.95)),
-    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779246150/pexels-eva-bronzini-7597830_wtgb7m.jpg');
-  background-size: cover;
-  background-position: center;
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+  background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.75), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779246150/pexels-eva-bronzini-7597830_wtgb7m.jpg');
+  background-size: cover; background-position: center;
 }
-
-/* 確保上半部所有內容（文字與星環）都在底圖之上 */
-.ml-method-top > * {
-  position: relative;
-  z-index: 2;
-}
+.ml-method-top > * { position: relative; z-index: 2; }
 .ml-eyebrow {
   font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
   margin-bottom: 18px; display: flex; align-items: center; gap: 10px; justify-content: center;
 }
-.ml-eyebrow::before, .ml-eyebrow::after {
-  content: ''; display: inline-block; width: 16px; height: 0.5px; background: var(--gold);
-}
-.ml-section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 44px; font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 22px;
-}
+.ml-eyebrow::before, .ml-eyebrow::after { content: ''; display: inline-block; width: 16px; height: 0.5px; background: var(--gold); }
+.ml-section-title { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 22px; }
 .ml-section-title em { font-style: italic; }
-.ml-section-body {
-  font-size: 13px; line-height: 1.9; color: var(--text2); max-width: 480px; margin: 0 auto;
-}
+.ml-section-body { font-size: 13px; line-height: 1.9; color: var(--text2); max-width: 480px; margin: 0 auto; }
+.ml-geo-center { width: 100%; max-width: 500px; aspect-ratio: 1/1; margin-top: 64px; display: flex; align-items: center; justify-content: center; position: relative; }
 
-/* 幾何星環置中設定 */
-.ml-geo-center {
-  width: 100%; max-width: 500px; aspect-ratio: 1/1; 
-  margin-top: 64px; display: flex; align-items: center; justify-content: center; position: relative;
-}
+/* 下半部：左右兩軌 */
+.ml-method-bottom { display: grid; grid-template-columns: 1fr 1fr; position: relative; background: transparent; }
 
-/* 下半部：左右兩軌 (網格佈局) */
-.ml-method-bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 左右均分 */
-  position: relative;
-  background: transparent;
-}
-
-/* 流星背景容器 (覆蓋整個下半部) */
-.ml-shooting-stars {
-  position: absolute; inset: 0; z-index: 0; 
-  overflow: hidden; pointer-events: none; 
-}
-.ml-star {
-  --top: 50px; --left: 50px; --tail-width: 100px; --delay: 0s;
-  --shooting-duration: 4s; --tail-duration: 4s; 
-  position: absolute; top: var(--top); left: var(--left);
-  height: 1px; width: 0; 
-  background: linear-gradient(-45deg, var(--gold), rgba(0, 0, 0, 0)); 
-  border-radius: 999px; filter: drop-shadow(0 0 6px var(--gold)); 
-  animation: 
-    ml-tail-anim var(--tail-duration) var(--delay) ease-in-out infinite,
-    ml-shooting-anim var(--shooting-duration) var(--delay) ease-in-out infinite;
-  opacity: 0;
-}
-@keyframes ml-tail-anim {
-  0% { width: 0; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { width: var(--tail-width); opacity: 0; }
-}
-@keyframes ml-shooting-anim {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(250px); }
-}
-
-/* METHOD TRACKS (雜誌級對稱排版) */
+/* METHOD TRACKS */
 .ml-track {
-  padding: 80px 64px; /* 加大內距，提升空間感 */
-  cursor: none; 
-  position: relative; 
-  overflow: hidden;   
-  transition: background 0.4s ease;
-  z-index: 1; /* 確保在流星之上 */
+  padding: 56px 48px; cursor: none; position: relative; overflow: hidden;   
+  transition: background 0.4s ease; display: grid; grid-template-columns: 80px 1fr; gap: 40px; align-items: start; z-index: 1; 
 }
-/* 在左側技術軌加上右邊線 */
 .ml-track:first-child { border-right: 0.5px solid var(--border); }
-
-/* 底部香檳金光條動畫 (保留特效) */
 .ml-track::after {
   content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-  background: var(--gold); transform: translateX(-101%); 
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
+  background: var(--gold); transform: translateX(-101%); transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
 }
 .ml-track:hover { background: rgba(200,169,110,0.02); }
 .ml-track:hover::after { transform: translateX(0); }
-
-/* 標題與數字 (水平排列) */
-.ml-track-header {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-.ml-track-num {
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  color: rgba(200,169,110,0.4);
-  letter-spacing: 0.1em;
-}
-.ml-track-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; /* 放大標題 */
-  font-weight: 300;
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-.ml-track-desc {
-  font-size: 13px; line-height: 1.9; color: var(--text2); margin-bottom: 40px; max-width: 90%;
-}
+.ml-track-meta { display: flex; flex-direction: column; border-right: 0.5px solid rgba(238,232,220,0.08); height: 100%; padding-top: 6px; }
+.ml-track-num { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 300; line-height: 1; color: rgba(200,169,110,0.4); margin-bottom: 16px; }
+.ml-track-label { font-size: 10px; letter-spacing: 0.1em; color: var(--gold); }
+.ml-track-content { display: flex; flex-direction: column; }
+.ml-track-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--text); letter-spacing: 0.02em; margin-bottom: 12px; line-height: 1.1; }
+.ml-track-desc { font-size: 13px; line-height: 1.8; color: var(--text2); margin-bottom: 24px; max-width: 100%; }
 .ml-track-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .ml-pill {
   font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
@@ -422,406 +256,154 @@ section[id] {
   padding: 6px 14px; border-radius: 100px; transition: all 0.3s ease; cursor: none;
 }
 .ml-track:hover .ml-pill { border-color: rgba(200,169,110,0.4); color: rgba(200,169,110,0.8); }
-
-/* 針對手機版：折疊排版 */
-@media(max-width: 900px) {
-  .ml-method-bottom { grid-template-columns: 1fr; }
-  .ml-track:first-child { border-right: none; border-bottom: 0.5px solid var(--border); }
-  .ml-track { padding: 48px 24px; }
-}
 .ml-pill:hover{background:rgba(200,169,110,0.1);border-color:var(--gold);}
 
 /* CASES */
 .ml-cases{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
-.ml-cases-head {
-  padding: 80px 48px 40px;
-  display: flex; align-items: baseline; justify-content: space-between;
-  border-bottom: 0.5px solid var(--border);
-}
-.ml-cases-head-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px;font-weight:300;color:var(--text);
-}
-.ml-cases-head-link{
-  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--gold);cursor:none;transition:letter-spacing 0.3s;
-  text-decoration:none;
-}
+.ml-cases-head { padding: 80px 48px 40px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
+.ml-cases-head-title{ font-family:'Cormorant Garamond',serif; font-size:32px;font-weight:300;color:var(--text); }
+.ml-cases-head-link{ font-size:11px;letter-spacing:0.1em;text-transform:uppercase; color:var(--gold);cursor:none;transition:letter-spacing 0.3s; text-decoration:none; }
 .ml-cases-head-link:hover{letter-spacing:0.16em;}
 
 .ml-cases-grid{display:grid;grid-template-columns:1fr 1fr;}
 .ml-case {
-  padding: 64px 48px;
-  border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  padding: 64px 48px; border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
   cursor: none; transition: background 0.3s; position: relative; overflow: hidden;
 }
-.ml-case::before{
-  content:'';position:absolute;left:0;top:0;width:2px;height:0;
-  background:var(--gold);transition:height 0.4s cubic-bezier(.25,.46,.45,.94);
-}
+.ml-case::before{ content:'';position:absolute;left:0;top:0;width:2px;height:0; background:var(--gold);transition:height 0.4s cubic-bezier(.25,.46,.45,.94); }
 .ml-case:hover::before{height:100%;}
 .ml-case:nth-child(2n){border-right:none;}
 .ml-case:nth-child(3),.ml-case:nth-child(4){border-bottom:none;}
 .ml-case:hover{background:rgba(200,169,110,0.03);}
-.ml-case-index{font-size:10px;color:rgba(200,169,110,0.35);letter-spacing:0.12em;margin-bottom:14px;}
-.ml-case-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:300;color:var(--text);margin-bottom:10px;
-}
-.ml-case-result{font-size:12px;line-height:1.8;color:var(--text2);margin-bottom:16px;}
-.ml-case-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,169,110,0.5);}
+.ml-case-index{font-size:10px;color:rgba(200,169,110,0.35);letter-spacing:0.12em;margin-bottom:14px; position:relative; z-index:2;}
+.ml-case-name{ font-family:'Cormorant Garamond',serif; font-size:24px;font-weight:300;color:var(--text);margin-bottom:10px; position:relative; z-index:2;}
+.ml-case-result{font-size:12px;line-height:1.8;color:var(--text2);margin-bottom:16px; position:relative; z-index:2;}
+.ml-case-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,169,110,0.5); position:relative; z-index:2;}
 .ml-case-arrow{display:inline-block;transition:transform 0.25s;}
 .ml-case:hover .ml-case-arrow{transform:translateX(5px);}
+
 /* CASE 01 背景圖設定 */
-.ml-case-bg {
-  position: relative;
-  overflow: hidden; 
-  z-index: 1;
+.ml-case-bg { position: relative; overflow: hidden; z-index: 1; }
+.ml-case-bg::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
+  background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.8), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348754/Gemini_Generated_Image_9mwae29mwae29mwa_qdtply.jpg');
+  background-size: cover; background-position: center; transition: transform 0.6s ease; 
 }
-
-/* 使用偽元素將起火圖片墊在最底層，並加上深色遮罩保護文字 */
-.ml-case-bg::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; 
-  /* 深色漸層遮罩 + 背景圖 */
-  background-image: 
-    linear-gradient(to bottom, rgba(42, 57, 65, 0.8), rgba(30, 42, 48, 0.95)),
-    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779348754/Gemini_Generated_Image_9mwae29mwae29mwa_qdtply.jpg');
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease; /* 微放大動畫準備 */
-}
-
-/* 滑鼠移過去時，底圖微放大，增添互動質感 */
-.ml-case-bg:hover::before {
-  transform: scale(1.05);
-}
-
-/* 確保文字層級在背景之上 */
-.ml-case-bg > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* 因為背景變暗，確保文字顏色依然清晰 */
+.ml-case-bg:hover::after { transform: scale(1.05); }
+.ml-case-bg > * { position: relative; z-index: 2; }
 .ml-case-bg .ml-case-index { color: rgba(200,169,110,0.6); }
 .ml-case-bg .ml-case-name { color: #FFF; }
 .ml-case-bg .ml-case-result { color: rgba(238,232,220,0.8); }
 .ml-case-bg .ml-case-tag { color: var(--gold); }
 
+/* CASE 02 背景圖設定 */
+.ml-case-bg-2 { position: relative; overflow: hidden; z-index: 1; }
+.ml-case-bg-2::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
+  background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.8), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779355277/%E6%95%88%E6%9E%9C%E5%9C%96_sfqdzb.jpg');
+  background-size: cover; background-position: center; transition: transform 0.6s ease; 
+}
+.ml-case-bg-2:hover::after { transform: scale(1.05); }
+.ml-case-bg-2 > * { position: relative; z-index: 2; }
+.ml-case-bg-2 .ml-case-index { color: rgba(200,169,110,0.6); }
+.ml-case-bg-2 .ml-case-name { color: #FFF; }
+.ml-case-bg-2 .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg-2 .ml-case-tag { color: var(--gold); }
+
 /* CTA BAND */
-.ml-cta-band{
-  padding: 120px 48px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 0.5px solid var(--border);
-  background: var(--bg3); 
-  position: relative; 
-  z-index: 1;
-  overflow: hidden; 
-}
-.ml-cta-kicker{
-  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:16px;
-  display:flex;align-items:center;gap:10px;
-}
+.ml-cta-band{ padding: 120px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg3); position: relative; z-index: 1; overflow: hidden; }
+.ml-cta-kicker{ font-size:10px;letter-spacing:0.2em;text-transform:uppercase; color:var(--gold);margin-bottom:16px; display:flex;align-items:center;gap:10px; }
 .ml-cta-kicker::before{content:'';display:inline-block;width:16px;height:0.5px;background:var(--gold);}
-.ml-cta-headline{
-  font-family:'Cormorant Garamond',serif;
-  font-size:42px;font-weight:300;line-height:1.1;color:var(--text);
-}
+.ml-cta-headline{ font-family:'Cormorant Garamond',serif; font-size:42px;font-weight:300;line-height:1.1;color:var(--text); }
 .ml-cta-headline em{font-style:italic;}
 .ml-cta-right{text-align:right;}
 .ml-cta-email-label{font-size:11px;letter-spacing:0.1em;color:var(--text3);margin-bottom:10px;}
-.ml-cta-email-addr{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:300;color:var(--gold);
-  border-bottom:0.5px solid rgba(200,169,110,0.4);padding-bottom:4px;
-  cursor:none;display:inline-block;transition:letter-spacing 0.3s;
-  text-decoration:none;
-}
+.ml-cta-email-addr{ font-family:'Cormorant Garamond',serif; font-size:24px;font-weight:300;color:var(--gold); border-bottom:0.5px solid rgba(200,169,110,0.4);padding-bottom:4px; cursor:none;display:inline-block;transition:letter-spacing 0.3s; text-decoration:none; }
 .ml-cta-email-addr:hover{letter-spacing:0.04em;}
 
 /* PEOPLE */
-/* PEOPLE */
-.ml-people {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr; /* 左側引言佔比稍大，右側分為兩欄放成員 */
-  border-bottom: 0.5px solid var(--border);
-  position: relative;
-  z-index: 1;
-}
-
-/* 引言區塊：讓它跨越兩列，成為穩固的左側基礎 */
-.ml-people-intro {
-  padding: 80px 48px;
-  border-right: 0.5px solid var(--border);
-  display: flex; 
-  flex-direction: column; 
-  justify-content: flex-start; /* 讓文字靠上對齊，更顯大氣 */
-  grid-row: span 2; /* 關鍵：跨越兩列高度 */
-}
-.ml-people-intro-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; /* 稍微放大標題 */
-  font-weight: 300;
-  color: var(--text);
-  line-height: 1.2;
-  margin-top: 16px;
-}
-.ml-people-intro-sub {
-  font-size: 12px;
-  color: var(--text2);
-  line-height: 1.8;
-  margin-top: 24px;
-  max-width: 80%; /* 控制行長，提升易讀性 */
-}
-
-/* 成員卡片區塊 */
-.ml-person {
-  padding: 64px 48px; /* 稍微加大左右內距，留白更優雅 */
-  border-right: 0.5px solid var(--border);
-  border-bottom: 0.5px solid var(--border); /* 加上底線，確保上下排有分隔 */
-  cursor: none; 
-  transition: background 0.3s; 
-}
-/* 處理邊框邏輯：右側兩欄的邊框設定 */
-.ml-person:nth-child(even) { border-right: none; } /* 消除最右側的邊框 */
-.ml-person:nth-last-child(-n+2) { border-bottom: none; } /* 消除最底下那一排的底線 */
-
+.ml-people { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; }
+.ml-people-intro { padding: 80px 48px; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; justify-content: flex-start; grid-row: span 2; }
+.ml-people-intro-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--text); line-height: 1.2; margin-top: 16px; }
+.ml-people-intro-sub { font-size: 12px; color: var(--text2); line-height: 1.8; margin-top: 24px; max-width: 80%; }
+.ml-person { padding: 64px 48px; border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); cursor: none; transition: background 0.3s; }
+.ml-person:nth-child(even) { border-right: none; }
+.ml-person:nth-last-child(-n+2) { border-bottom: none; }
 .ml-person:hover { background: rgba(200,169,110,0.03); }
-.ml-person-avatar {
-  width: 140px;
-  aspect-ratio: 1 / 1.1; 
-  background: rgba(200,169,110,0.05);
-  overflow: hidden;
-  margin-bottom: 24px;
-  border-radius: 2px; 
-}
-.ml-person-avatar img {
-  width: 100%; height: 100%; 
-  object-fit: cover;
-  object-position: top center; 
-  transition: transform 0.6s ease, filter 0.6s ease;
-  filter: grayscale(15%); 
-}
-.ml-person:hover .ml-person-avatar img {
-  transform: scale(1.05); 
-  filter: grayscale(0%); 
-}
+.ml-person-avatar { width: 140px; aspect-ratio: 1 / 1.1; background: rgba(200,169,110,0.05); overflow: hidden; margin-bottom: 24px; border-radius: 2px; }
+.ml-person-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, filter 0.6s ease; filter: grayscale(15%); }
+.ml-person:hover .ml-person-avatar img { transform: scale(1.05); filter: grayscale(0%); }
 .ml-person-name { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
 .ml-person-role { font-size: 12px; color: rgba(200,169,110,0.6); margin-bottom: 14px; letter-spacing: 0.03em; }
 .ml-person-bio { font-size: 12px; color: var(--text2); line-height: 1.8; }
 
 /* JOURNAL */
-/* JOURNAL */
 .ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
-.ml-journal-head {
-  padding: 80px 48px 40px;
-  display: flex; align-items: baseline; justify-content: space-between;
-  border-bottom: 0.5px solid var(--border);
-}
+.ml-journal-head { padding: 80px 48px 40px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
 .ml-journal-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--text);}
 .ml-articles{display:grid;grid-template-columns:1fr 1fr 1fr;}
-
-.ml-article {
-  padding: 50px 36px;
-  border-right: 0.5px solid var(--border);
-  cursor: none; transition: background 0.3s;
-  text-decoration: none; 
-  display: flex; flex-direction: column; /* 讓內部元素可以上下延展 */
-  height: 100%; /* 確保三欄等高 */
-}
+.ml-article { padding: 50px 36px; border-right: 0.5px solid var(--border); cursor: none; transition: background 0.3s; text-decoration: none; display: flex; flex-direction: column; height: 100%; }
 .ml-article:last-child{border-right:none;}
 .ml-article:hover{background:rgba(200,169,110,0.03);}
-/* 文章卡片背景圖設定 */
-.ml-article-bg {
-  position: relative;
-  overflow: hidden; /* 確保底圖不會超出版面 */
-  z-index: 1;
-}
 
-/* 使用偽元素將圖片墊在最底層，並加上深色遮罩保護文字 */
-.ml-article-bg::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; /* 將底圖推到文字的後方 */
-  /* 第一層是半透明深色漸層（保護文字），第二層是你的圖片（object-fit: cover 特性） */
-  background-image: 
-    linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)),
-    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779178526/%E8%A6%96%E8%A6%BA_et90zm.jpg');
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease; /* 為了加入懸停時微放大的高級感 */
-}
+/* 文章卡片背景 */
+.ml-article-bg, .ml-article-bg-2, .ml-article-bg-3 { position: relative; overflow: hidden; z-index: 1; }
+.ml-article-bg::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779178526/%E8%A6%96%E8%A6%BA_et90zm.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
+.ml-article-bg-2::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779180884/pexels-googledeepmind-17485658_xbln77.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
+.ml-article-bg-3::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779329276/pexels-marek-pavlik-1929759405-37269546_ec5f1d.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
 
-/* 滑鼠移過去時，底圖會有微微放大的精緻互動 */
-.ml-article-bg:hover::before {
-  transform: scale(1.05);
-}
+.ml-article-bg:hover::after, .ml-article-bg-2:hover::after, .ml-article-bg-3:hover::after { transform: scale(1.05); }
+.ml-article-bg > *, .ml-article-bg-2 > *, .ml-article-bg-3 > * { position: relative; z-index: 2; }
 
-/* 確保有背景圖的文章卡片內，文字的層級在最上面 */
-.ml-article-bg > * {
-  position: relative;
-  z-index: 2;
-}
-/* 第二篇文章卡片背景圖設定 (材料 4P) */
-.ml-article-bg-2 {
-  position: relative;
-  overflow: hidden; 
-  z-index: 1;
-}
-
-/* 墊入第二張圖片並覆蓋半透明深色遮罩 */
-.ml-article-bg-2::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; 
-  background-image: 
-    linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)),
-    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779180884/pexels-googledeepmind-17485658_xbln77.jpg');
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease; 
-}
-
-/* 滑鼠移過去時的微放大特效 */
-.ml-article-bg-2:hover::before {
-  transform: scale(1.05);
-}
-
-/* 確保文字層級在背景之上 */
-.ml-article-bg-2 > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* 第三篇文章卡片背景圖設定 (視覺識別) */
-.ml-article-bg-3 {
-  position: relative;
-  overflow: hidden; 
-  z-index: 1;
-}
-
-/* 墊入第三張圖片並覆蓋半透明深色遮罩 */
-.ml-article-bg-3::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; 
-  background-image: 
-    linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)),
-    url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779329276/pexels-marek-pavlik-1929759405-37269546_ec5f1d.jpg');
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease; 
-}
-
-/* 滑鼠移過去時的微放大特效 */
-.ml-article-bg-3:hover::before {
-  transform: scale(1.05);
-}
-
-/* 確保文字層級在背景之上 */
-.ml-article-bg-3 > * {
-  position: relative;
-  z-index: 2;
-}
-/* 文章標號與分類 */
 .ml-article-top { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
 .ml-article-num { font-family: 'Outfit', sans-serif; font-size: 14px; color: rgba(200,169,110,0.35); letter-spacing: 0.1em; }
 .ml-article-cat{ font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); }
-
-/* 文章標題與內文 */
-.ml-article-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px; font-weight:300; color:var(--text); line-height:1.4; margin-bottom:16px;
-}
-.ml-article-desc {
-  font-size: 12px; line-height: 1.8; color: var(--text2);
-  margin-bottom: 32px;
-  flex-grow: 1; /* 這個屬性非常關鍵！它會把下方的標籤與時間自動推到最底部，讓三欄視覺完美切齊 */
-}
-
-/* 底部標籤與時間 */
+.ml-article-title{ font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--text); line-height:1.4; margin-bottom:16px; }
+.ml-article-desc { font-size: 12px; line-height: 1.8; color: var(--text2); margin-bottom: 32px; flex-grow: 1; }
 .ml-article-meta { display: flex; flex-direction: column; gap: 16px; }
 .ml-article-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.ml-tag {
-  font-size: 10px; color: rgba(200,169,110,0.6);
-  border: 0.5px solid rgba(200,169,110,0.25);
-  padding: 4px 10px; letter-spacing: 0.05em; border-radius: 1px;
-}
+.ml-tag { font-size: 10px; color: rgba(200,169,110,0.6); border: 0.5px solid rgba(200,169,110,0.25); padding: 4px 10px; letter-spacing: 0.05em; border-radius: 1px; }
 .ml-article-date{font-size:11px;color:var(--text3); letter-spacing: 0.05em;}
+
 /* FOOTER */
-.ml-footer{
-  padding:32px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:relative;z-index:1;
-}
-.ml-footer-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.ml-footer-logo img {
-  height: 22px; 
-  width: auto;
-  object-fit: contain;
-  opacity: 0.5; 
-  transition: opacity 0.3s ease;
-}
-.ml-footer-logo:hover img {
-  opacity: 1;
-}
+.ml-footer{ padding:32px 48px; display:flex;align-items:center;justify-content:space-between; position:relative;z-index:1; }
+.ml-footer-logo { display: flex; align-items: center; text-decoration: none; }
+.ml-footer-logo img { height: 22px; width: auto; object-fit: contain; opacity: 0.5; transition: opacity 0.3s ease; }
+.ml-footer-logo:hover img { opacity: 1; }
 .ml-footer-links{display:flex;gap:24px;}
-.ml-footer-links a{
-  font-size:11px;color:var(--text3);text-decoration:none;
-  letter-spacing:0.06em;cursor:none;transition:color 0.2s;
-}
+.ml-footer-links a{ font-size:11px;color:var(--text3);text-decoration:none; letter-spacing:0.06em;cursor:none;transition:color 0.2s; }
 .ml-footer-links a:hover{color:var(--text2);}
 .ml-footer-copy{font-size:11px;color:var(--text3);}
 
 /* KEYFRAMES */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
+@keyframes fadeUp{ from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+@keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
 
 /* SCROLL REVEAL */
-.reveal{
-  opacity:0;transform:translateY(20px);
-  transition:opacity 0.7s ease,transform 0.7s ease;
-}
+.reveal{ opacity:0;transform:translateY(20px); transition:opacity 0.7s ease,transform 0.7s ease; }
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* RESPONSIVE */
 @media(max-width:900px){
   .ml-hero, .ml-cases-grid, .ml-articles {grid-template-columns:1fr;}
-  /* 手機版：讓所有人包含引言都變成單欄直排 */
   .ml-people { grid-template-columns: 1fr; }
   .ml-people-intro { grid-row: auto; border-right: none; border-bottom: 0.5px solid var(--border); }
   .ml-person { border-right: none !important; border-bottom: 0.5px solid var(--border) !important; }
   .ml-person:last-child { border-bottom: none !important; }
   .ml-hero-right{height:320px;}
-  .ml-case:nth-child(2n), .ml-case:nth-child(3), 
-  .ml-people-intro, .ml-person, .ml-article {
-    border-right:none; border-bottom:0.5px solid var(--border);
-  }
+  .ml-case:nth-child(2n), .ml-case:nth-child(3), .ml-article { border-right:none; border-bottom:0.5px solid var(--border); }
+  .ml-method-bottom { grid-template-columns: 1fr; }
+  .ml-track:first-child { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .ml-track { grid-template-columns: 1fr; padding: 48px 24px; gap: 20px; }
+  .ml-track-meta { border-right: none; border-bottom: 0.5px solid rgba(238,232,220,0.08); padding-bottom: 16px; height: auto; }
   .ml-cta-band{flex-direction:column;gap:32px;text-align:center;}
   .ml-cta-right{text-align:center;}
   .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
   .ml-nav{padding:16px 20px;}
   .ml-hero-left { padding: 64px 24px; }
-  .ml-method-left, .ml-cta-band, .ml-people-intro, .ml-journal-head { padding: 64px 24px; }
+  .ml-method-top, .ml-cta-band, .ml-people-intro, .ml-journal-head { padding: 64px 24px; }
   .ml-cases-head { padding: 64px 24px 32px; }
-  .ml-track, .ml-case, .ml-person, .ml-article { padding: 40px 24px; }
+  .ml-case, .ml-person, .ml-article { padding: 40px 24px; }
   .ml-hero-title{font-size:44px;}
   .ml-section-title, .ml-cta-headline{font-size:36px;}
   .ml-hamburger { display: flex; }
@@ -845,15 +427,11 @@ section[id] {
     <li><a href="#people">People</a></li>
   </ul>
   <button class="ml-nav-cta" onclick="location.href='mailto:materiallabco@gmail.com'">聯絡我們</button>
-  
-  <div class="ml-hamburger" id="hamburger">
-    <span></span><span></span>
-  </div>
+  <div class="ml-hamburger" id="hamburger"><span></span><span></span></div>
 </nav>
 
 <div class="ml-mobile-menu" id="mobileMenu">
   <div class="ml-mobile-close" id="mobileClose"></div>
-
   <div class="ml-mobile-menu-inner">
     <a href="#cases" class="mobile-link">Work</a>
     <a href="#method" class="mobile-link">Method</a>
@@ -866,9 +444,7 @@ section[id] {
 <section class="ml-hero">
   <div class="ml-hero-left">
     <div class="ml-hero-eyebrow">材料品牌化顧問</div>
-    <div class="ml-hero-title">
-      Your material<br>deserves to<br>be <em>remembered.</em>
-    </div>
+    <div class="ml-hero-title">Your material<br>deserves to<br>be <em>remembered.</em></div>
     <div class="ml-hero-bottom">
       <p class="ml-hero-sub">台灣製造商擁有世界級的材料技術，卻常在報價單上拼價格。我們幫你把技術優勢轉化為市場記憶點，讓買方主動指名你。</p>
       <div class="ml-hero-actions">
@@ -878,94 +454,51 @@ section[id] {
     </div>
   </div>
   <div class="ml-hero-right">
-  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" 
-         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; pointer-events: none; opacity: 0.9;">
-    <source src="https://res.cloudinary.com/dzxlqypsq/video/upload/v1779092099/11922062_1080_1080_24fps_mtn560.mp4" type="video/mp4">
-  </video>
-  
-  <div class="ml-year-tag" style="position: absolute; right: 28px; bottom: 28px; z-index: 2;">Est. 2024</div>
-</div>
+    <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; pointer-events: none; opacity: 0.9;">
+      <source src="https://res.cloudinary.com/dzxlqypsq/video/upload/v1779092099/11922062_1080_1080_24fps_mtn560.mp4" type="video/mp4">
+    </video>
+    <div class="ml-year-tag" style="position: absolute; right: 28px; bottom: 28px; z-index: 2;">Est. 2024</div>
+  </div>
 </section>
 
 <div class="ml-strip">
   <div class="ml-marquee-group">
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">B2B to B2C</div>
-      <div class="ml-strip-label">跨越規格戰，創造市場溢價</div>
-    </div>
-    <div class="ml-strip-div"></div>
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">Tech × Brand</div>
-      <div class="ml-strip-label">雙軌並進，賦予材料記憶點</div>
-    </div>
-    <div class="ml-strip-div"></div>
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">Sustainable Innovation</div>
-      <div class="ml-strip-label">永續與機能材料的專屬推手</div>
-    </div>
-    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">B2B to B2C</div><div class="ml-strip-label">跨越規格戰，創造市場溢價</div></div><div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">Tech × Brand</div><div class="ml-strip-label">雙軌並進，賦予材料記憶點</div></div><div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">Sustainable Innovation</div><div class="ml-strip-label">永續與機能材料的專屬推手</div></div><div class="ml-strip-div"></div>
   </div>
-  
   <div class="ml-marquee-group" aria-hidden="true">
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">B2B to B2C</div>
-      <div class="ml-strip-label">跨越規格戰，創造市場溢價</div>
-    </div>
-    <div class="ml-strip-div"></div>
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">Tech × Brand</div>
-      <div class="ml-strip-label">雙軌並進，賦予材料記憶點</div>
-    </div>
-    <div class="ml-strip-div"></div>
-    <div class="ml-strip-item">
-      <div class="ml-strip-num">Sustainable Innovation</div>
-      <div class="ml-strip-label">永續與機能材料的專屬推手</div>
-    </div>
-    <div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">B2B to B2C</div><div class="ml-strip-label">跨越規格戰，創造市場溢價</div></div><div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">Tech × Brand</div><div class="ml-strip-label">雙軌並進，賦予材料記憶點</div></div><div class="ml-strip-div"></div>
+    <div class="ml-strip-item"><div class="ml-strip-num">Sustainable Innovation</div><div class="ml-strip-label">永續與機能材料的專屬推手</div></div><div class="ml-strip-div"></div>
   </div>
 </div>
 
 <section class="ml-method" id="method">
-  
   <div class="ml-method-top">
     <div class="ml-eyebrow">我們的方法</div>
     <div class="ml-section-title">雙軌並進，<br><em>同步打造</em>性能與品牌</div>
     <p class="ml-section-body">大多數材料商在技術上無懈可擊，卻在市場溝通上失去話語權。Material Lab 的雙軌方法，讓你的材料同時在規格競爭與品牌認知上取得優勢。</p>
-    
-    <div id="geoWrap" class="ml-geo-center">
-      <canvas id="geoCanvas" width="420" height="420"></canvas>
-    </div>
+    <div id="geoWrap" class="ml-geo-center"><canvas id="geoCanvas" width="420" height="420"></canvas></div>
   </div>
 
   <div class="ml-method-bottom">
-    
-   
     <div class="ml-track reveal">
-      <div class="ml-track-header">
-        <div class="ml-track-num">01</div>
-        <div class="ml-track-name">Technical Track</div>
-      </div>
-      <p class="ml-track-desc">界定你的關鍵性能差異點，轉化為買方能理解的使用情境語言。讓規格不只是數字，而是解決問題的承諾。</p>
-      <div class="ml-track-pills">
-        <span class="ml-pill">性能差異化</span>
-        <span class="ml-pill">情境語言轉譯</span>
-        <span class="ml-pill">技術文件升級</span>
+      <div class="ml-track-meta"><span class="ml-track-num">01</span><span class="ml-track-label">/ 技術軌</span></div>
+      <div class="ml-track-content">
+        <h3 class="ml-track-name">Technical Track</h3>
+        <p class="ml-track-desc">界定你的關鍵性能差異點，轉化為買方能理解的使用情境語言。讓規格不只是數字，而是解決問題的承諾。</p>
+        <div class="ml-track-pills"><span class="ml-pill">性能差異化</span><span class="ml-pill">情境語言轉譯</span><span class="ml-pill">技術文件升級</span></div>
       </div>
     </div>
-    
     <div class="ml-track reveal" style="transition-delay:0.1s">
-      <div class="ml-track-header">
-        <div class="ml-track-num">02</div>
-        <div class="ml-track-name">Brand Track</div>
-      </div>
-      <p class="ml-track-desc">命名、視覺、敘事一致化，配合吊牌、標籤、包裝與數位觸點，讓你的材料在供應鏈中留下不可替代的印記。</p>
-      <div class="ml-track-pills">
-        <span class="ml-pill">材料命名系統</span>
-        <span class="ml-pill">視覺識別</span>
-        <span class="ml-pill">包裝設計</span>
+      <div class="ml-track-meta"><span class="ml-track-num">02</span><span class="ml-track-label">/ 品牌軌</span></div>
+      <div class="ml-track-content">
+        <h3 class="ml-track-name">Brand Track</h3>
+        <p class="ml-track-desc">命名、視覺、敘事一致化，配合吊牌、標籤、包裝與數位觸點，讓你的材料在供應鏈中留下不可替代的印記。</p>
+        <div class="ml-track-pills"><span class="ml-pill">材料命名系統</span><span class="ml-pill">視覺識別</span><span class="ml-pill">包裝設計</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -983,41 +516,39 @@ section[id] {
       <div class="ml-case-tag">防焰科技 · 情境轉譯 <span class="ml-case-arrow">→</span></div>
     </a>
 
-    <div class="ml-case reveal" style="transition-delay:0.1s">
-...
+    <a href="work/FLUXIS.html" class="ml-case reveal ml-case-bg-2" style="transition-delay:0.1s; text-decoration: none;">
       <div class="ml-case-index">Case 02</div>
-      <div class="ml-case-name">OneStep</div>
-      <p class="ml-case-result">功能性材料重新定位——以使用情境取代規格表，讓採購方第一次接觸就理解材料的核心優勢。</p>
-      <div class="ml-case-tag">功能材料 · 技術溝通 <span class="ml-case-arrow">→</span></div>
-    </div>
+      <div class="ml-case-name">FLUXIS PULSE</div>
+      <p class="ml-case-result">寸勁脈振儀品牌塑造——將深奧的動態科技轉化為具象的視覺脈動，打造從產品命名到終端體驗的完整高端品牌識別。</p>
+      <div class="ml-case-tag">動態科技 · 視覺識別 <span class="ml-case-arrow">→</span></div>
+    </a>
+
     <div class="ml-case reveal" style="transition-delay:0.15s">
       <div class="ml-case-index">Case 03</div>
       <div class="ml-case-name">Earth</div>
       <p class="ml-case-result">天然原料品牌再造——建立從原料到末端產品的視覺語言系統，強化溯源信任感與指名採購率。</p>
       <div class="ml-case-tag">天然材料 · 視覺系統 <span class="ml-case-arrow">→</span></div>
     </div>
+    
     <div class="ml-case reveal" style="transition-delay:0.2s">
       <div class="ml-case-index">Case 04</div>
       <div class="ml-case-name">Urban</div>
       <p class="ml-case-result">城市回收材料品牌化——讓再生素材從低價品升格為設計師指定採用的永續選材，提升議價空間。</p>
       <div class="ml-case-tag">回收材料 · 設計選材 <span class="ml-case-arrow">→</span></div>
     </div>
+
   </div>
 </section>
 
 <section class="ml-cta-band reveal">
-  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" 
-         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0.35;">
+  <video autoplay loop muted playsinline disablePictureInPicture controlsList="nodownload" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; opacity: 0.35;">
     <source src="https://res.cloudinary.com/dzxlqypsq/video/upload/v1779093103/4431619-hd_1920_1080_30fps_cxusrm.mp4" type="video/mp4">
   </video>
-  
   <div style="position: absolute; inset: 0; background: rgba(30, 42, 48, 0.4); z-index: 1; pointer-events: none;"></div>
-
   <div style="position: relative; z-index: 2;">
     <div class="ml-cta-kicker">準備好了嗎</div>
     <div class="ml-cta-headline">你的材料，<br>值得被<em>市場記住</em>。</div>
   </div>
-  
   <div class="ml-cta-right" style="position: relative; z-index: 2;">
     <div class="ml-cta-email-label">直接寫信給我們</div>
     <a class="ml-cta-email-addr" href="mailto:materiallabco@gmail.com">materiallabco@gmail.com</a>
@@ -1032,43 +563,26 @@ section[id] {
       <p class="ml-people-intro-sub">Material Lab 橫跨品牌策略、材料科學與設計溝通，我們不只懂品牌，更懂台灣製造業的語言與挑戰。</p>
     </div>
   </div>
-  
   <div class="ml-person reveal">
-    <div class="ml-person-avatar">
-      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alvinnew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_nxt3zk.jpg" alt="Alvin Lin">
-    </div>
-    <div class="ml-person-name">Alvin Lin</div>
-    <div class="ml-person-role">策略長</div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alvinnew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_nxt3zk.jpg" alt="Alvin Lin"></div>
+    <div class="ml-person-name">Alvin Lin</div><div class="ml-person-role">策略長</div>
     <p class="ml-person-bio">融通品牌、通路與製造端全價值鏈。以宏觀商業視角，專注協助企業主突破框架，打造強勁成長的「第二曲線」。</p>
   </div>
-  
   <div class="ml-person reveal" style="transition-delay:0.1s">
-    <div class="ml-person-avatar">
-      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alicemedianew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jrvtyi.jpg" alt="Alice Song">
-    </div>
-    <div class="ml-person-name">Alice Song</div>
-    <div class="ml-person-role">議題策略總監</div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alicemedianew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jrvtyi.jpg" alt="Alice Song"></div>
+    <div class="ml-person-name">Alice Song</div><div class="ml-person-role">議題策略總監</div>
     <p class="ml-person-bio">洞悉頂尖商業媒體與高階決策思維。擅長精準策動核心議題，將材料科技轉化為具備實質商業影響力的市場聲量。</p>
   </div>
-  
   <div class="ml-person reveal" style="transition-delay:0.2s">
-    <div class="ml-person-avatar">
-      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/allennew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jqkc3r.jpg" alt="Allen Hou">
-    </div>
-    <div class="ml-person-name">Allen Hou</div>
-    <div class="ml-person-role">設計總監</div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/allennew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jqkc3r.jpg" alt="Allen Hou"></div>
+    <div class="ml-person-name">Allen Hou</div><div class="ml-person-role">設計總監</div>
     <p class="ml-person-bio">整合品牌、行銷與製造廠跨界思維。專注風格產品 Total Solution，將材料技術精準轉譯為終端市場的機能美學。</p>
   </div>
-  
   <div class="ml-person reveal" style="transition-delay:0.3s">
-    <div class="ml-person-avatar">
-      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327118/sammi_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_arggvg.jpg" alt="Sammi Yang">
-    </div>
-    <div class="ml-person-name">Sammi Yang</div>
-    <div class="ml-person-role">策略顧問</div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327118/sammi_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_arggvg.jpg" alt="Sammi Yang"></div>
+    <div class="ml-person-name">Sammi Yang</div><div class="ml-person-role">策略顧問</div>
     <p class="ml-person-bio">具備深厚的數位行銷底蘊與全鏈路營銷視角。從前端內容規劃到終端媒體投放，致力於為企業建構強韌的 B2C 商業模式，極大化材料品牌的市場穿透力。</p>
   </div>
-
 </section>
 
 <section class="ml-journal" id="journal">
@@ -1077,56 +591,30 @@ section[id] {
     <a class="ml-cases-head-link" href="mailto:materiallabco@gmail.com">訂閱最新洞察 →</a>
   </div>
   <div class="ml-articles">
-    
     <a class="ml-article reveal ml-article-bg" href="journal/brand-strategy-01.html">
-  <div class="ml-article-top">
-        <div class="ml-article-num">01</div>
-        <div class="ml-article-cat">品牌策略</div>
-      </div>
+      <div class="ml-article-top"><div class="ml-article-num">01</div><div class="ml-article-cat">品牌策略</div></div>
       <div class="ml-article-title">越早做材料品牌化，<br>越早搶下市場話語權</div>
       <p class="ml-article-desc">台灣材料商習慣用規格說話，卻忽略了「被記住」才是長期競爭力的根本。這篇文章說明為什麼品牌化時機攸關市場地位，以及先行者的優勢從何而來。</p>
       <div class="ml-article-meta">
-        <div class="ml-article-tags">
-          <span class="ml-tag">品牌化</span>
-          <span class="ml-tag">市場定位</span>
-        </div>
-        <div class="ml-article-date">8 min read</div>
+        <div class="ml-article-tags"><span class="ml-tag">品牌化</span><span class="ml-tag">市場定位</span></div><div class="ml-article-date">8 min read</div>
       </div>
     </a>
-
     <a class="ml-article reveal ml-article-bg-2" href="journal/brand-strategy-02.html" style="transition-delay:0.1s">
-  <div class="ml-article-top">
-    <div class="ml-article-num">02</div>
-    <div class="ml-article-cat">材料 4P</div>
-  </div>
-
+      <div class="ml-article-top"><div class="ml-article-num">02</div><div class="ml-article-cat">材料 4P</div></div>
       <div class="ml-article-title">材料的新行銷 4P：<br>從規格競爭走向價值定位</div>
       <p class="ml-article-desc">Product、Price、Place、Promotion——傳統行銷 4P 在材料產業的應用已不足夠。我們提出「材料 4P」框架，幫助製造商從規格競爭的紅海走出來。</p>
       <div class="ml-article-meta">
-        <div class="ml-article-tags">
-          <span class="ml-tag">行銷框架</span>
-          <span class="ml-tag">4P 方法論</span>
-        </div>
-        <div class="ml-article-date">10 min read</div>
+        <div class="ml-article-tags"><span class="ml-tag">行銷框架</span><span class="ml-tag">4P 方法論</span></div><div class="ml-article-date">10 min read</div>
       </div>
     </a>
-
     <a class="ml-article reveal ml-article-bg-3" href="journal/brand-strategy-03.html" style="transition-delay:0.15s">
-      <div class="ml-article-top">
-        <div class="ml-article-num">03</div>
-        <div class="ml-article-cat">視覺識別</div>
-      </div>
+      <div class="ml-article-top"><div class="ml-article-num">03</div><div class="ml-article-cat">視覺識別</div></div>
       <div class="ml-article-title">材料視覺一致性：<br>為什麼你的樣品卡也是品牌櫥窗</div>
       <p class="ml-article-desc">從樣品卡到展會攤位——每一個材料觸點都在說話。以頂尖視覺陳列設計師的角度，揭示視覺一致性如何成為材料商最被低估的競爭武器。</p>
       <div class="ml-article-meta">
-        <div class="ml-article-tags">
-          <span class="ml-tag">視覺識別</span>
-          <span class="ml-tag">觸點設計</span>
-        </div>
-        <div class="ml-article-date">7 min read</div>
+        <div class="ml-article-tags"><span class="ml-tag">視覺識別</span><span class="ml-tag">觸點設計</span></div><div class="ml-article-date">7 min read</div>
       </div>
     </a>
-
   </div>
 </section>
 
@@ -1144,28 +632,12 @@ section[id] {
 </footer>
 
 <script>
-/* ── CURSOR ── */
 const cur = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 let mx=0, my=0, rx=0, ry=0;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px';
-  cur.style.top  = my + 'px';
-});
-
-(function lerpRing(){
-  rx += (mx - rx) * 0.1;
-  ry += (my - ry) * 0.1;
-  ring.style.left = rx + 'px';
-  ring.style.top  = ry + 'px';
-  requestAnimationFrame(lerpRing);
-})();
-
-const hoverEls = document.querySelectorAll(
-  'a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr, .ml-mobile-close'
-);
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+(function lerpRing(){ rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); })();
+const hoverEls = document.querySelectorAll('a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr, .ml-mobile-close');
 hoverEls.forEach(el => {
   el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
   el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
@@ -1173,13 +645,11 @@ hoverEls.forEach(el => {
 document.addEventListener('mousedown', () => cur.classList.add('click'));
 document.addEventListener('mouseup',   () => cur.classList.remove('click'));
 
-/* ── GEO CANVAS ── */
 const canvas = document.getElementById('geoCanvas');
 const ctx    = canvas.getContext('2d');
 const W = 420, H = 420, CX = W/2, CY = H/2;
 let geoMx = CX, geoMy = CY;
 const wrap = document.getElementById('geoWrap');
-
 if(canvas && wrap) {
   function resizeCanvas(){
     const r = wrap.getBoundingClientRect();
@@ -1189,150 +659,68 @@ if(canvas && wrap) {
   }
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
-
   wrap.addEventListener('mousemove', e => {
     const r = wrap.getBoundingClientRect();
-    geoMx = e.clientX - r.left;
-    geoMy = e.clientY - r.top;
+    geoMx = e.clientX - r.left; geoMy = e.clientY - r.top;
   });
   wrap.addEventListener('mouseleave', () => { geoMx = CX; geoMy = CY; });
-
   const GOLD = 'rgba(200,169,110,';
-
   function drawGeo(ts){
     ctx.clearRect(0,0,W,H);
-    const ang = ts * 0.0004;
-    const dx  = (geoMx - CX) * 0.045;
-    const dy  = (geoMy - CY) * 0.045;
-
-    [
-      {r:160, alpha:0.14}, {r:110, alpha:0.18}, {r:62,  alpha:0.22}
-    ].forEach(({r, alpha}, i) => {
-      ctx.beginPath();
-      ctx.arc(CX + dx*(i+1)*0.35, CY + dy*(i+1)*0.35, r, 0, Math.PI*2);
-      ctx.strokeStyle = GOLD + alpha + ')';
-      ctx.lineWidth = 0.5; ctx.stroke();
+    const ang = ts * 0.0004; const dx = (geoMx - CX) * 0.045; const dy = (geoMy - CY) * 0.045;
+    [{r:160, alpha:0.14}, {r:110, alpha:0.18}, {r:62, alpha:0.22}].forEach(({r, alpha}, i) => {
+      ctx.beginPath(); ctx.arc(CX + dx*(i+1)*0.35, CY + dy*(i+1)*0.35, r, 0, Math.PI*2);
+      ctx.strokeStyle = GOLD + alpha + ')'; ctx.lineWidth = 0.5; ctx.stroke();
     });
-
-    // Cross lines (原本的十字構造線，保留)
     ctx.strokeStyle = GOLD + '0.1)'; ctx.lineWidth = 0.5;
     ctx.beginPath(); ctx.moveTo(CX+dx, 0); ctx.lineTo(CX+dx, H); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, CY+dy); ctx.lineTo(W, CY+dy); ctx.stroke();
-
-    /* ── 01 / 外星環：技術軌動態數據標籤 ── */
-    const techLabels = ['性能差異化', '情境語言轉譯', '技術文件升級'];
-    let techIdx = 0;
-    
+    const techLabels = ['性能差異化', '情境語言轉譯', '技術文件升級']; let techIdx = 0;
     for(let i=0; i<8; i++){
-      const a  = ang + i * Math.PI/4;
-      const px = CX + dx + Math.cos(a)*160;
-      const py = CY + dy + Math.sin(a)*160;
-      ctx.beginPath();
-      ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2);
-      ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')';
-      ctx.fill();
-
-      // 在特定軌道圓點旁，注入技術軌關鍵字（順時針緩慢懸浮旋轉）
+      const a = ang + i * Math.PI/4; const px = CX + dx + Math.cos(a)*160; const py = CY + dy + Math.sin(a)*160;
+      ctx.beginPath(); ctx.arc(px, py, i===0 ? 4 : 2.5, 0, Math.PI*2); ctx.fillStyle = GOLD + (i===0 ? '0.9' : '0.28') + ')'; ctx.fill();
       if ((i === 1 || i === 3 || i === 5) && techIdx < techLabels.length) {
-        ctx.font = '300 8.5px Outfit, sans-serif';
-        ctx.fillStyle = GOLD + '0.38)'; // 低調優雅的透明度
-        ctx.fillText(techLabels[techIdx], px + 10, py + 3);
-        techIdx++;
+        ctx.font = '300 8.5px Outfit, sans-serif'; ctx.fillStyle = GOLD + '0.38)'; ctx.fillText(techLabels[techIdx], px + 10, py + 3); techIdx++;
       }
     }
-
-    /* ── 02 / 中星環：品牌軌動態數據標籤 ── */
-    const brandLabels = ['材料命名系統', '視覺識別', '包裝設計'];
-    let brandIdx = 0;
-    
+    const brandLabels = ['材料命名系統', '視覺識別', '包裝設計']; let brandIdx = 0;
     for(let i=0; i<4; i++){
-      const a  = -ang*1.6 + i * Math.PI/2;
-      const px = CX + dx*0.65 + Math.cos(a)*110;
-      const py = CY + dy*0.65 + Math.sin(a)*110;
-      ctx.beginPath();
-      ctx.arc(px, py, 2.5, 0, Math.PI*2);
-      ctx.fillStyle = GOLD + '0.4)';
-      ctx.fill();
-
-      // 在軌道圓點旁，注入品牌軌關鍵字（逆時針錯開旋轉，創造視覺視差）
+      const a = -ang*1.6 + i * Math.PI/2; const px = CX + dx*0.65 + Math.cos(a)*110; const py = CY + dy*0.65 + Math.sin(a)*110;
+      ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI*2); ctx.fillStyle = GOLD + '0.4)'; ctx.fill();
       if (i < 3 && brandIdx < brandLabels.length) {
-        ctx.font = '300 8.5px Outfit, sans-serif';
-        ctx.fillStyle = GOLD + '0.38)';
-        ctx.fillText(brandLabels[brandIdx], px + 10, py + 3);
-        brandIdx++;
+        ctx.font = '300 8.5px Outfit, sans-serif'; ctx.fillStyle = GOLD + '0.38)'; ctx.fillText(brandLabels[brandIdx], px + 10, py + 3); brandIdx++;
       }
     }
-
-    // Inner ring slowly rotating (原本的內星環圓點，保留)
     for(let i=0; i<2; i++){
-      const a  = ang*0.8 + i * Math.PI;
-      const px = CX + dx*0.3 + Math.cos(a)*62;
-      const py = CY + dy*0.3 + Math.sin(a)*62;
-      ctx.beginPath();
-      ctx.arc(px, py, 2, 0, Math.PI*2);
-      ctx.fillStyle = GOLD + '0.55)'; ctx.fill();
+      const a = ang*0.8 + i * Math.PI; const px = CX + dx*0.3 + Math.cos(a)*62; const py = CY + dy*0.3 + Math.sin(a)*62;
+      ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI*2); ctx.fillStyle = GOLD + '0.55)'; ctx.fill();
     }
-
     const pulse = 0.5 + 0.5 * Math.sin(ts * 0.002);
-    ctx.beginPath();
-    ctx.arc(CX + dx*0.15, CY + dy*0.15, 5, 0, Math.PI*2);
-    ctx.fillStyle = GOLD + '1)'; ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(CX + dx*0.15, CY + dy*0.15, 14 + pulse*6, 0, Math.PI*2);
-    ctx.strokeStyle = GOLD + (0.3 - pulse*0.25) + ')';
-    ctx.lineWidth = 0.5; ctx.stroke();
-
-    ctx.font = '500 9px Outfit, sans-serif';
-    ctx.fillStyle = GOLD + '0.5)';
-    ctx.fillText('技術軌', CX + dx*0.15 + 16, CY + dy*0.15 - 5);
-    ctx.fillStyle = GOLD + '0.32)';
-    ctx.fillText('品牌軌', CX + dx*0.15 + 16, CY + dy*0.15 + 9);
-    ctx.fillStyle = GOLD + '0.18)';
-    ctx.fillText('MATERIAL', CX + dx + 16, 18);
-    ctx.fillText('MARKET',   CX + dx + 16, H - 8);
-
+    ctx.beginPath(); ctx.arc(CX + dx*0.15, CY + dy*0.15, 5, 0, Math.PI*2); ctx.fillStyle = GOLD + '1)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(CX + dx*0.15, CY + dy*0.15, 14 + pulse*6, 0, Math.PI*2); ctx.strokeStyle = GOLD + (0.3 - pulse*0.25) + ')'; ctx.lineWidth = 0.5; ctx.stroke();
+    ctx.font = '500 9px Outfit, sans-serif'; ctx.fillStyle = GOLD + '0.5)'; ctx.fillText('技術軌', CX + dx*0.15 + 16, CY + dy*0.15 - 5);
+    ctx.fillStyle = GOLD + '0.32)'; ctx.fillText('品牌軌', CX + dx*0.15 + 16, CY + dy*0.15 + 9);
+    ctx.fillStyle = GOLD + '0.18)'; ctx.fillText('MATERIAL', CX + dx + 16, 18); ctx.fillText('MARKET', CX + dx + 16, H - 8);
     requestAnimationFrame(drawGeo);
   }
   requestAnimationFrame(drawGeo);
 }
 
-/* ── MOBILE MENU TOGGLE ── */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 const mobileClose = document.getElementById('mobileClose');
-
 if(hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-  });
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('active');
-    });
-  });
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active'); });
+  mobileLinks.forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); }); });
 }
-
 if(mobileClose && hamburger && mobileMenu) {
-  mobileClose.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('active');
-  });
+  mobileClose.addEventListener('click', () => { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); });
 }
 
-/* ── SCROLL REVEAL ── */
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
