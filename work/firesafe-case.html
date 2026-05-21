@@ -1,1 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban FireSafe Case — Material Lab</title>
+<link rel="icon" href="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779098464/weblogo_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_swrkxv.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* 基礎設定 */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#2A3941; --bg2:#222F36; --bg3:#1E2A30;
+  --gold:#C8A96E; --text:#EEE8DC; --text2:rgba(238,232,220,0.6); --text3:rgba(238,232,220,0.3); --border:rgba(238,232,220,0.1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); cursor:none; overflow-x:hidden;}
 
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,169,110,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.35s cubic-bezier(.25,.46,.45,.94),height 0.35s cubic-bezier(.25,.46,.45,.94);}
+#cursor.hover{width:6px;height:6px;}
+#cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
+
+/* NAV */
+.ml-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.ml-logo img{height:28px;width:auto;object-fit:contain;}
+.ml-nav-links{display:flex;gap:32px;list-style:none;}
+.ml-nav-links a{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;cursor:none;}
+.ml-nav-links a:hover{color:var(--text);}
+.ml-nav-cta{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:9px 20px;border-radius:2px;cursor:none;transition:all 0.25s;}
+.ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
+
+/* HERO */
+.cs-hero { padding: 140px 48px 80px; position: relative; z-index: 1; border-bottom: 0.5px solid var(--border); }
+.cs-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.cs-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 0.5px; background: var(--gold); }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: 88px; font-weight: 300; color: var(--text); line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; }
+.cs-title em { font-style: italic; color: var(--gold); }
+.cs-intro { font-size: 16px; line-height: 1.8; color: var(--text2); max-width: 680px; }
+
+/* META DATA */
+.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 48px; border-bottom: 0.5px solid var(--border); }
+.cs-meta-item { display: flex; flex-direction: column; gap: 8px; }
+.cs-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); }
+.cs-meta-value { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+/* VIDEO BOXES */
+.placeholder-box { width: 100%; position: relative; overflow: hidden; border-bottom: 0.5px solid var(--border); background: var(--bg3); }
+/* 讓影片稍微放大以隱藏可能出現的 YouTube 邊緣黑邊或浮水印 */
+.placeholder-box iframe { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.15); width: 100vw; height: 100vh; z-index: 2; pointer-events: none; }
+.hero-video { height: 70vh; }
+.mid-video { height: 55vh; }
+.col-img { height: 50vh; border-right: 0.5px solid var(--border); border-bottom: none; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--bg2); position: relative; }
+.col-img::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(238,232,220,0.015) 10px, rgba(238,232,220,0.015) 20px); pointer-events: none; }
+
+/* BODY GRIDS */
+.cs-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid var(--border); }
+.cs-col { padding: 80px 48px; border-right: 0.5px solid var(--border); }
+.cs-col:last-child { border-right: none; }
+.cs-h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--text); margin-bottom: 24px; line-height: 1.2; }
+.cs-h2 em { font-style: italic; color: var(--gold); }
+.cs-p { font-size: 14px; line-height: 2; color: var(--text2); margin-bottom: 24px; font-weight: 300; }
+
+/* GORE-TEX STYLE NARRATIVE SECTION */
+.gt-section { padding: 100px 48px; border-bottom: 0.5px solid var(--border); background: linear-gradient(to bottom, var(--bg), var(--bg3)); }
+.gt-container { max-width: 900px; margin: 0 auto; }
+.gt-quote { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-style: italic; font-weight: 300; color: var(--gold); line-height: 1.4; margin-bottom: 40px; }
+.gt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px; }
+.gt-concept h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+
+/* 3-COL SPEC GRID */
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 0.5px solid var(--border); }
+.spec-cell { padding: 64px 48px; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; }
+.spec-cell:last-child { border-right: none; }
+.sc-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+.sc-label { font-size: 12px; color: var(--text); margin-bottom: 6px; }
+.sc-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* LAYER LIST */
+.layer-list { padding: 80px 48px; border-bottom: 0.5px solid var(--border); }
+.layer-item { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 0.5px solid var(--border); }
+.layer-item:last-child { border-bottom: none; padding-bottom: 0; }
+.layer-tag { font-size: 10px; letter-spacing: 0.1em; color: var(--gold); border: 0.5px solid var(--gold); padding: 4px 10px; border-radius: 2px; flex-shrink: 0; }
+.layer-content h3 { font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+.layer-content p { font-size: 13px; color: var(--text2); line-height: 1.8; font-weight: 300; }
+
+/* BEFORE / AFTER TEXT */
+.lang-item { padding: 16px 0; border-bottom: 0.5px solid var(--border); font-size: 14px; line-height: 1.8; font-weight: 300; display: flex; align-items: flex-start; gap: 12px; }
+.lang-item:last-child { border-bottom: none; }
+.lang-item.tech { color: var(--text3); }
+.lang-item.brand { color: var(--text); }
+.lang-item.brand::before { content: '✦'; color: var(--gold); font-size: 12px; margin-top: 2px; }
+
+/* NEXT PROJECT */
+.cs-next { padding: 120px 48px; text-align: center; border-bottom: 0.5px solid var(--border); display: block; text-decoration: none; cursor: none; }
+.cs-next:hover .cs-next-title { color: var(--gold); letter-spacing: 0.02em; }
+.cs-next-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3); margin-bottom: 24px; }
+.cs-next-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--text); transition: all 0.4s ease; }
+
+/* FOOTER */
+.ml-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+.ml-footer-copy { font-size: 11px; color: var(--text3); }
+
+@media(max-width:900px){
+  .cs-title { font-size: 56px; }
+  .cs-meta, .cs-body, .spec-grid, .gt-grid { grid-template-columns: 1fr; }
+  .cs-col, .spec-cell, .col-img { border-right: none; border-bottom: 0.5px solid var(--border); }
+  .cs-col { padding: 56px 24px; }
+  .spec-cell { padding: 40px 24px; }
+  .gt-grid { gap: 32px; }
+  .ml-nav-links, .ml-nav-cta { display: none; }
+  .cs-hero, .cs-meta, .cs-next, .ml-footer, .layer-list, .gt-section { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav class="ml-nav">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <ul class="ml-nav-links">
+    <li><a href="../index.html#cases">Work</a></li>
+    <li><a href="../index.html#method">Method</a></li>
+    <li><a href="../index.html#journal">Journal</a></li>
+  </ul>
+  <button class="ml-nav-cta">聯絡我們</button>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-eyebrow">Case Study 01 · 防災材料</div>
+  <h1 class="cs-title">Urban FireSafe:<br><em>當台灣材料</em>遇見真實的火</h1>
+  <p class="cs-intro">透過精準的 Product Marketing 策略，將 B2B 生硬的防火數據，轉譯為 B2C 高端生活風格。Material Lab 整合三方資源，讓工業級「阻燃技術」成功落地為具備市場穿透力的「信任標章」。</p>
+</section>
+
+<div class="cs-meta">
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Client</span>
+    <span class="cs-meta-value">Avier × 中保防災科技 × 台化</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Role</span>
+    <span class="cs-meta-value">產品行銷 (Product Marketing)<br>技術轉譯 / 商業落地策略</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Category</span>
+    <span class="cs-meta-value">機能配件 / 防災科技</span>
+  </div>
+</div>
+
+<div class="placeholder-box hero-video">
+  <iframe src="https://www.youtube.com/embed/axL_GXWQz2U?autoplay=1&mute=1&loop=1&playlist=axL_GXWQz2U&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<section class="cs-body">
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">洞察與缺口</div>
+    <h2 class="cs-h2">被困在規格裡的<br><em>全球性解方</em></h2>
+    <p class="cs-p">鋰電池「熱失控」風險隨身可見，而台灣早有頂尖的防焰技術解法。然而，傳統材料廠僅習慣溝通「SGS 報告」與「化學專有名詞」，缺乏將技術與終端情境連結的語彙，導致好技術難以溢價，陷入價格紅海。</p>
+  </div>
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">落地策略</div>
+    <h2 class="cs-h2">三角信任生態與<br><em>成分品牌化</em></h2>
+    <p class="cs-p">技術需要精準轉譯，才能真正落地市場。我們導入「成分品牌 (Ingredient Branding)」策略，串聯 Avier 的通路信任、中保防災的驗證，以及台化的材料實力。不再隱藏布料供應商，而是將其塑造成終端消費者指名的絕對安全標籤。</p>
+  </div>
+</section>
+
+<section class="gt-section">
+  <div class="gt-container">
+    <div class="cs-eyebrow" style="margin-bottom:24px;">Material Narrative</div>
+    <div class="gt-quote">
+      "Inside every great safe gear is <em style="color:var(--text); font-style:normal; font-weight:500;">IGNIX™</em>. <br>我們不只是一塊布，而是與災難隔絕的最終防線。"
+    </div>
+    <p class="cs-p" style="font-size:16px; color:var(--text); max-width:760px;">
+      如同 GORE-TEX 建立戶外防水的絕對標準，Material Lab 為台化的氧化纖維打造專屬材料品牌——<strong>IGNIX™</strong>。從「由內而外」建立信任溢價，讓 B2B 材料轉型為強勢的科技資產。
+    </p>
+    
+    <div class="gt-grid">
+      <div class="gt-concept">
+        <h4>01 / 建立市場承諾</h4>
+        <p class="cs-p" style="font-size:13px;">將實驗數據轉化為消費者聽得懂的承諾：當外部面料燃燒殆盡，IGNIX™ 是你背包裡唯一不會動搖的防線。</p>
+      </div>
+      <div class="gt-concept">
+        <h4>02 / 識別標章賦能</h4>
+        <p class="cs-p" style="font-size:13px;">賦予獨立視覺吊牌。這不僅是收納包，更是搭載工業級防護的都會精品，為代工與通路端雙向創造實質溢價。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="spec-grid">
+  <div class="spec-cell">
+    <div class="sc-num">1,200°</div>
+    <div class="sc-label">瞬間耐溫上限</div>
+    <div class="sc-desc">極端熱失控狀態下的高溫阻隔能力</div>
+  </div>
+  <div class="spec-cell">
+    <div class="sc-num">500°</div>
+    <div class="sc-label">持續耐溫能力</div>
+    <div class="sc-desc">長時間高熱環境下仍維持結構不崩解</div>
+  </div>
+  <div class="spec-cell">
+    <div class="sc-num">一級</div>
+    <div class="sc-label">CNS 10285 驗證</div>
+    <div class="sc-desc">台灣最高防焰等級：自熄、不延燒、零滴蝕</div>
+  </div>
+</div>
+
+<div class="placeholder-box mid-video">
+  <iframe src="https://www.youtube.com/embed/Fr0MOzkV7hM?autoplay=1&mute=1&loop=1&playlist=Fr0MOzkV7hM&controls=0&rel=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<section class="layer-list">
+  <h2 class="cs-h2" style="margin-bottom:40px;">科技外殼與核心防護：<br><em>三層金屬感架構</em></h2>
+  
+  <div class="layer-item">
+    <div class="layer-tag">外層</div>
+    <div class="layer-content">
+      <h3>DuraTuff 300D 防撕裂尼龍</h3>
+      <p>日常都會使用的第一道物理保護，抗撕裂且耐磨損，確保內部防災結構不受日常摩擦損耗。</p>
+    </div>
+  </div>
+  
+  <div class="layer-item">
+    <div class="layer-tag" style="background:var(--gold); color:var(--bg);">核心</div>
+    <div class="layer-content">
+      <h3>IGNIX™ 一級防焰氧化纖維布</h3>
+      <p>採用特殊平織法與雙面耐溫塗層。火源移除瞬間立即自熄，高溫下不產生燃燒滴融物，徹底阻絕災害擴散。</p>
+    </div>
+  </div>
+
+  <div class="layer-item">
+    <div class="layer-tag">內層</div>
+    <div class="layer-content">
+      <h3>AeroLite 超細纖維透氣內裡</h3>
+      <p>解決傳統防火布扎手的痛點。輕柔細緻面料提供極佳手感，全程保護隨身 3C 設備表面不留刮痕。</p>
+    </div>
+  </div>
+</section>
+
+<div class="cs-body" style="border-bottom:none;">
+  <div class="col-img">
+    [ Image 01 / 都會機能穿搭細節圖佔位區 ]
+  </div>
+  <div class="col-img" style="border-right:none;">
+    [ Image 02 / IGNIX™ 氧化纖維織紋特寫圖佔位區 ]
+  </div>
+</div>
+
+<section class="cs-body" style="border-top:0.5px solid var(--border);">
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">Before</div>
+    <h2 class="cs-h2">技術規格<br><em>(原始 B2B 語言)</em></h2>
+    <div style="margin-top:32px;">
+      <div class="lang-item tech">氧化纖維防火束口袋，耐高溫 1,200 度</div>
+      <div class="lang-item tech">CNS 10285 防焰一級認證</div>
+      <div class="lang-item tech">具備自熄性能，不延燒、零滴蝕特性</div>
+    </div>
+  </div>
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">After</div>
+    <h2 class="cs-h2">市場語言<br><em>(轉譯後 B2C 溝通)</em></h2>
+    <div style="margin-top:32px;">
+      <div class="lang-item brand">行動電源異常發燙時，那幾秒內你唯一能做的事</div>
+      <div class="lang-item brand">台灣最高等級防焰技術，輕鬆放入背包側袋</div>
+      <div class="lang-item brand">火源移除立即自熄，你的城市行動由它全程守護</div>
+    </div>
+  </div>
+</section>
+
+<a href="../index.html#cases" class="cs-next">
+  <div class="cs-next-label">Back to Work</div>
+  <div class="cs-next-title">返回合作案例清單 ↗</div>
+</a>
+
+<footer class="ml-footer">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <div class="ml-footer-copy">© Material Lab · 讓好材料被看見</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+(function lerpRing(){ rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); })();
+const hoverEls = document.querySelectorAll('a, button, .placeholder-box');
+hoverEls.forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
+});
+</script>
+</body>
+</html>
