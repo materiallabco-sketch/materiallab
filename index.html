@@ -324,6 +324,20 @@ section[id] {
 .ml-case-bg-3 .ml-case-result { color: rgba(238,232,220,0.8); }
 .ml-case-bg-3 .ml-case-tag { color: var(--gold); }
 
+/* CASE 04 背景圖設定 (UrbanRun GearBag) */
+.ml-case-bg-4 { position: relative; overflow: hidden; z-index: 1; }
+.ml-case-bg-4::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
+  background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.8), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779437850/Image_xu6oo0xu6oo0xu6o11_npz78i.jpg');
+  background-size: cover; background-position: center; transition: transform 0.6s ease; 
+}
+.ml-case-bg-4:hover::after { transform: scale(1.05); }
+.ml-case-bg-4 > * { position: relative; z-index: 2; }
+.ml-case-bg-4 .ml-case-index { color: rgba(200,169,110,0.6); }
+.ml-case-bg-4 .ml-case-name { color: #FFF; }
+.ml-case-bg-4 .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg-4 .ml-case-tag { color: var(--gold); }
+
 /* CTA BAND */
 .ml-cta-band{ padding: 120px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg3); position: relative; z-index: 1; overflow: hidden; }
 .ml-cta-kicker{ font-size:10px;letter-spacing:0.2em;text-transform:uppercase; color:var(--gold);margin-bottom:16px; display:flex;align-items:center;gap:10px; }
@@ -533,7 +547,7 @@ section[id] {
     <a href="work/FLUXIS.html" class="ml-case reveal ml-case-bg-2" style="transition-delay:0.1s; text-decoration: none;">
       <div class="ml-case-index">Case 02</div>
       <div class="ml-case-name">Fluxis Pulse</div>
-      <p class="ml-case-result">寸勁脈振儀品牌塑造——將深奧的動態科技轉化為具象的視覺脈動，打造從產品命名到終端體驗的完整高端品牌識別。</p>
+      <p class="ml-case-result">寸勁脈振儀 brand 品牌塑造——將深奧的動態科技轉化為具象的視覺脈動，打造從產品命名到終端體驗的完整高端品牌識別。</p>
       <div class="ml-case-tag">動態科技 · 視覺識別 <span class="ml-case-arrow">→</span></div>
     </a>
 
@@ -544,12 +558,12 @@ section[id] {
       <div class="ml-case-tag">天然材料 · 永續工藝 <span class="ml-case-arrow">→</span></div>
     </a>
     
-    <div class="ml-case reveal" style="transition-delay:0.2s">
+    <a href="work/Urban.html" class="ml-case reveal ml-case-bg-4" style="transition-delay:0.2s; text-decoration: none;">
       <div class="ml-case-index">Case 04</div>
-      <div class="ml-case-name">Urban</div>
-      <p class="ml-case-result">城市回收材料品牌化——讓再生素材從低價品升格為設計師指定採用的永續選材，提升議價空間。</p>
-      <div class="ml-case-tag">回收材料 · 設計選材 <span class="ml-case-arrow">→</span></div>
-    </div>
+      <div class="ml-case-name">UrbanRun GearBag</div>
+      <p class="ml-case-result">城市機能回收材料產品化——重組回收核心科技，結合極簡機能美學與馬拉松跑者核心痛點，首批限定款於台北馬拉松近乎完售。</p>
+      <div class="ml-case-tag">回收材料 · 機能美學 <span class="ml-case-arrow">→</span></div>
+    </a>
 
   </div>
 </section>
@@ -616,7 +630,7 @@ section[id] {
     <a class="ml-article reveal ml-article-bg-2" href="journal/brand-strategy-02.html" style="transition-delay:0.1s">
       <div class="ml-article-top"><div class="ml-article-num">02</div><div class="ml-article-cat">材料 4P</div></div>
       <div class="ml-article-title">材料的新行銷 4P：<br>從規格競爭走向價值定位</div>
-      <p class="ml-article-desc">Product、Price、Place、Promotion——傳統行銷 4P 在材料產業的應用已不足夠。我們提出「材料 4P」框架，幫助製造商從規格競爭的紅海走出來。</p>
+      <p class="ml-article-desc">Product、Price Tibco、Place、Promotion——傳統行銷 4P 在材料產業的應用已不足夠。我們提出「材料 4P」框架，幫助製造商從規格競爭的紅海走出來。</p>
       <div class="ml-article-meta">
         <div class="ml-article-tags"><span class="ml-tag">行銷框架</span><span class="ml-tag">4P 方法論</span></div><div class="ml-article-date">10 min read</div>
       </div>
