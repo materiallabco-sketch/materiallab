@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Bag Series Case — Material Lab</title>
+<link rel="icon" href="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779098464/weblogo_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_swrkxv.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* 基礎設定 */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#2A3941; --bg2:#222F36; --bg3:#1E2A30;
+  --gold:#C8A96E; --text:#EEE8DC; --text2:rgba(238,232,220,0.6); --text3:rgba(238,232,220,0.3); --border:rgba(238,232,220,0.1);
+  --content-width: 1080px; 
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); cursor:none; overflow-x:hidden;}
+
+/* 隱藏系統引註標籤，維持畫面乾淨 */
+.cite-hidden { display: none !important; }
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,169,110,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.35s cubic-bezier(.25,.46,.45,.94),height 0.35s cubic-bezier(.25,.46,.45,.94);}
+#cursor.hover{width:6px;height:6px;}
+#cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
+
+/* ─── 內文區塊收攏至 1080px 正中央 ─── */
+.cs-hero, .cs-meta, .cs-body, .media-center-wrap, .next-case {
+    padding-left: max(48px, calc((100vw - var(--content-width)) / 2));
+    padding-right: max(48px, calc((100vw - var(--content-width)) / 2));
+}
+
+/* NAV - 滿版配置 */
+.ml-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.ml-logo img{height:28px;width:auto;object-fit:contain;}
+.ml-nav-links{display:flex;gap:32px;list-style:none;}
+.ml-nav-links a{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;cursor:none;}
+.ml-nav-links a:hover{color:var(--text);}
+.ml-nav-cta{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:9px 20px;border-radius:2px;cursor:none;transition:all 0.25s;}
+.ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
+
+/* HERO */
+.cs-hero { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 1; border-bottom: 0.5px solid var(--border); }
+.cs-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.cs-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 0.5px; background: var(--gold); }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: 88px; font-weight: 300; color: var(--text); line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; }
+.cs-title em { font-style: italic; color: var(--gold); }
+.cs-intro { font-size: 16px; line-height: 1.8; color: var(--text2); max-width: 680px; }
+
+/* META DATA */
+.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-top: 48px; padding-bottom: 48px; border-bottom: 0.5px solid var(--border); }
+.cs-meta-item { display: flex; flex-direction: column; gap: 8px; }
+.cs-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); }
+.cs-meta-value { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+/* ─── 影音與圖片容器 (高佔比版) ─── */
+.media-center-wrap { padding-top: 56px; padding-bottom: 56px; border-bottom: 0.5px solid var(--border); }
+.media-img-container { width: 100%; display: block; position: relative; }
+.media-img-container img { width: 100%; height: auto; display: block; border-radius: 4px; background: rgba(238,232,220,0.02); }
+
+/* 三欄產品 Grid */
+.media-gallery.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+
+/* BODY GRIDS */
+.cs-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid var(--border); padding-top: 80px; padding-bottom: 80px; gap: 40px; }
+.cs-col { border-right: 0.5px solid var(--border); padding-right: 40px; }
+.cs-col:last-child { border-right: none; padding-right: 0; }
+.cs-h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--text); margin-bottom: 24px; line-height: 1.2; }
+.cs-h2 em { font-style: italic; color: var(--gold); }
+.cs-p { font-size: 14px; line-height: 2; color: var(--text2); margin-bottom: 24px; font-weight: 300; }
+
+/* BRAND TEXT LIST */
+.lang-item { padding: 16px 0; border-bottom: 0.5px solid rgba(238,232,220,0.05); font-size: 14px; line-height: 1.8; font-weight: 300; display: flex; align-items: flex-start; gap: 12px; }
+.lang-item:last-child { border-bottom: none; }
+.lang-item.brand { color: var(--text); }
+.lang-item.brand::before { content: '✦'; color: var(--gold); font-size: 12px; margin-top: 2px; }
+
+/* NEXT PROJECT */
+.next-case { border-bottom: 0.5px solid var(--border); padding-top: 56px; padding-bottom: 56px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: background 0.25s; cursor: none; }
+.next-case:hover { background: rgba(200, 169, 110, 0.03); }
+.nc-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.nc-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text); }
+.nc-arrow { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 300; color: rgba(200, 169, 110, 0.35); transition: transform 0.25s, color 0.25s; }
+.next-case:hover .nc-arrow { transform: translateX(8px); color: var(--gold); }
+
+/* FOOTER */
+.ml-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+.ml-footer-copy { font-size: 11px; color: var(--text3); }
+
+@media(max-width:900px){
+  .cs-title { font-size: 56px; }
+  .cs-meta, .cs-body, .media-gallery.three-col { grid-template-columns: 1fr; gap: 40px; }
+  .cs-col { border-right: none; padding-right: 0; padding-left: 0; }
+  .ml-nav-links, .ml-nav-cta { display: none; }
+  .ml-nav, .ml-footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav class="ml-nav">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <ul class="ml-nav-links">
+    <li><a href="../index.html#cases">Work</a></li>
+    <li><a href="../index.html#method">Method</a></li>
+    <li><a href="../index.html#journal">Journal</a></li>
+  </ul>
+  <button class="ml-nav-cta">聯絡我們</button>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-eyebrow">Case Study 04 · 機能包袋系列</div>
+  <h1 class="cs-title">Urban Bag Series:<br><em>機能編織與</em>城市流動</h1>
+  <p class="cs-intro">由 Material Lab 整合策劃的 Avier 全新都會機能包袋系列。透過 D2C 商業落地與高階機能定位，將「繩索貫穿」轉化為辨識度極高的核心視覺語彙，成功完成從設計研發到全面量產的市場突圍。</p>
+</section>
+
+<div class="cs-meta">
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Products</span>
+    <span class="cs-meta-value">GearBag 衣保袋 / SlingBag / Waterproof Sacoche</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Design Language</span>
+    <span class="cs-meta-value">繩索貫穿 (Cord-Driven Aesthetic) / Gorpcore 機能美學</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Go-To-Market</span>
+    <span class="cs-meta-value">分眾核心定位 / D2C 官方通路 / 專業馬拉松賽事驗證</span>
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779437850/Image_xu6oo0xu6oo0xu6o11_npz78i.jpg" alt="Urban Bag Series 形象大圖">
+  </div>
+</div>
+
+<section class="cs-body">
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">Design & Development</div>
+    <h2 class="cs-h2">以繩索貫穿技術<br><em>重塑機能美學</em></h2>
+    <p class="cs-p">全系列以「繩索貫穿」為靈魂。不僅是視覺上的機能點綴，更在結構上承擔包體受力與懸掛調節，將 Gorpcore 戶外探險感無縫解構至都會日常場景。</p>
+  </div>
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">Engineering & Production</div>
+    <h2 class="cs-h2">從頂尖供應鏈<br><em>到國際標準量產</em></h2>
+    <p class="cs-p">歷經多輪打樣校準，攻克異材質拼接與高頻熱壓防水工藝。從極端馬拉松環境驗證的 GearBag，到輕量高防護的 Sacoche，確保每一針一線皆符合國際一線高端品牌的量產良率。</p>
+  </div>
+</section>
+
+<div class="media-center-wrap">
+  <div class="cs-eyebrow" style="margin-bottom:24px; text-align:center; display:block;">Product Matrix</div>
+  <div class="media-gallery three-col">
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779437912/Image_maavcqmaavcqmaav_u6uia4.png" alt="GearBag 衣保袋">
+    </div>
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779438588/Image_8olv3w8olv3w8olv_yhuz0d.jpg" alt="SlingBag 單肩包">
+    </div>
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779437910/Image_m4anfim4anfim4an_m70ekx.jpg" alt="Waterproof Sacoche 防水斜背包">
+    </div>
+  </div>
+</div>
+
+<section class="cs-body">
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">Product Marketing</div>
+    <h2 class="cs-h2">精準定價與分眾定位<br><em>切入高溢價機能市場</em></h2>
+    <p class="cs-p">擺脫傳統硬體規格的削價競爭，我們鎖定追求極致品味與機能需求的「都會Smart-Casual」及「專業路跑者」社群。透過質感故事包裝，精準立足高端機能配件生態位。</p>
+  </div>
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">Go-To-Market</div>
+    <h2 class="cs-h2">場景對接通路<br><em>引爆 D2C 核心動能</em></h2>
+    <p class="cs-p">將產品直接空降至最具說服力的真實戰場。透過台北馬拉松等專業賽事進行情境式高強度驗證，結合高質感 D2C 官方線上商城與指標性都會機能選品店，完成從聲量到市場落地的全面循環。</p>
+  </div>
+</section>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779438107/bpvsrobpvsrobpvs_oyskr3.jpg" alt="GearBag 都會機能情境圖">
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779438107/wbi2v4wbi2v4wbi2_zrozy0.jpg" alt="SlingBag 繩索工藝細節圖">
+  </div>
+</div>
+
+<div class="media-center-wrap" style="border-bottom: none;">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779438107/xgw654xgw654xgw6_kgt21u.jpg" alt="Waterproof Sacoche 減法美學大圖">
+  </div>
+</div>
+
+<a href="../index.html#cases" class="next-case">
+  <div>
+    <div class="nc-label">Back to Work</div>
+    <div class="nc-title">返回合作案例清單</div>
+  </div>
+  <div class="nc-arrow">→</div>
+</a>
+
+<footer class="ml-footer">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <div class="ml-footer-copy">© Material Lab · 讓好材料被看見</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+(function lerpRing(){ rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); })();
+const hoverEls = document.querySelectorAll('a, button, .media-img-container');
+hoverEls.forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
+});
+</script>
+</body>
+</html>
