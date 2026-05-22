@@ -172,7 +172,7 @@ section[id] {
 }
 .ml-hero-title em{font-style:italic;color:var(--gold);}
 .ml-hero-bottom{opacity:0;animation:fadeUp 0.9s 0.6s forwards;}
-.ml-hero-sub{font-size:13px;line-height:1.95;color:var(--text2);max-width:320px;margin-bottom:30px;}
+.ml-hero-sub{font-size:16px;line-height:1.9;letter-spacing:0.04em;color:var(--text2);max-width:340px;margin-bottom:30px;} /* 升級：優雅大字級與精準字距 */
 .ml-hero-actions{display:flex;align-items:center;gap:18px;}
 .ml-btn-primary{
   font-family:'Outfit',sans-serif; font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
@@ -225,7 +225,7 @@ section[id] {
 .ml-eyebrow::before, .ml-eyebrow::after { content: ''; display: inline-block; width: 16px; height: 0.5px; background: var(--gold); }
 .ml-section-title { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 22px; }
 .ml-section-title em { font-style: italic; }
-.ml-section-body { font-size: 13px; line-height: 1.9; color: var(--text2); max-width: 480px; margin: 0 auto; }
+.ml-section-body { font-size: 16px; line-height: 1.9; letter-spacing: 0.04em; color: var(--text2); max-width: 520px; margin: 0 auto; } /* 升級：大氣奢華的大字重現 */
 .ml-geo-center { width: 100%; max-width: 500px; aspect-ratio: 1/1; margin-top: 64px; display: flex; align-items: center; justify-content: center; position: relative; }
 
 /* 下半部：左右兩軌 */
@@ -233,7 +233,7 @@ section[id] {
 
 /* METHOD TRACKS */
 .ml-track {
-  padding: 56px 48px; cursor: none; position: relative; overflow: hidden;   
+  padding: 64px 48px; cursor: none; position: relative; overflow: hidden;   
   transition: background 0.4s ease; display: grid; grid-template-columns: 80px 1fr; gap: 40px; align-items: start; z-index: 1; 
 }
 .ml-track:first-child { border-right: 0.5px solid var(--border); }
@@ -248,10 +248,10 @@ section[id] {
 .ml-track-label { font-size: 10px; letter-spacing: 0.1em; color: var(--gold); }
 .ml-track-content { display: flex; flex-direction: column; }
 .ml-track-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--text); letter-spacing: 0.02em; margin-bottom: 12px; line-height: 1.1; }
-.ml-track-desc { font-size: 13px; line-height: 1.8; color: var(--text2); margin-bottom: 24px; max-width: 100%; }
+.ml-track-desc { font-size: 15px; line-height: 1.85; letter-spacing: 0.04em; color: var(--text2); margin-bottom: 24px; max-width: 100%; } /* 升級：字級放大、拉開字距 */
 .ml-track-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .ml-pill {
-  font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; /* 拉開 Pill 的字距 */
   color: rgba(200,169,110,0.6); border: 0.5px solid rgba(200,169,110,0.25);
   padding: 6px 14px; border-radius: 100px; transition: all 0.3s ease; cursor: none;
 }
@@ -277,12 +277,12 @@ section[id] {
 .ml-case:hover{background:rgba(200,169,110,0.03);}
 .ml-case-index{font-size:10px;color:rgba(200,169,110,0.35);letter-spacing:0.12em;margin-bottom:14px; position:relative; z-index:2;}
 .ml-case-name{ font-family:'Cormorant Garamond',serif; font-size:24px;font-weight:300;color:var(--text);margin-bottom:10px; position:relative; z-index:2;}
-.ml-case-result{font-size:12px;line-height:1.8;color:var(--text2);margin-bottom:16px; position:relative; z-index:2;}
+.ml-case-result{font-size:15px;line-height:1.8;letter-spacing:0.04em;color:var(--text2);margin-bottom:16px; position:relative; z-index:2;} /* 升級：字級拉大、更舒服的字距 */
 .ml-case-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(200,169,110,0.5); position:relative; z-index:2;}
 .ml-case-arrow{display:inline-block;transition:transform 0.25s;}
 .ml-case:hover .ml-case-arrow{transform:translateX(5px);}
 
-/* CASE 01 背景圖設定 (FireSafe Case) */
+/* CASE 01 背景圖設定 */
 .ml-case-bg { position: relative; overflow: hidden; z-index: 1; }
 .ml-case-bg::after {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
@@ -293,10 +293,10 @@ section[id] {
 .ml-case-bg > * { position: relative; z-index: 2; }
 .ml-case-bg .ml-case-index { color: rgba(200,169,110,0.6); }
 .ml-case-bg .ml-case-name { color: #FFF; }
-.ml-case-bg .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg .ml-case-result { color: rgba(238,232,220,0.9); }
 .ml-case-bg .ml-case-tag { color: var(--gold); }
 
-/* CASE 02 背景圖設定 (Fluxis Pulse) */
+/* CASE 02 背景圖設定 */
 .ml-case-bg-2 { position: relative; overflow: hidden; z-index: 1; }
 .ml-case-bg-2::after {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
@@ -307,10 +307,10 @@ section[id] {
 .ml-case-bg-2 > * { position: relative; z-index: 2; }
 .ml-case-bg-2 .ml-case-index { color: rgba(200,169,110,0.6); }
 .ml-case-bg-2 .ml-case-name { color: #FFF; }
-.ml-case-bg-2 .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg-2 .ml-case-result { color: rgba(238,232,220,0.9); }
 .ml-case-bg-2 .ml-case-tag { color: var(--gold); }
 
-/* CASE 03 背景圖設定 (Earth Bracelet) */
+/* CASE 03 背景圖設定 */
 .ml-case-bg-3 { position: relative; overflow: hidden; z-index: 1; }
 .ml-case-bg-3::after {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
@@ -321,10 +321,10 @@ section[id] {
 .ml-case-bg-3 > * { position: relative; z-index: 2; }
 .ml-case-bg-3 .ml-case-index { color: rgba(200,169,110,0.6); }
 .ml-case-bg-3 .ml-case-name { color: #FFF; }
-.ml-case-bg-3 .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg-3 .ml-case-result { color: rgba(238,232,220,0.9); }
 .ml-case-bg-3 .ml-case-tag { color: var(--gold); }
 
-/* CASE 04 背景圖設定 (UrbanRun GearBag) */
+/* CASE 04 背景圖設定 */
 .ml-case-bg-4 { position: relative; overflow: hidden; z-index: 1; }
 .ml-case-bg-4::after {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; 
@@ -335,7 +335,7 @@ section[id] {
 .ml-case-bg-4 > * { position: relative; z-index: 2; }
 .ml-case-bg-4 .ml-case-index { color: rgba(200,169,110,0.6); }
 .ml-case-bg-4 .ml-case-name { color: #FFF; }
-.ml-case-bg-4 .ml-case-result { color: rgba(238,232,220,0.8); }
+.ml-case-bg-4 .ml-case-result { color: rgba(238,232,220,0.9); }
 .ml-case-bg-4 .ml-case-tag { color: var(--gold); }
 
 /* CTA BAND */
@@ -353,17 +353,19 @@ section[id] {
 .ml-people { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; }
 .ml-people-intro { padding: 80px 48px; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; justify-content: flex-start; grid-row: span 2; }
 .ml-people-intro-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--text); line-height: 1.2; margin-top: 16px; }
-.ml-people-intro-sub { font-size: 12px; color: var(--text2); line-height: 1.8; margin-top: 24px; max-width: 80%; }
+.ml-people-intro-sub { font-size: 15px; color: var(--text2); line-height: 1.85; letter-spacing: 0.04em; margin-top: 24px; max-width: 80%; } /* 升級：字級放大、拉開字距 */
 .ml-person { padding: 64px 48px; border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); cursor: none; transition: background 0.3s; }
 .ml-person:nth-child(even) { border-right: none; }
 .ml-person:nth-last-child(-n+2) { border-bottom: none; }
 .ml-person:hover { background: rgba(200,169,110,0.03); }
-.ml-person-avatar { width: 140px; aspect-ratio: 1 / 1.1; background: rgba(200,169,110,0.05); overflow: hidden; margin-bottom: 24px; border-radius: 2px; }
+
+/* 精密鎖定：頭像寬度固定在區塊的 50% */
+.ml-person-avatar { width: 50%; aspect-ratio: 1 / 1.1; background: rgba(200,169,110,0.05); overflow: hidden; margin-bottom: 24px; border-radius: 2px; }
 .ml-person-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, filter 0.6s ease; filter: grayscale(15%); }
 .ml-person:hover .ml-person-avatar img { transform: scale(1.05); filter: grayscale(0%); }
 .ml-person-name { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
 .ml-person-role { font-size: 12px; color: rgba(200,169,110,0.6); margin-bottom: 14px; letter-spacing: 0.03em; }
-.ml-person-bio { font-size: 12px; color: var(--text2); line-height: 1.8; }
+.ml-person-bio { font-size: 15px; color: var(--text2); line-height: 1.85; letter-spacing: 0.04em; } /* 升級：字級放大、拉開字距，資訊量更精鍊 */
 
 /* JOURNAL */
 .ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
@@ -387,7 +389,7 @@ section[id] {
 .ml-article-num { font-family: 'Outfit', sans-serif; font-size: 14px; color: rgba(200,169,110,0.35); letter-spacing: 0.1em; }
 .ml-article-cat{ font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); }
 .ml-article-title{ font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--text); line-height:1.4; margin-bottom:16px; }
-.ml-article-desc { font-size: 12px; line-height: 1.8; color: var(--text2); margin-bottom: 32px; flex-grow: 1; }
+.ml-article-desc { font-size: 15px; line-height: 1.85; letter-spacing: 0.04em; color: var(--text2); margin-bottom: 32px; flex-grow: 1; } /* 升級：觀點文章字級放大 */
 .ml-article-meta { display: flex; flex-direction: column; gap: 16px; }
 .ml-article-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .ml-tag { font-size: 10px; color: rgba(200,169,110,0.6); border: 0.5px solid rgba(200,169,110,0.25); padding: 4px 10px; letter-spacing: 0.05em; border-radius: 1px; }
@@ -424,6 +426,7 @@ section[id] {
   .ml-track:first-child { border-right: none; border-bottom: 0.5px solid var(--border); }
   .ml-track { grid-template-columns: 1fr; padding: 48px 24px; gap: 20px; }
   .ml-track-meta { border-right: none; border-bottom: 0.5px solid rgba(238,232,220,0.08); padding-bottom: 16px; height: auto; }
+  .ml-person-avatar { width: 50%; } /* 手機版依舊維持優雅的 50% 比例 */
   .ml-cta-band{flex-direction:column;gap:32px;text-align:center;}
   .ml-cta-right{text-align:center;}
   .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
@@ -474,7 +477,7 @@ section[id] {
     <div class="ml-hero-eyebrow">材料品牌化顧問</div>
     <div class="ml-hero-title">Your material<br>deserves to<br>be <em>remembered.</em></div>
     <div class="ml-hero-bottom">
-      <p class="ml-hero-sub">台灣製造商擁有世界級的材料技術，卻常在報價單上拼價格。我們幫你把技術優勢轉化為市場記憶點，讓買方主動指名你。</p>
+      <p class="ml-hero-sub">我們幫你將製造業的技術優勢，轉化為市場主動指名的品牌記憶點。</p>
       <div class="ml-hero-actions">
         <a class="ml-btn-primary" href="mailto:materiallabco@gmail.com">開始合作 →</a>
         <span class="ml-hero-email">materiallabco@gmail.com</span>
@@ -506,7 +509,7 @@ section[id] {
   <div class="ml-method-top">
     <div class="ml-eyebrow">我們的方法</div>
     <div class="ml-section-title">雙軌並進，<br><em>同步打造</em>性能與品牌</div>
-    <p class="ml-section-body">大多數材料商在技術上無懈可擊，卻在市場溝通上失去話語權。Material Lab 的雙軌方法，讓你的材料同時在規格競爭與品牌認知上取得優勢。</p>
+    <p class="ml-section-body">Material Lab 的雙軌方法，讓材料同時在技術規格與 brand 認知上取得市場絕對優勢。</p>
     <div id="geoWrap" class="ml-geo-center"><canvas id="geoCanvas" width="420" height="420"></canvas></div>
   </div>
 
@@ -515,7 +518,7 @@ section[id] {
       <div class="ml-track-meta"><span class="ml-track-num">01</span><span class="ml-track-label">/ 技術軌</span></div>
       <div class="ml-track-content">
         <h3 class="ml-track-name">Technical Track</h3>
-        <p class="ml-track-desc">界定你的關鍵性能差異點，轉化為買方能理解的使用情境語言。讓規格不只是數字，而是解決問題的承諾。</p>
+        <p class="ml-track-desc">界定性能差異點，轉化為買方理解的情境語言。讓規格不只是數字，更是解決問題的承諾。</p>
         <div class="ml-track-pills"><span class="ml-pill">性能差異化</span><span class="ml-pill">情境語言轉譯</span><span class="ml-pill">技術文件升級</span></div>
       </div>
     </div>
@@ -523,7 +526,7 @@ section[id] {
       <div class="ml-track-meta"><span class="ml-track-num">02</span><span class="ml-track-label">/ 品牌軌</span></div>
       <div class="ml-track-content">
         <h3 class="ml-track-name">Brand Track</h3>
-        <p class="ml-track-desc">命名、視覺、敘事一致化，配合吊牌、標籤、包裝與數位觸點，讓你的材料在供應鏈中留下不可替代的印記。</p>
+        <p class="ml-track-desc">命名、敘事、視覺一致化，配合數位觸點與永續標籤，在全供應鏈中留下不可替代的 brand 印記。</p>
         <div class="ml-track-pills"><span class="ml-pill">材料命名系統</span><span class="ml-pill">視覺識別</span><span class="ml-pill">包裝設計</span></div>
       </div>
     </div>
@@ -540,28 +543,28 @@ section[id] {
     <a href="work/firesafe-case.html" class="ml-case reveal ml-case-bg" style="text-decoration: none;">
       <div class="ml-case-index">Case 01</div>
       <div class="ml-case-name">FireSafe Case</div>
-      <p class="ml-case-result">重塑阻燃科技的市場語言——將生硬的化學測試數據，轉化為「爭取關鍵逃生 30 秒」的直覺情境，成功建立高端安全風格的品牌溢價。</p>
+      <p class="ml-case-result">重重定義阻燃科技。將生硬數據轉譯為關鍵逃生情境，成功建立精品安全風格的品牌溢價。</p>
       <div class="ml-case-tag">防焰科技 · 情境轉譯 <span class="ml-case-arrow">→</span></div>
     </a>
 
     <a href="work/FLUXIS.html" class="ml-case reveal ml-case-bg-2" style="transition-delay:0.1s; text-decoration: none;">
       <div class="ml-case-index">Case 02</div>
       <div class="ml-case-name">Fluxis Pulse</div>
-      <p class="ml-case-result">寸勁脈振儀 brand 品牌塑造——將深奧的動態科技轉化為具象的視覺脈動，打造從產品命名到終端體驗的完整高端品牌識別。</p>
+      <p class="ml-case-result">寸勁脈振儀定位。將深奧的動態科技轉化為視覺脈動，打造從命名到終端體驗的完整精品識別。</p>
       <div class="ml-case-tag">動態科技 · 視覺識別 <span class="ml-case-arrow">→</span></div>
     </a>
 
     <a href="work/earth-bracelet.html" class="ml-case reveal ml-case-bg-3" style="transition-delay:0.15s; text-decoration: none;">
       <div class="ml-case-index">Case 03</div>
       <div class="ml-case-name">Earth Bracelet</div>
-      <p class="ml-case-result">植物纖維編織品牌再造——將低調的鳳梨葉有機紗線轉化為機能潮流與永續工藝交織的機能硬核單品，大幅拉升國際通路指名度。</p>
+      <p class="ml-case-result">鳳梨葉編織紗線再造。融合機能潮流與永續工藝為硬核單品，大幅拉升國際通路指名度。</p>
       <div class="ml-case-tag">天然材料 · 永續工藝 <span class="ml-case-arrow">→</span></div>
     </a>
     
     <a href="work/Urban.html" class="ml-case reveal ml-case-bg-4" style="transition-delay:0.2s; text-decoration: none;">
       <div class="ml-case-index">Case 04</div>
       <div class="ml-case-name">UrbanRun GearBag</div>
-      <p class="ml-case-result">城市機能回收材料產品化——重組回收核心科技，結合極簡機能美學與馬拉松跑者核心痛點，首批限定款於台北馬拉松近乎完售。</p>
+      <p class="ml-case-result">城市機能回收材料產品化。直擊跑者核心痛點，首批限定款於台北馬拉松近乎完售。</p>
       <div class="ml-case-tag">回收材料 · 機能美學 <span class="ml-case-arrow">→</span></div>
     </a>
 
@@ -588,28 +591,28 @@ section[id] {
     <div>
       <div class="ml-eyebrow">Our People</div>
       <div class="ml-people-intro-title">相信材料，<br>也相信<em>故事</em><br>的力量</div>
-      <p class="ml-people-intro-sub">Material Lab 橫跨品牌策略、材料科學與設計溝通，我們不只懂品牌，更懂台灣製造業的語言與挑戰。</p>
+      <p class="ml-people-intro-sub">我們橫跨策略、科學與設計溝通，懂品牌，更懂台灣製造業的語言與挑戰。</p>
     </div>
   </div>
   <div class="ml-person reveal">
     <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alvinnew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_nxt3zk.jpg" alt="Alvin Lin"></div>
     <div class="ml-person-name">Alvin Lin</div><div class="ml-person-role">策略長</div>
-    <p class="ml-person-bio">融通品牌、通路與製造端全價值鏈。以宏觀商業視角，專注協助企業主突破框架，打造強勁成長的「第二曲線」。</p>
+    <p class="ml-person-bio">融通製造端與品牌通路全價值鏈。專注破局商業思維，協助企業打造強勁成長的第二曲線。</p>
   </div>
   <div class="ml-person reveal" style="transition-delay:0.1s">
     <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/alicemedianew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jrvtyi.jpg" alt="Alice Song"></div>
     <div class="ml-person-name">Alice Song</div><div class="ml-person-role">議題策略總監</div>
-    <p class="ml-person-bio">洞悉頂尖商業媒體與高階決策思維。擅長精準策動核心議題，將材料科技轉化為具備實質商業影響力的市場聲量。</p>
+    <p class="ml-person-bio">洞悉頂尖媒體與高階決策思維。擅長精準策動核心議題，將科技技術轉化為實質商業聲量。</p>
   </div>
   <div class="ml-person reveal" style="transition-delay:0.2s">
     <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779159644/allennew_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_jqkc3r.jpg" alt="Allen Hou"></div>
     <div class="ml-person-name">Allen Hou</div><div class="ml-person-role">設計總監</div>
-    <p class="ml-person-bio">整合品牌、行銷與製造廠跨界思維。專注風格產品 Total Solution，將材料技術精準轉譯為終端市場的機能美學。</p>
+    <p class="ml-person-bio">整合跨界美學與製造廠工程邏輯。專注 Total Solution，將材料規格轉譯為終端市場機能美學。</p>
   </div>
   <div class="ml-person reveal" style="transition-delay:0.3s">
     <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779327118/sammi_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_arggvg.jpg" alt="Sammi Yang"></div>
     <div class="ml-person-name">Sammi Yang</div><div class="ml-person-role">策略顧問</div>
-    <p class="ml-person-bio">具備深厚的數位行銷底蘊與全鏈路營銷視角。從前端內容規劃到終端媒體投放，致力於為企業建構強韌的 B2C 商業模式，極大化材料品牌的市場穿透力。</p>
+    <p class="ml-person-bio">深厚全鏈路營銷視野。從內容規劃到精準媒體投放，為企業建構強韌 B2C 模式，最大化市場穿透力。</p>
   </div>
 </section>
 
@@ -622,7 +625,7 @@ section[id] {
     <a class="ml-article reveal ml-article-bg" href="journal/brand-strategy-01.html">
       <div class="ml-article-top"><div class="ml-article-num">01</div><div class="ml-article-cat">品牌策略</div></div>
       <div class="ml-article-title">越早做材料品牌化，<br>越早搶下市場話語權</div>
-      <p class="ml-article-desc">台灣材料商習慣用規格說話，卻忽略了「被記住」才是長期競爭力的根本。這篇文章說明為什麼品牌化時機攸關市場地位，以及先行者的優勢從何而來。</p>
+      <p class="ml-article-desc">台灣材料商習慣用規格說話，卻忽略了「被記住」才是根本。本文剖析品牌時機如何攸關先行者優勢。</p>
       <div class="ml-article-meta">
         <div class="ml-article-tags"><span class="ml-tag">品牌化</span><span class="ml-tag">市場定位</span></div><div class="ml-article-date">8 min read</div>
       </div>
@@ -630,15 +633,15 @@ section[id] {
     <a class="ml-article reveal ml-article-bg-2" href="journal/brand-strategy-02.html" style="transition-delay:0.1s">
       <div class="ml-article-top"><div class="ml-article-num">02</div><div class="ml-article-cat">材料 4P</div></div>
       <div class="ml-article-title">材料的新行銷 4P：<br>從規格競爭走向價值定位</div>
-      <p class="ml-article-desc">Product、Price Tibco、Place、Promotion——傳統行銷 4P 在材料產業的應用已不足夠。我們提出「材料 4P」框架，幫助製造商從規格競爭的紅海走出來。</p>
+      <p class="ml-article-desc">傳統行銷 4P 已不敷使用。我們提出獨創「材料 4P」框架，協助製造商跳脫價格規格戰紅海。</p>
       <div class="ml-article-meta">
         <div class="ml-article-tags"><span class="ml-tag">行銷框架</span><span class="ml-tag">4P 方法論</span></div><div class="ml-article-date">10 min read</div>
       </div>
     </a>
     <a class="ml-article reveal ml-article-bg-3" href="journal/brand-strategy-03.html" style="transition-delay:0.15s">
       <div class="ml-article-top"><div class="ml-article-num">03</div><div class="ml-article-cat">視覺識別</div></div>
-      <div class="ml-article-title">材料視覺一致性：<br>為什麼你的樣品卡也是品牌櫥窗</div>
-      <p class="ml-article-desc">從樣品卡到展會攤位——每一個材料觸點都在說話。以頂尖視覺陳列設計師的角度，揭示視覺 slice 一致性如何成為材料商最被低估的競爭武器。</p>
+      <div class="ml-article-title">材料視覺一致性：<br>為什麼你的樣品卡也是 brand 櫥窗</div>
+      <p class="ml-article-desc">從樣品卡到展會攤位。以視覺陳列思維，揭示品牌視覺一致性如何成為指名採購的關鍵武器。</p>
       <div class="ml-article-meta">
         <div class="ml-article-tags"><span class="ml-tag">視覺識別</span><span class="ml-tag">觸點設計</span></div><div class="ml-article-date">7 min read</div>
       </div>
