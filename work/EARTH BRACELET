@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth Bracelet Case — Material Lab</title>
+<link rel="icon" href="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779098464/weblogo_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_swrkxv.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* 基礎設定 */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#2A3941; --bg2:#222F36; --bg3:#1E2A30;
+  --gold:#C8A96E; --text:#EEE8DC; --text2:rgba(238,232,220,0.6); --text3:rgba(238,232,220,0.3); --border:rgba(238,232,220,0.1);
+  --content-width: 1080px; 
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); cursor:none; overflow-x:hidden;}
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,169,110,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.35s cubic-bezier(.25,.46,.45,.94),height 0.35s cubic-bezier(.25,.46,.45,.94);}
+#cursor.hover{width:6px;height:6px;}
+#cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);}
+
+/* ─── 內文與媒體區塊收攏至 1080px 正中央 ─── */
+.cs-hero, .cs-meta, .cs-body, .media-center-wrap, .next-case, .material-showcase {
+    padding-left: max(48px, calc((100vw - var(--content-width)) / 2));
+    padding-right: max(48px, calc((100vw - var(--content-width)) / 2));
+}
+
+/* NAV - 首尾滿版配置 */
+.ml-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(42,57,65,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.ml-logo img{height:28px;width:auto;object-fit:contain;}
+.ml-nav-links{display:flex;gap:32px;list-style:none;}
+.ml-nav-links a{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color 0.2s;position:relative;cursor:none;}
+.ml-nav-links a:hover{color:var(--text);}
+.ml-nav-cta{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:transparent;color:var(--gold);border:0.5px solid var(--gold);padding:9px 20px;border-radius:2px;cursor:none;transition:all 0.25s;}
+.ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
+
+/* HERO */
+.cs-hero { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 1; border-bottom: 0.5px solid var(--border); }
+.cs-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.cs-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 0.5px; background: var(--gold); }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: 88px; font-weight: 300; color: var(--text); line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; }
+.cs-title em { font-style: italic; color: var(--gold); }
+.cs-intro { font-size: 16px; line-height: 1.8; color: var(--text2); max-width: 680px; }
+
+/* META DATA */
+.cs-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding-top: 48px; padding-bottom: 48px; border-bottom: 0.5px solid var(--border); }
+.cs-meta-item { display: flex; flex-direction: column; gap: 8px; }
+.cs-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text3); }
+.cs-meta-value { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+/* ─── 穩定影音與圖片容器（不裁切、完整呈現） ─── */
+.media-center-wrap { padding-top: 56px; padding-bottom: 56px; border-bottom: 0.5px solid var(--border); }
+.media-img-container { width: 100%; display: block; }
+.media-img-container img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+/* 網格版型設定 */
+.mat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.mat-card { display: flex; flex-direction: column; gap: 24px; }
+.mat-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--gold); margin-top: 12px; }
+.mat-card p { font-size: 13px; line-height: 1.8; color: var(--text2); font-weight: 300; }
+
+/* BODY GRIDS */
+.cs-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid var(--border); padding-top: 80px; padding-bottom: 80px; gap: 40px; }
+.cs-col { border-right: 0.5px solid var(--border); padding-right: 40px; }
+.cs-col:last-child { border-right: none; padding-right: 0; }
+.cs-h2 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: var(--text); margin-bottom: 24px; line-height: 1.2; }
+.cs-h2 em { font-style: italic; color: var(--gold); }
+.cs-p { font-size: 14px; line-height: 2; color: var(--text2); margin-bottom: 24px; font-weight: 300; }
+
+/* NEXT PROJECT */
+.next-case { border-bottom: 0.5px solid var(--border); padding-top: 56px; padding-bottom: 56px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: background 0.25s; cursor: none; }
+.next-case:hover { background: rgba(200, 169, 110, 0.03); }
+.nc-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.nc-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text); }
+.nc-arrow { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 300; color: rgba(200, 169, 110, 0.35); transition: transform 0.25s, color 0.25s; }
+.next-case:hover .nc-arrow { transform: translateX(8px); color: var(--gold); }
+
+/* FOOTER - 首尾滿版配置 */
+.ml-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; background: var(--bg3); }
+.ml-footer-copy { font-size: 11px; color: var(--text3); }
+
+@media(max-width:900px){
+  .cs-title { font-size: 56px; }
+  .cs-meta, .cs-body, .mat-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cs-col { border-right: none; padding-right: 0; }
+  .ml-nav-links, .ml-nav-cta { display: none; }
+  .ml-nav, .ml-footer { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav class="ml-nav">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <ul class="ml-nav-links">
+    <li><a href="../index.html#cases">Work</a></li>
+    <li><a href="../index.html#method">Method</a></li>
+    <li><a href="../index.html#journal">Journal</a></li>
+  </ul>
+  <button class="ml-nav-cta">聯絡我們</button>
+</nav>
+
+<section class="cs-hero">
+  <div class="cs-eyebrow">Case Study 03 · 永續植物纖維</div>
+  <h1 class="cs-title">Earth Bracelet:<br><em>大自然的植物</em>生命手環</h1>
+  <p class="cs-intro">Avier @Earth Material Lab 透過精品級轉譯，將廢棄農業剩餘物重塑為具備高情感價值的日常美學配件。從鳳梨葉到香蕉莖，以純粹的影像與精準數據，向市場宣告全循環手機掛繩的誕生。</p>
+</section>
+
+<div class="cs-meta">
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Partners</span>
+    <span class="cs-meta-value">優織隆企業 (UKL) × 陽光娜娜</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Material Tech</span>
+    <span class="cs-meta-value">PALF 鳳梨葉纖維紗線 / 香蕉莖假莖紗線</span>
+  </div>
+  <div class="cs-meta-item">
+    <span class="cs-meta-label">Circularity</span>
+    <span class="cs-meta-value">水果週期配色 · 水果圖案墊片 · 可降解與回收包裝</span>
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419090/Avier_Earth_PineLoop_2_zrdrrw.jpg" alt="Earth Bracelet 永續工藝情境">
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779420705/Avier_%E9%B3%B3%E7%92%B0_%E6%96%B0%E8%81%9E%E7%A8%BF%E5%9C%96_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_puue27.jpg" alt="Avier 鳳環永續手機掛繩系列發佈">
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="mat-grid">
+    <div class="mat-card">
+      <div class="media-img-container">
+        <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419145/%E9%B3%B3%E6%A2%A8%E6%89%8B%E7%92%B0_%E7%B1%B3_1_gzdxup.jpg" alt="PALF 鳳梨葉纖維手環">
+      </div>
+      <h3>01 / PALF 鳳梨葉纖維織體</h3>
+      <p>與優織隆企業合作開發。提取在地農田廢棄鳳梨葉，經專利工藝化為強韌且極具自然紋理的繩骨。取代石化合成纖維，觸感樸實且溫潤。</p>
+    </div>
+    
+    <div class="mat-card">
+      <div class="media-img-container">
+        <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419158/Avier_Bracelet_BananaLoop_RD_%E8%95%89%E5%BF%83_%E7%B4%85%E8%89%B2_2_loqw9u.jpg" alt="BananaLoop 香蕉莖纖維手環">
+      </div>
+      <h3>02 / BananaLoop 香蕉莖纖維織體</h3>
+      <p>攜手陽光娜娜生物材料。回收香蕉採收後廢棄的假莖，轉譯為具備高度韌性與吸濕透氣度的機能紗線，賦予熱帶水果粗獷而細緻的全新線條。</p>
+    </div>
+  </div>
+</div>
+
+<section class="cs-body">
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">設計語彙</div>
+    <h2 class="cs-h2">減少文字，<br><em>讓好材料自己說話</em></h2>
+    <p class="cs-p">真正的環保不需要繁複的修飾。我們將複雜的「減碳、省水、五道工藝製程」完整收攏進直觀的視覺矩陣，透過一目了然的圖像化語彙，對接講究效率與質感的現代消費者。</p>
+  </div>
+  <div class="cs-col">
+    <div class="cs-eyebrow" style="margin-bottom:16px;">全循環承諾</div>
+    <h2 class="cs-h2">從生長到降解，<br><em>落實完整的生命週期</em></h2>
+    <p class="cs-p">色彩啟發自水果的生命演進，配件點綴逗趣的手塊圖案墊片。在包裝系統上，全面採用可降解與可回收紙質，確保產品從出廠、使用到淘汰的每一步，皆不對地球留下一絲負擔。</p>
+  </div>
+</section>
+
+<div class="media-center-wrap">
+  <div class="cs-eyebrow" style="margin-bottom:32px;">Environmental Impact · 數據實證</div>
+  <div class="mat-grid">
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419545/AvierEarth_Earth_Bracelet_PineLoop_EDM-05_v4z8aw.jpg" alt="鳳梨葉減碳環保數據">
+    </div>
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419544/AvierEarth_Earth_Bracelet_BananaLoop_EDM-05_xcuqpi.jpg" alt="香蕉莖減碳環保數據">
+    </div>
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="cs-eyebrow" style="margin-bottom:32px;">5-Step Production Craftsmanship · 五道工藝製程</div>
+  <div class="mat-grid">
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419545/AvierEarth_Earth_Bracelet_PineLoop_EDM-06_tqsa4f.jpg" alt="鳳梨葉手環工藝製程">
+    </div>
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779419544/AvierEarth_Earth_Bracelet_BananaLoop_EDM-06_hp4xgp.jpg" alt="香蕉莖手環工藝製程">
+    </div>
+  </div>
+</div>
+
+<div class="media-center-wrap">
+  <div class="cs-eyebrow" style="margin-bottom:32px;">Color Story: Fruit Lifecycle Spectrum · 生長週期配色</div>
+  <div class="mat-grid">
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779420017/AvierEarth_Earth_Bracelet_PineLoop_EDM-08_rb0pgz.jpg" alt="鳳梨生長週期色譜">
+    </div>
+    <div class="media-img-container">
+      <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779420017/AvierEarth_Earth_Bracelet_BananaLoop_EDM-08_dfmpe0.jpg" alt="香蕉生長週期色譜">
+    </div>
+  </div>
+</div>
+
+<div class="media-center-wrap" style="border-bottom: none;">
+  <div class="cs-eyebrow" style="margin-bottom:32px;">Eco-Packaging & Fruit Patch · 包裝與墊片細節</div>
+  <div class="media-img-container">
+    <img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779420417/Image_g0rdgxg0rdgxg0rd_ydx16u.jpg" alt="水果圖案防護墊片與可回收可降解包裝">
+  </div>
+</div>
+
+<a href="../index.html#cases" class="next-case">
+  <div>
+    <div class="nc-label">Back to Work</div>
+    <div class="nc-title">返回合作案例清單</div>
+  </div>
+  <div class="nc-arrow">→</div>
+</a>
+
+<footer class="ml-footer">
+  <a class="ml-logo" href="../index.html">
+    <img src="https://github.com/materiallabco-sketch/materiallab/blob/main/logow.png?raw=true" alt="Material Lab Logo">
+  </a>
+  <div class="ml-footer-copy">© Material Lab · 讓好材料被看見</div>
+</footer>
+
+<script>
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+(function lerpRing(){ rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); })();
+const hoverEls = document.querySelectorAll('a, button, .media-img-container');
+hoverEls.forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
+  el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
+});
+</script>
+</body>
+</html>
