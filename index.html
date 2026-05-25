@@ -22,6 +22,7 @@
   --text2:rgba(238,232,220,0.5);
   --text3:rgba(238,232,220,0.25);
   --border:rgba(238,232,220,0.1);
+  --bg-light: #F7F5F0; /* 新增：比燕麥沙色更柔和、帶白的頂級紙張沙色 */
 }
 
 html{scroll-behavior:smooth;}
@@ -188,10 +189,10 @@ section[id] {
 }
 .ml-year-tag{position:absolute;bottom:28px;right:28px;font-size:10px;letter-spacing:0.1em;color:var(--text3);}
 
-/* STRIP (MARQUEE) */
+/* STRIP (MARQUEE) - 套用新的柔和沙色 */
 .ml-strip {
-  display: flex; overflow: hidden; padding: 24px 0; border-bottom: 0.5px solid var(--border);
-  position: relative; z-index: 1; background: var(--bg);
+  display: flex; overflow: hidden; padding: 24px 0; border-bottom: 0.5px solid rgba(42, 57, 65, 0.1);
+  position: relative; z-index: 1; background: var(--bg-light); /* 背景跳柔和亮色 */
 }
 .ml-marquee-group {
   display: flex; align-items: center; flex-shrink: 0; gap: 80px; padding-right: 80px; 
@@ -199,9 +200,9 @@ section[id] {
 }
 .ml-strip:hover .ml-marquee-group { animation-play-state: paused; }
 .ml-strip-item { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
-.ml-strip-num { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; }
-.ml-strip-label { font-size: 13px; color: var(--text2); letter-spacing: 0.08em; }
-.ml-strip-div { width: 0.5px; height: 28px; background: var(--border); flex-shrink: 0; }
+.ml-strip-num { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 500; color: var(--bg); letter-spacing: 0.05em; }
+.ml-strip-label { font-size: 13px; color: rgba(42, 57, 65, 0.7); font-weight: 500; letter-spacing: 0.08em; }
+.ml-strip-div { width: 0.5px; height: 28px; background: rgba(42, 57, 65, 0.2); flex-shrink: 0; }
 @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
 /* METHOD SECTION RESTRUCTURE */
@@ -349,26 +350,37 @@ section[id] {
 .ml-cta-email-addr{ font-family:'Cormorant Garamond',serif; font-size:24px;font-weight:300;color:var(--gold); border-bottom:0.5px solid rgba(200,169,110,0.4);padding-bottom:4px; cursor:none;display:inline-block;transition:letter-spacing 0.3s; text-decoration:none; }
 .ml-cta-email-addr:hover{letter-spacing:0.04em;}
 
-/* PEOPLE */
-.ml-people { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; }
-.ml-people-intro { padding: 80px 48px; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; justify-content: flex-start; grid-row: span 2; }
-.ml-people-intro-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--text); line-height: 1.2; margin-top: 16px; }
-.ml-people-intro-sub { font-size: 15px; color: var(--text2); line-height: 1.85; letter-spacing: 0.04em; margin-top: 24px; max-width: 80%; }
-.ml-person { padding: 64px 48px; border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); cursor: none; transition: background 0.3s; }
+/* PEOPLE - 套用新的柔和沙色 */
+.ml-people { 
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; 
+  background: var(--bg-light); /* 背景跳柔和亮色 */
+  position: relative; z-index: 1; 
+}
+.ml-people-intro { 
+  padding: 80px 48px; border-right: 0.5px solid rgba(42, 57, 65, 0.15); 
+  display: flex; flex-direction: column; justify-content: flex-start; grid-row: span 2; 
+}
+.ml-people-intro .ml-eyebrow { color: var(--bg); font-weight: 500; }
+.ml-people-intro .ml-eyebrow::before { background: var(--bg); }
+.ml-people-intro-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--bg); line-height: 1.2; margin-top: 16px; }
+.ml-people-intro-sub { font-size: 15px; color: rgba(42, 57, 65, 0.75); line-height: 1.85; letter-spacing: 0.04em; margin-top: 24px; max-width: 80%; }
+.ml-person { 
+  padding: 64px 48px; border-right: 0.5px solid rgba(42, 57, 65, 0.15); border-bottom: 0.5px solid rgba(42, 57, 65, 0.15); 
+  cursor: none; transition: background 0.3s; 
+}
 .ml-person:nth-child(even) { border-right: none; }
 .ml-person:nth-last-child(-n+2) { border-bottom: none; }
-.ml-person:hover { background: rgba(200,169,110,0.03); }
+.ml-person:hover { background: rgba(42, 57, 65, 0.04); }
 
-/* 精密鎖定：頭像寬度固定在區塊的 50% */
-.ml-person-avatar { width: 50%; aspect-ratio: 1 / 1.1; background: rgba(200,169,110,0.05); overflow: hidden; margin-bottom: 24px; border-radius: 2px; }
+.ml-person-avatar { width: 50%; aspect-ratio: 1 / 1.1; background: rgba(42, 57, 65, 0.05); overflow: hidden; margin-bottom: 24px; border-radius: 2px; }
 .ml-person-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s ease, filter 0.6s ease; filter: grayscale(15%); }
 .ml-person:hover .ml-person-avatar img { transform: scale(1.05); filter: grayscale(0%); }
-.ml-person-name { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-.ml-person-role { font-size: 12px; color: rgba(200,169,110,0.6); margin-bottom: 14px; letter-spacing: 0.03em; }
-.ml-person-bio { font-size: 15px; color: var(--text2); line-height: 1.85; letter-spacing: 0.04em; }
+.ml-person-name { font-size: 16px; font-weight: 500; color: var(--bg); margin-bottom: 4px; }
+.ml-person-role { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 14px; letter-spacing: 0.03em; }
+.ml-person-bio { font-size: 15px; color: rgba(42, 57, 65, 0.75); line-height: 1.85; letter-spacing: 0.04em; }
 
 /* JOURNAL */
-.ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1;}
+.ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1; background: var(--bg);}
 .ml-journal-head { padding: 80px 48px 40px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
 .ml-journal-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--text);}
 .ml-articles{display:grid;grid-template-columns:1fr 1fr 1fr;}
@@ -417,8 +429,8 @@ section[id] {
 @media(max-width:900px){
   .ml-hero, .ml-cases-grid, .ml-articles {grid-template-columns:1fr;}
   .ml-people { grid-template-columns: 1fr; }
-  .ml-people-intro { grid-row: auto; border-right: none; border-bottom: 0.5px solid var(--border); }
-  .ml-person { border-right: none !important; border-bottom: 0.5px solid var(--border) !important; }
+  .ml-people-intro { grid-row: auto; border-right: none; border-bottom: 0.5px solid rgba(42, 57, 65, 0.15); }
+  .ml-person { border-right: none !important; border-bottom: 0.5px solid rgba(42, 57, 65, 0.15) !important; }
   .ml-person:last-child { border-bottom: none !important; }
   .ml-hero-right{height:320px;}
   .ml-case:nth-child(2n), .ml-case:nth-child(3), .ml-article { border-right:none; border-bottom:0.5px solid var(--border); }
@@ -595,7 +607,7 @@ section[id] {
     </div>
   </div>
   <div class="ml-person reveal">
-    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779697433/alvin1_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_llnpht.jpg" alt="Alvin Lin"></div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779703089/alvin2_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_lzkzmo.jpg" alt="Alvin Lin"></div>
     <div class="ml-person-name">Alvin Lin</div><div class="ml-person-role">策略長</div>
     <p class="ml-person-bio">融通製造端與品牌通路全價值鏈。專注破局商業思維，協助企業打造強勁成長的第二曲線。</p>
   </div>
