@@ -355,12 +355,12 @@ section[id] { scroll-margin-top: 80px; }
 /* CONTACT FORM */
 .ml-contact {
   padding: 120px 48px;
-  background: var(--bg-light); /* 延續沙色跳色背景 */
+  background: var(--bg-light);
   border-bottom: 0.5px solid rgba(42, 57, 65, 0.15);
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 2fr; /* 左側標題，右側表單 */
+  grid-template-columns: 1fr 2fr; 
   gap: 64px;
   align-items: start;
 }
@@ -408,10 +408,12 @@ section[id] { scroll-margin-top: 80px; }
 .ml-article:last-child{border-right:none;}
 .ml-article:hover{background:rgba(200,169,110,0.03);}
 
+/* 文章卡片背景 */
 .ml-article-bg, .ml-article-bg-2, .ml-article-bg-3 { position: relative; overflow: hidden; z-index: 1; }
 .ml-article-bg::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779178526/%E8%A6%96%E8%A6%BA_et90zm.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .ml-article-bg-2::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779180884/pexels-googledeepmind-17485658_xbln77.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .ml-article-bg-3::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779329276/pexels-marek-pavlik-1929759405-37269546_ec5f1d.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
+
 .ml-article-bg:hover::after, .ml-article-bg-2:hover::after, .ml-article-bg-3:hover::after { transform: scale(1.05); }
 .ml-article-bg > *, .ml-article-bg-2 > *, .ml-article-bg-3 > * { position: relative; z-index: 2; }
 
@@ -628,7 +630,7 @@ section[id] { scroll-margin-top: 80px; }
     </div>
   </div>
   <div class="ml-person reveal">
-    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779703089/alvin2_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_lzkzmo.jpg" alt="Alvin Lin"></div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779763857/alvin3_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_wp4uiw.jpg" alt="Alvin Lin"></div>
     <div class="ml-person-name">Alvin Lin</div><div class="ml-person-role">策略長</div>
     <p class="ml-person-bio">融通製造端與品牌通路全價值鏈。專注破局商業思維，協助企業打造強勁成長的第二曲線。</p>
   </div>
@@ -844,13 +846,13 @@ if(contactForm) {
 
     const subject = encodeURIComponent(`[Material Lab 合作詢問] ${company} - ${name}`);
     const body = encodeURIComponent(
-      `姓名：${name}\n` +
-      `聯絡電話：${phone}\n` +
-      `Email：${email}\n` +
-      `公司名稱：${company}\n` +
-      `如何知道我們：${source}\n` +
-      `訂閱電子報：${newsletter}\n\n` +
-      `需求描述：\n${message}`
+      `姓名：${name}\r\n` +
+      `聯絡電話：${phone}\r\n` +
+      `Email：${email}\r\n` +
+      `公司名稱：${company}\r\n` +
+      `如何知道我們：${source}\r\n` +
+      `訂閱電子報：${newsletter}\r\n\r\n` +
+      `需求描述：\r\n${message}`
     );
 
     window.location.href = `mailto:us@materiallab.space?subject=${subject}&body=${body}`;
