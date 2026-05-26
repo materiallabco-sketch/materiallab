@@ -378,6 +378,94 @@ section[id] {
 .ml-person-name { font-size: 16px; font-weight: 500; color: var(--bg); margin-bottom: 4px; }
 .ml-person-role { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 14px; letter-spacing: 0.03em; }
 .ml-person-bio { font-size: 15px; color: rgba(42, 57, 65, 0.75); line-height: 1.85; letter-spacing: 0.04em; }
+/* CONTACT FORM */
+.ml-contact {
+  padding: 120px 48px;
+  background: var(--bg-light); /* 延續沙色跳色背景 */
+  border-bottom: 0.5px solid rgba(42, 57, 65, 0.15);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 左側標題，右側表單 */
+  gap: 64px;
+  align-items: start;
+}
+.ml-contact-header .ml-eyebrow { justify-content: flex-start; color: var(--bg); font-weight: 500; }
+.ml-contact-header .ml-eyebrow::before { background: var(--bg); }
+.ml-contact-header .ml-eyebrow::after { display: none; } /* 移除右側橫線 */
+.ml-contact-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; color: var(--bg); line-height: 1.1; margin-bottom: 24px;
+}
+.ml-contact-title em { font-style: italic; color: var(--gold); }
+.ml-contact-sub { font-size: 14px; color: rgba(42, 57, 65, 0.75); line-height: 1.8; letter-spacing: 0.04em; max-width: 90%; }
+
+.ml-contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* 表單內部再切左右兩欄 */
+  gap: 48px;
+}
+.ml-form-left { display: flex; flex-direction: column; gap: 32px; }
+.ml-form-right { display: flex; flex-direction: column; gap: 24px; height: 100%; }
+
+/* 極簡底線輸入框設計 */
+.ml-input-group { position: relative; width: 100%; }
+.ml-input-group input, .ml-input-group textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(42, 57, 65, 0.3);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  color: var(--bg);
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.3s ease;
+  resize: none; /* 關閉文字框的拖拉縮放 */
+}
+.ml-input-group textarea {
+  height: 240px; /* 右側大框高度 */
+}
+/* Placeholder 顏色 */
+.ml-input-group input::placeholder, .ml-input-group textarea::placeholder {
+  color: rgba(42, 57, 65, 0.4);
+  font-weight: 300;
+}
+/* Focus 時底線變金色 */
+.ml-input-group input:focus, .ml-input-group textarea:focus {
+  border-bottom-color: var(--gold);
+}
+
+/* 底部按鈕與 Checkbox */
+.ml-form-actions { display: flex; flex-direction: column; gap: 24px; margin-top: auto; }
+.ml-checkbox-container {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: rgba(42, 57, 65, 0.7); cursor: none;
+}
+.ml-checkbox-container input { display: none; } /* 隱藏原生 checkbox */
+.ml-checkmark {
+  width: 16px; height: 16px; border: 0.5px solid rgba(42, 57, 65, 0.4); border-radius: 2px;
+  position: relative; transition: all 0.2s ease; display: inline-block;
+}
+/* 打勾圖示 */
+.ml-checkbox-container input:checked ~ .ml-checkmark { background: var(--gold); border-color: var(--gold); }
+.ml-checkbox-container input:checked ~ .ml-checkmark::after {
+  content: ''; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
+  border: solid var(--bg); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg);
+}
+.ml-submit-btn {
+  font-family: 'Outfit', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--bg); color: var(--gold); border: none; padding: 16px 32px; border-radius: 2px;
+  cursor: none; transition: all 0.3s ease; align-self: flex-start;
+}
+.ml-submit-btn:hover { background: var(--gold); color: var(--bg); letter-spacing: 0.15em; }
+
+/* 針對手機版排版修正 */
+@media(max-width:900px){
+  /* ...原有的手機版設定 ... */
+  .ml-contact { grid-template-columns: 1fr; padding: 64px 24px; gap: 40px; }
+  .ml-contact-form { grid-template-columns: 1fr; gap: 32px; }
+  .ml-input-group textarea { height: 160px; }
+}
 
 /* JOURNAL */
 .ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1; background: var(--bg);}
@@ -469,7 +557,7 @@ section[id] {
     <li><a href="#journal">Journal</a></li>
     <li><a href="#people">People</a></li>
   </ul>
-  <button class="ml-nav-cta" onclick="location.href='mailto:us@materiallab.space'">聯絡我們</button>
+  <button class="ml-nav-cta" onclick="location.href='#contact'">聯絡我們</button>
   <div class="ml-hamburger" id="hamburger"><span></span><span></span></div>
 </nav>
 
@@ -480,7 +568,7 @@ section[id] {
     <a href="#method" class="mobile-link">Method</a>
     <a href="#journal" class="mobile-link">Journal</a>
     <a href="#people" class="mobile-link">People</a>
-    <a href="mailto:us@materiallab.space" class="mobile-link" style="color:var(--gold); margin-top: 20px;">聯絡我們</a>
+    <a href="#contact" class="mobile-link" style="color:var(--gold); margin-top: 20px;">聯絡我們</a>
   </div>
 </div>
 
@@ -626,6 +714,48 @@ section[id] {
     <div class="ml-person-name">Sammi Yang</div><div class="ml-person-role">策略顧問</div>
     <p class="ml-person-bio">深厚全鏈路營銷視野。從內容規劃到精準媒體投放，為企業建構強韌 B2C 模式，最大化市場穿透力。</p>
   </div>
+</section>
+
+<section class="ml-contact" id="contact">
+  <div class="ml-contact-header">
+    <div class="ml-eyebrow">Contact Us</div>
+    <h2 class="ml-contact-title">準備好讓你的材料<br><em>被世界記住</em>了嗎？</h2>
+    <p class="ml-contact-sub">如果您對我們的顧問服務有興趣，歡迎填寫下方資訊，我們將儘速由專人與您聯繫。</p>
+  </div>
+  
+  <form class="ml-contact-form" action="mailto:us@materiallab.space" method="POST" enctype="text/plain">
+    <div class="ml-form-left">
+      <div class="ml-input-group">
+        <input type="text" id="name" name="姓名" required placeholder="*姓名">
+      </div>
+      <div class="ml-input-group">
+        <input type="tel" id="phone" name="電話" required placeholder="*聯絡電話">
+      </div>
+      <div class="ml-input-group">
+        <input type="email" id="email" name="Email" required placeholder="*Email">
+      </div>
+      <div class="ml-input-group">
+        <input type="text" id="company" name="公司名稱" required placeholder="*公司名稱">
+      </div>
+      <div class="ml-input-group">
+        <input type="text" id="source" name="如何知道我們" placeholder="如何知道 Material Lab?">
+      </div>
+    </div>
+    
+    <div class="ml-form-right">
+      <div class="ml-input-group" style="height: 100%;">
+        <textarea id="message" name="需求描述" required placeholder="*請留下您的專案需求或目前面臨的挑戰..."></textarea>
+      </div>
+      <div class="ml-form-actions">
+        <label class="ml-checkbox-container">
+          <input type="checkbox" name="訂閱電子報" value="是">
+          <span class="ml-checkmark"></span>
+          我希望收到 Material Lab 的最新材料品牌化洞察
+        </label>
+        <button type="submit" class="ml-submit-btn">送出需求 →</button>
+      </div>
+    </div>
+  </form>
 </section>
 
 <section class="ml-journal" id="journal">
