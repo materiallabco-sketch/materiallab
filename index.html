@@ -22,7 +22,7 @@
   --text2:rgba(238,232,220,0.5);
   --text3:rgba(238,232,220,0.25);
   --border:rgba(238,232,220,0.1);
-  --bg-light: #F7F5F0; /* 新增：比燕麥沙色更柔和、帶白的頂級紙張沙色 */
+  --bg-light: #F7F5F0; 
 }
 
 html{scroll-behavior:smooth;}
@@ -71,16 +71,8 @@ body::before{
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
-.ml-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.ml-logo img {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-}
+.ml-logo { display: flex; align-items: center; text-decoration: none; }
+.ml-logo img { height: 28px; width: auto; object-fit: contain; }
 .ml-nav-links{display:flex;gap:32px;list-style:none;}
 .ml-nav-links a{
   font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
@@ -101,22 +93,11 @@ body::before{
   cursor:none;transition:all 0.25s;
 }
 .ml-nav-cta:hover{background:var(--gold);color:var(--bg);}
-section[id] {
-  scroll-margin-top: 80px; 
-}
+section[id] { scroll-margin-top: 80px; }
 
 /* MOBILE MENU */
-.ml-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: none;
-  z-index: 1001;
-}
-.ml-hamburger span {
-  display: block; width: 24px; height: 1px; background: var(--text);
-  transition: all 0.3s ease;
-}
+.ml-hamburger { display: none; flex-direction: column; gap: 6px; cursor: none; z-index: 1001; }
+.ml-hamburger span { display: block; width: 24px; height: 1px; background: var(--text); transition: all 0.3s ease; }
 .ml-hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
 .ml-hamburger.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
@@ -140,9 +121,7 @@ section[id] {
 .ml-mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
 
 .ml-mobile-close {
-  position: absolute;
-  top: 32px; right: 24px; width: 24px; height: 24px; cursor: none;
-  transform: translateY(-50%);
+  position: absolute; top: 32px; right: 24px; width: 24px; height: 24px; cursor: none; transform: translateY(-50%);
 }
 .ml-mobile-close::before, .ml-mobile-close::after {
   content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px;
@@ -189,15 +168,12 @@ section[id] {
 }
 .ml-year-tag{position:absolute;bottom:28px;right:28px;font-size:10px;letter-spacing:0.1em;color:var(--text3);}
 
-/* STRIP (MARQUEE) - 套用新的柔和沙色 */
+/* STRIP (MARQUEE) */
 .ml-strip {
   display: flex; overflow: hidden; padding: 24px 0; border-bottom: 0.5px solid rgba(42, 57, 65, 0.1);
-  position: relative; z-index: 1; background: var(--bg-light); /* 背景跳柔和亮色 */
+  position: relative; z-index: 1; background: var(--bg-light); 
 }
-.ml-marquee-group {
-  display: flex; align-items: center; flex-shrink: 0; gap: 80px; padding-right: 80px; 
-  animation: scrollMarquee 25s linear infinite; 
-}
+.ml-marquee-group { display: flex; align-items: center; flex-shrink: 0; gap: 80px; padding-right: 80px; animation: scrollMarquee 25s linear infinite; }
 .ml-strip:hover .ml-marquee-group { animation-play-state: paused; }
 .ml-strip-item { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 .ml-strip-num { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 500; color: var(--bg); letter-spacing: 0.05em; }
@@ -207,8 +183,6 @@ section[id] {
 
 /* METHOD SECTION RESTRUCTURE */
 .ml-method { border-bottom: 0.5px solid var(--border); position: relative; z-index: 1; display: flex; flex-direction: column; }
-
-/* 上半部：標題與星環 */
 .ml-method-top {
   padding: 100px 48px; display: flex; flex-direction: column; align-items: center; text-align: center;  
   border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden; z-index: 1;
@@ -229,7 +203,6 @@ section[id] {
 .ml-section-body { font-size: 16px; line-height: 1.9; letter-spacing: 0.04em; color: var(--text2); max-width: 520px; margin: 0 auto; }
 .ml-geo-center { width: 100%; max-width: 500px; aspect-ratio: 1/1; margin-top: 64px; display: flex; align-items: center; justify-content: center; position: relative; }
 
-/* 下半部：左右兩軌 */
 .ml-method-bottom { display: grid; grid-template-columns: 1fr 1fr; position: relative; background: transparent; }
 
 /* METHOD TRACKS */
@@ -350,10 +323,10 @@ section[id] {
 .ml-cta-email-addr{ font-family:'Cormorant Garamond',serif; font-size:24px;font-weight:300;color:var(--gold); border-bottom:0.5px solid rgba(200,169,110,0.4);padding-bottom:4px; cursor:none;display:inline-block;transition:letter-spacing 0.3s; text-decoration:none; }
 .ml-cta-email-addr:hover{letter-spacing:0.04em;}
 
-/* PEOPLE - 套用新的柔和沙色 */
+/* PEOPLE - 燕麥沙色底 / 深藍色字 */
 .ml-people { 
   display: grid; grid-template-columns: 1.2fr 1fr 1fr; 
-  background: var(--bg-light); /* 背景跳柔和亮色 */
+  background: var(--bg-light); 
   position: relative; z-index: 1; 
 }
 .ml-people-intro { 
@@ -378,6 +351,7 @@ section[id] {
 .ml-person-name { font-size: 16px; font-weight: 500; color: var(--bg); margin-bottom: 4px; }
 .ml-person-role { font-size: 12px; color: var(--gold); font-weight: 500; margin-bottom: 14px; letter-spacing: 0.03em; }
 .ml-person-bio { font-size: 15px; color: rgba(42, 57, 65, 0.75); line-height: 1.85; letter-spacing: 0.04em; }
+
 /* CONTACT FORM */
 .ml-contact {
   padding: 120px 48px;
@@ -392,65 +366,31 @@ section[id] {
 }
 .ml-contact-header .ml-eyebrow { justify-content: flex-start; color: var(--bg); font-weight: 500; }
 .ml-contact-header .ml-eyebrow::before { background: var(--bg); }
-.ml-contact-header .ml-eyebrow::after { display: none; } /* 移除右側橫線 */
-.ml-contact-title {
-  font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; color: var(--bg); line-height: 1.1; margin-bottom: 24px;
-}
+.ml-contact-header .ml-eyebrow::after { display: none; }
+.ml-contact-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; color: var(--bg); line-height: 1.1; margin-bottom: 24px; }
 .ml-contact-title em { font-style: italic; color: var(--gold); }
 .ml-contact-sub { font-size: 14px; color: rgba(42, 57, 65, 0.75); line-height: 1.8; letter-spacing: 0.04em; max-width: 90%; }
 
-.ml-contact-form {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr; /* 表單內部再切左右兩欄 */
-  gap: 48px;
-}
+.ml-contact-form { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; }
 .ml-form-left { display: flex; flex-direction: column; gap: 32px; }
 .ml-form-right { display: flex; flex-direction: column; gap: 24px; height: 100%; }
 
-/* 極簡底線輸入框設計 */
 .ml-input-group { position: relative; width: 100%; }
 .ml-input-group input, .ml-input-group textarea {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 0.5px solid rgba(42, 57, 65, 0.3);
-  font-family: 'Outfit', sans-serif;
-  font-size: 15px;
-  color: var(--bg);
-  padding: 12px 0;
-  outline: none;
-  transition: border-color 0.3s ease;
-  resize: none; /* 關閉文字框的拖拉縮放 */
+  width: 100%; background: transparent; border: none; border-bottom: 0.5px solid rgba(42, 57, 65, 0.3);
+  font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--bg); padding: 12px 0; outline: none; transition: border-color 0.3s ease; resize: none; 
 }
-.ml-input-group textarea {
-  height: 240px; /* 右側大框高度 */
-}
-/* Placeholder 顏色 */
-.ml-input-group input::placeholder, .ml-input-group textarea::placeholder {
-  color: rgba(42, 57, 65, 0.4);
-  font-weight: 300;
-}
-/* Focus 時底線變金色 */
-.ml-input-group input:focus, .ml-input-group textarea:focus {
-  border-bottom-color: var(--gold);
-}
+.ml-input-group textarea { height: 240px; }
+.ml-input-group input::placeholder, .ml-input-group textarea::placeholder { color: rgba(42, 57, 65, 0.4); font-weight: 300; }
+.ml-input-group input:focus, .ml-input-group textarea:focus { border-bottom-color: var(--gold); }
 
-/* 底部按鈕與 Checkbox */
 .ml-form-actions { display: flex; flex-direction: column; gap: 24px; margin-top: auto; }
-.ml-checkbox-container {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 13px; color: rgba(42, 57, 65, 0.7); cursor: none;
-}
-.ml-checkbox-container input { display: none; } /* 隱藏原生 checkbox */
-.ml-checkmark {
-  width: 16px; height: 16px; border: 0.5px solid rgba(42, 57, 65, 0.4); border-radius: 2px;
-  position: relative; transition: all 0.2s ease; display: inline-block;
-}
-/* 打勾圖示 */
+.ml-checkbox-container { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(42, 57, 65, 0.7); cursor: none; }
+.ml-checkbox-container input { display: none; } 
+.ml-checkmark { width: 16px; height: 16px; border: 0.5px solid rgba(42, 57, 65, 0.4); border-radius: 2px; position: relative; transition: all 0.2s ease; display: inline-block; }
 .ml-checkbox-container input:checked ~ .ml-checkmark { background: var(--gold); border-color: var(--gold); }
 .ml-checkbox-container input:checked ~ .ml-checkmark::after {
-  content: ''; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
-  border: solid var(--bg); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg);
+  content: ''; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px; border: solid var(--bg); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg);
 }
 .ml-submit-btn {
   font-family: 'Outfit', sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -458,14 +398,6 @@ section[id] {
   cursor: none; transition: all 0.3s ease; align-self: flex-start;
 }
 .ml-submit-btn:hover { background: var(--gold); color: var(--bg); letter-spacing: 0.15em; }
-
-/* 針對手機版排版修正 */
-@media(max-width:900px){
-  /* ...原有的手機版設定 ... */
-  .ml-contact { grid-template-columns: 1fr; padding: 64px 24px; gap: 40px; }
-  .ml-contact-form { grid-template-columns: 1fr; gap: 32px; }
-  .ml-input-group textarea { height: 160px; }
-}
 
 /* JOURNAL */
 .ml-journal{border-bottom:0.5px solid var(--border);position:relative;z-index:1; background: var(--bg);}
@@ -476,12 +408,10 @@ section[id] {
 .ml-article:last-child{border-right:none;}
 .ml-article:hover{background:rgba(200,169,110,0.03);}
 
-/* 文章卡片背景 */
 .ml-article-bg, .ml-article-bg-2, .ml-article-bg-3 { position: relative; overflow: hidden; z-index: 1; }
 .ml-article-bg::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779178526/%E8%A6%96%E8%A6%BA_et90zm.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .ml-article-bg-2::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779180884/pexels-googledeepmind-17485658_xbln77.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .ml-article-bg-3::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: linear-gradient(to bottom, rgba(42, 57, 65, 0.85), rgba(30, 42, 48, 0.95)), url('https://res.cloudinary.com/dzxlqypsq/image/upload/v1779329276/pexels-marek-pavlik-1929759405-37269546_ec5f1d.jpg'); background-size: cover; background-position: center; transition: transform 0.6s ease; }
-
 .ml-article-bg:hover::after, .ml-article-bg-2:hover::after, .ml-article-bg-3:hover::after { transform: scale(1.05); }
 .ml-article-bg > *, .ml-article-bg-2 > *, .ml-article-bg-3 > * { position: relative; z-index: 2; }
 
@@ -527,6 +457,9 @@ section[id] {
   .ml-track { grid-template-columns: 1fr; padding: 48px 24px; gap: 20px; }
   .ml-track-meta { border-right: none; border-bottom: 0.5px solid rgba(238,232,220,0.08); padding-bottom: 16px; height: auto; }
   .ml-person-avatar { width: 50%; } 
+  .ml-contact { grid-template-columns: 1fr; padding: 64px 24px; gap: 40px; }
+  .ml-contact-form { grid-template-columns: 1fr; gap: 32px; }
+  .ml-input-group textarea { height: 160px; }
   .ml-cta-band{flex-direction:column;gap:32px;text-align:center;}
   .ml-cta-right{text-align:center;}
   .ml-nav-links, .ml-nav-cta, .ml-footer-links { display: none !important; }
@@ -579,7 +512,7 @@ section[id] {
     <div class="ml-hero-bottom">
       <p class="ml-hero-sub">我們幫你將製造業的技術優勢，轉化為市場主動指名的品牌記憶點。</p>
       <div class="ml-hero-actions">
-        <a class="ml-btn-primary" href="mailto:us@materiallab.space">開始合作 →</a>
+        <a class="ml-btn-primary" href="#contact">開始合作 →</a>
         <span class="ml-hero-email">us@materiallab.space</span>
       </div>
     </div>
@@ -681,8 +614,8 @@ section[id] {
     <div class="ml-cta-headline">你的材料，<br>值得被<em>市場記住</em>。</div>
   </div>
   <div class="ml-cta-right" style="position: relative; z-index: 2;">
-    <div class="ml-cta-email-label">直接寫信給我們</div>
-    <a class="ml-cta-email-addr" href="mailto:us@materiallab.space">us@materiallab.space</a>
+    <div class="ml-cta-email-label">直接填寫需求表單</div>
+    <a class="ml-cta-email-addr" href="#contact">填寫需求 →</a>
   </div>
 </section>
 
@@ -695,7 +628,7 @@ section[id] {
     </div>
   </div>
   <div class="ml-person reveal">
-    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779763857/alvin3_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_wp4uiw.jpg" alt="Alvin Lin"></div>
+    <div class="ml-person-avatar"><img src="https://res.cloudinary.com/dzxlqypsq/image/upload/v1779703089/alvin2_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F_1_lzkzmo.jpg" alt="Alvin Lin"></div>
     <div class="ml-person-name">Alvin Lin</div><div class="ml-person-role">策略長</div>
     <p class="ml-person-bio">融通製造端與品牌通路全價值鏈。專注破局商業思維，協助企業打造強勁成長的第二曲線。</p>
   </div>
@@ -723,7 +656,7 @@ section[id] {
     <p class="ml-contact-sub">如果您對我們的顧問服務有興趣，歡迎填寫下方資訊，我們將儘速由專人與您聯繫。</p>
   </div>
   
-  <form class="ml-contact-form" action="mailto:us@materiallab.space" method="POST" enctype="text/plain">
+  <form class="ml-contact-form" id="contactForm">
     <div class="ml-form-left">
       <div class="ml-input-group">
         <input type="text" id="name" name="姓名" required placeholder="*姓名">
@@ -810,7 +743,7 @@ const ring = document.getElementById('cursor-ring');
 let mx=0, my=0, rx=0, ry=0;
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
 (function lerpRing(){ rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(lerpRing); })();
-const hoverEls = document.querySelectorAll('a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr, .ml-mobile-close');
+const hoverEls = document.querySelectorAll('a, button, .ml-case, .ml-track, .ml-article, .ml-person, .ml-pill, .ml-cta-email-addr, .ml-mobile-close, .ml-submit-btn, .ml-checkbox-container');
 hoverEls.forEach(el => {
   el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover'); });
   el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover'); });
@@ -895,6 +828,34 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// CONTACT FORM MAILTO LOGIC (安全防亂碼編碼處理)
+const contactForm = document.getElementById('contactForm');
+if(contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value;
+    const source = document.getElementById('source').value || '未填寫';
+    const message = document.getElementById('message').value;
+    const newsletter = document.querySelector('input[name="訂閱電子報"]').checked ? '是' : '否';
+
+    const subject = encodeURIComponent(`[Material Lab 合作詢問] ${company} - ${name}`);
+    const body = encodeURIComponent(
+      `姓名：${name}\n` +
+      `聯絡電話：${phone}\n` +
+      `Email：${email}\n` +
+      `公司名稱：${company}\n` +
+      `如何知道我們：${source}\n` +
+      `訂閱電子報：${newsletter}\n\n` +
+      `需求描述：\n${message}`
+    );
+
+    window.location.href = `mailto:us@materiallab.space?subject=${subject}&body=${body}`;
+  });
+}
 </script>
 </body>
 </html>
